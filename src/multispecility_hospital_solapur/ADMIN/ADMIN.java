@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.table.TableRowSorter;
 import multispecility_hospital_solapur.LOGIN_FORM;
 import multispecility_hospital_solapur.use.GetConnection;
@@ -689,7 +690,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         GENDER = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
-        DOB = new com.toedter.calendar.JDateChooser();
         jLabel31 = new javax.swing.JLabel();
         MSTATUS = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
@@ -737,7 +737,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         PANNO = new javax.swing.JTextField();
         jLabel120 = new javax.swing.JLabel();
-        DATEOFJOINING = new com.toedter.calendar.JDateChooser();
         jLabel122 = new javax.swing.JLabel();
         OPD_NO = new javax.swing.JTextField();
         jLabel123 = new javax.swing.JLabel();
@@ -773,7 +772,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel62 = new javax.swing.JLabel();
         RGENDER = new javax.swing.JComboBox<>();
         jLabel63 = new javax.swing.JLabel();
-        RDOB = new com.toedter.calendar.JDateChooser();
         jLabel64 = new javax.swing.JLabel();
         RMSTATUS = new javax.swing.JComboBox<>();
         jLabel65 = new javax.swing.JLabel();
@@ -821,7 +819,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel84 = new javax.swing.JLabel();
         RPANNO = new javax.swing.JTextField();
         jLabel119 = new javax.swing.JLabel();
-        RDATEOFJOINING = new com.toedter.calendar.JDateChooser();
         jLabel85 = new javax.swing.JLabel();
         RDATE = new javax.swing.JLabel();
         RTIME = new javax.swing.JLabel();
@@ -848,7 +845,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel95 = new javax.swing.JLabel();
         NGENDER = new javax.swing.JComboBox<>();
         jLabel96 = new javax.swing.JLabel();
-        NDOB = new com.toedter.calendar.JDateChooser();
         jLabel97 = new javax.swing.JLabel();
         NMSTATUS = new javax.swing.JComboBox<>();
         jLabel98 = new javax.swing.JLabel();
@@ -896,7 +892,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel117 = new javax.swing.JLabel();
         NPANNO = new javax.swing.JTextField();
         jLabel121 = new javax.swing.JLabel();
-        NDATEOFJOINING = new com.toedter.calendar.JDateChooser();
         jLabel118 = new javax.swing.JLabel();
         RDATE1 = new javax.swing.JLabel();
         RTIME1 = new javax.swing.JLabel();
@@ -922,8 +917,6 @@ public class ADMIN extends javax.swing.JFrame {
         RSUBMIT2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         OTAMOUNT = new javax.swing.JTextField();
-        DISCHARGEDATE = new com.toedter.calendar.JDateChooser();
-        ADMITDATE = new com.toedter.calendar.JDateChooser();
         FULLNAME = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel131 = new javax.swing.JLabel();
@@ -946,7 +939,6 @@ public class ADMIN extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         MEDICINES = new javax.swing.JTextArea();
         jLabel143 = new javax.swing.JLabel();
-        NEXT_VISIT_DATE = new com.toedter.calendar.JDateChooser();
         jLabel144 = new javax.swing.JLabel();
         DDATE = new javax.swing.JLabel();
         DTIME = new javax.swing.JLabel();
@@ -1444,14 +1436,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel30.setText("DOB");
 
-        DOB.setDateFormatString("yyyy-MM-dd");
-        DOB.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        DOB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DOBMouseClicked(evt);
-            }
-        });
-
         jLabel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel31.setText("MARIATAL STATUS");
 
@@ -1726,9 +1710,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel120.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel120.setText("DATE OF JOINING");
 
-        DATEOFJOINING.setDateFormatString("yyyy-MM-dd");
-        DATEOFJOINING.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
         jLabel122.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel122.setText("OPO_NO");
 
@@ -1812,7 +1793,7 @@ public class ADMIN extends javax.swing.JFrame {
                                     .addComponent(MNAME)
                                     .addComponent(USERPHOTO, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel28Layout.createSequentialGroup()
                                         .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel27)
@@ -1826,9 +1807,7 @@ public class ADMIN extends javax.swing.JFrame {
                                             .addComponent(jLabel29)
                                             .addComponent(GENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel30)
-                                            .addComponent(DOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(jLabel30))
                                     .addGroup(jPanel28Layout.createSequentialGroup()
                                         .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel33)
@@ -1892,36 +1871,37 @@ public class ADMIN extends javax.swing.JFrame {
                                 .addComponent(jLabel52)
                                 .addComponent(PANNO)))
                         .addGroup(jPanel28Layout.createSequentialGroup()
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel42)
-                                .addComponent(COUNTRY, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel43)
-                                .addComponent(PINCODE, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel28Layout.createSequentialGroup()
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel45)
-                                .addComponent(ADDRESS, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel47)
-                                .addComponent(CITY, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel28Layout.createSequentialGroup()
-                                    .addGap(27, 27, 27)
-                                    .addComponent(jLabel41))
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel42)
+                                        .addComponent(COUNTRY, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel43)
+                                        .addComponent(PINCODE, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel28Layout.createSequentialGroup()
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel45)
+                                        .addComponent(ADDRESS, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel47)
+                                        .addComponent(CITY, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel28Layout.createSequentialGroup()
+                                            .addGap(27, 27, 27)
+                                            .addComponent(jLabel41))
+                                        .addGroup(jPanel28Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(DISTRICT, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel44)
+                                        .addComponent(STATE, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
-                                    .addComponent(DISTRICT, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel44)
-                                .addComponent(STATE, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel120)
-                                .addComponent(DATEOFJOINING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel120)))
+                            .addGap(154, 154, 154)))
                     .addGroup(jPanel28Layout.createSequentialGroup()
                         .addComponent(OPD_NO, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -1946,8 +1926,7 @@ public class ADMIN extends javax.swing.JFrame {
                         .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel28Layout.createSequentialGroup()
                                 .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39))
                             .addGroup(jPanel28Layout.createSequentialGroup()
                                 .addComponent(jLabel26)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2072,8 +2051,7 @@ public class ADMIN extends javax.swing.JFrame {
                         .addComponent(STATE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
                         .addComponent(jLabel120)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DATEOFJOINING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel28Layout.createSequentialGroup()
@@ -2297,9 +2275,6 @@ public class ADMIN extends javax.swing.JFrame {
 
         jLabel63.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel63.setText("DOB");
-
-        RDOB.setDateFormatString("yyyy-MM-dd");
-        RDOB.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         jLabel64.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel64.setText("MARIATAL STATUS");
@@ -2565,9 +2540,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel119.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel119.setText("DATE OF JOINING");
 
-        RDATEOFJOINING.setDateFormatString("yyyy-MM-dd");
-        RDATEOFJOINING.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
         javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
         jPanel32.setLayout(jPanel32Layout);
         jPanel32Layout.setHorizontalGroup(
@@ -2605,9 +2577,7 @@ public class ADMIN extends javax.swing.JFrame {
                                 .addComponent(RSTATE, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel77))
                             .addGap(30, 30, 30)
-                            .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel119)
-                                .addComponent(RDATEOFJOINING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel119))
                         .addGroup(jPanel32Layout.createSequentialGroup()
                             .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel80)
@@ -2676,9 +2646,7 @@ public class ADMIN extends javax.swing.JFrame {
                                         .addComponent(jLabel62)
                                         .addComponent(RGENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel63)
-                                        .addComponent(RDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel63))
                                 .addGroup(jPanel32Layout.createSequentialGroup()
                                     .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel66)
@@ -2716,8 +2684,7 @@ public class ADMIN extends javax.swing.JFrame {
                         .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel32Layout.createSequentialGroup()
                                 .addComponent(jLabel63)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(RDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39))
                             .addGroup(jPanel32Layout.createSequentialGroup()
                                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel59)
@@ -2836,8 +2803,7 @@ public class ADMIN extends javax.swing.JFrame {
                     .addGroup(jPanel32Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel119)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RDATEOFJOINING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel32Layout.createSequentialGroup()
@@ -3069,9 +3035,6 @@ public class ADMIN extends javax.swing.JFrame {
 
         jLabel96.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel96.setText("DOB");
-
-        NDOB.setDateFormatString("yyyy-MM-dd");
-        NDOB.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         jLabel97.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel97.setText("MARIATAL STATUS");
@@ -3337,9 +3300,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel121.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel121.setText("DATE OF JOINING");
 
-        NDATEOFJOINING.setDateFormatString("yyyy-MM-dd");
-        NDATEOFJOINING.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
@@ -3377,9 +3337,7 @@ public class ADMIN extends javax.swing.JFrame {
                                 .addComponent(NSTATE, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel110))
                             .addGap(30, 30, 30)
-                            .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel121)
-                                .addComponent(NDATEOFJOINING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel121))
                         .addGroup(jPanel35Layout.createSequentialGroup()
                             .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel113)
@@ -3448,9 +3406,7 @@ public class ADMIN extends javax.swing.JFrame {
                                         .addComponent(jLabel95)
                                         .addComponent(NGENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel96)
-                                        .addComponent(NDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel96))
                                 .addGroup(jPanel35Layout.createSequentialGroup()
                                     .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel99)
@@ -3488,8 +3444,7 @@ public class ADMIN extends javax.swing.JFrame {
                         .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel35Layout.createSequentialGroup()
                                 .addComponent(jLabel96)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39))
                             .addGroup(jPanel35Layout.createSequentialGroup()
                                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel92)
@@ -3608,8 +3563,7 @@ public class ADMIN extends javax.swing.JFrame {
                     .addGroup(jPanel35Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel121)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NDATEOFJOINING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel35Layout.createSequentialGroup()
@@ -3880,15 +3834,6 @@ public class ADMIN extends javax.swing.JFrame {
             }
         });
 
-        DISCHARGEDATE.setDateFormatString("yyyy-MM-dd");
-        DISCHARGEDATE.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DISCHARGEDATEKeyPressed(evt);
-            }
-        });
-
-        ADMITDATE.setDateFormatString("yyyy-MM-dd");
-
         FULLNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         FULLNAME.setText("FULL NAME");
 
@@ -3961,8 +3906,6 @@ public class ADMIN extends javax.swing.JFrame {
         jLabel143.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel143.setText("MEDICINES");
 
-        NEXT_VISIT_DATE.setDateFormatString("yyyy-MM-dd");
-
         jLabel144.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel144.setText("NEXT VISIT");
 
@@ -3994,9 +3937,6 @@ public class ADMIN extends javax.swing.JFrame {
                                 .addComponent(jLabel133, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
                         .addGap(55, 55, 55)
                         .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ADMITDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(NOOFDAAYS, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FULLNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel38Layout.createSequentialGroup()
@@ -4014,12 +3954,9 @@ public class ADMIN extends javax.swing.JFrame {
                 .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel130)
                     .addComponent(jLabel143)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                        .addComponent(jLabel144, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(NEXT_VISIT_DATE, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel144, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel38Layout.setVerticalGroup(
@@ -4038,15 +3975,11 @@ public class ADMIN extends javax.swing.JFrame {
                             .addGroup(jPanel38Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(jLabel140)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ADMITDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel17)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NOOFDAAYS)
                             .addComponent(jLabel131))
@@ -4084,10 +4017,8 @@ public class ADMIN extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(NEXT_VISIT_DATE, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel144, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jLabel144)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(RSUBMIT2)
                 .addGap(36, 36, 36))
         );
@@ -5632,7 +5563,6 @@ char c = evt.getKeyChar();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AADHAARNO;
     private javax.swing.JTextField ADDRESS;
-    private com.toedter.calendar.JDateChooser ADMITDATE;
     private javax.swing.JTextField AGE;
     private javax.swing.JTextField CITY;
     private javax.swing.JTextField CONTACT1;
@@ -5641,14 +5571,11 @@ char c = evt.getKeyChar();
     private javax.swing.JTextField CPASSWORD;
     private javax.swing.JPanel DASHBOARD0;
     private javax.swing.JLabel DATE;
-    private com.toedter.calendar.JDateChooser DATEOFJOINING;
     private javax.swing.JLabel DDATE;
     private javax.swing.JButton DELETE;
     private javax.swing.JTextField DID;
-    private com.toedter.calendar.JDateChooser DISCHARGEDATE;
     private javax.swing.JPanel DISCHARGE_FORM;
     private javax.swing.JTextField DISTRICT;
-    private com.toedter.calendar.JDateChooser DOB;
     private javax.swing.JPanel DOCTORLIST;
     private javax.swing.JPanel DOCTORS_CREATE;
     private javax.swing.JTable DOCTORS_LIST;
@@ -5678,13 +5605,10 @@ char c = evt.getKeyChar();
     private javax.swing.JTextField NCONTACT2;
     private javax.swing.JTextField NCOUNTRY;
     private javax.swing.JTextField NCPASSWORD;
-    private com.toedter.calendar.JDateChooser NDATEOFJOINING;
     private javax.swing.JTextField NDISTRICT;
-    private com.toedter.calendar.JDateChooser NDOB;
     private javax.swing.JTextField NDOCUMENT;
     private javax.swing.JTextField NEDUCATION;
     private javax.swing.JTextField NEMAIL;
-    private com.toedter.calendar.JDateChooser NEXT_VISIT_DATE;
     private javax.swing.JTextField NFNAME;
     private javax.swing.JComboBox<String> NGENDER;
     private javax.swing.JTextField NID;
@@ -5729,11 +5653,9 @@ char c = evt.getKeyChar();
     private javax.swing.JLabel RDATE2;
     private javax.swing.JLabel RDATE3;
     private javax.swing.JLabel RDATE4;
-    private com.toedter.calendar.JDateChooser RDATEOFJOINING;
     private javax.swing.JButton RDELETE;
     private javax.swing.JButton RDELETE1;
     private javax.swing.JTextField RDISTRICT;
-    private com.toedter.calendar.JDateChooser RDOB;
     private javax.swing.JTextField RDOCUMENT;
     private javax.swing.JPanel RECEPTIONISTDARA;
     private javax.swing.JPanel RECEPTIONIST_CREATE;

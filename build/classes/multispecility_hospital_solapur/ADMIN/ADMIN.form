@@ -1011,7 +1011,7 @@
                                                   <Component id="USERPHOTO" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1028,10 +1028,7 @@
                                                           <Component id="GENDER" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="DOB" max="32767" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1120,46 +1117,48 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel42" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="COUNTRY" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="PINCODE" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel45" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ADDRESS" alignment="0" min="-2" pref="550" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                              <Component id="CITY" min="-2" pref="336" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                  <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLabel42" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="COUNTRY" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="PINCODE" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel45" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="ADDRESS" alignment="0" min="-2" pref="550" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="CITY" min="-2" pref="336" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                          <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="DISTRICT" min="-2" pref="304" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="STATE" min="-2" pref="323" max="-2" attributes="0"/>
+                                                  </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="DISTRICT" min="-2" pref="304" max="-2" attributes="0"/>
+                                                  <Component id="jLabel120" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
-                                              <Component id="STATE" min="-2" pref="323" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel120" min="-2" max="-2" attributes="0"/>
-                                              <Component id="DATEOFJOINING" min="-2" pref="308" max="-2" attributes="0"/>
-                                          </Group>
+                                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -1193,8 +1192,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="DOB" min="-2" pref="33" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
@@ -1363,8 +1361,7 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel120" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="DATEOFJOINING" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -1519,17 +1516,6 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="DOB"/>
                       </Properties>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="DOB">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Dialog" size="18" style="0"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DOBMouseClicked"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel31">
                       <Properties>
@@ -1996,14 +1982,6 @@
                         <Property name="text" type="java.lang.String" value="DATE OF JOINING"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="DATEOFJOINING">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Dialog" size="18" style="0"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel122">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2387,10 +2365,7 @@
                                                   <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel119" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="RDATEOFJOINING" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="jLabel119" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2478,10 +2453,7 @@
                                                           <Component id="RGENDER" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="RDOB" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2532,8 +2504,7 @@
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="RDOB" min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -2697,8 +2668,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel119" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="RDATEOFJOINING" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -2849,14 +2819,6 @@
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="DOB"/>
-                          </Properties>
-                        </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="RDOB">
-                          <Properties>
-                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel64">
@@ -3322,14 +3284,6 @@
                             <Property name="text" type="java.lang.String" value="DATE OF JOINING"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="RDATEOFJOINING">
-                          <Properties>
-                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                       </SubComponents>
                     </Container>
                     <Component class="javax.swing.JLabel" name="jLabel85">
@@ -3600,10 +3554,7 @@
                                               <Component id="jLabel110" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel121" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="NDATEOFJOINING" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel121" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -3691,10 +3642,7 @@
                                                       <Component id="NGENDER" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel96" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="NDOB" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jLabel96" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -3745,8 +3693,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel96" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="NDOB" min="-2" pref="33" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
@@ -3910,8 +3857,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel121" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="NDATEOFJOINING" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -4062,14 +4008,6 @@
                           <Font name="Dialog" size="18" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="DOB"/>
-                      </Properties>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="NDOB">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Dialog" size="18" style="0"/>
-                        </Property>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel97">
@@ -4535,14 +4473,6 @@
                         <Property name="text" type="java.lang.String" value="DATE OF JOINING"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="NDATEOFJOINING">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Dialog" size="18" style="0"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel118">
@@ -4929,10 +4859,6 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="DISCHARGEDATE" max="32767" attributes="0"/>
-                                              <Component id="ADMITDATE" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
-                                          </Group>
                                           <Component id="NOOFDAAYS" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
                                           <Component id="FULLNAME" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
                                       </Group>
@@ -4956,13 +4882,9 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel130" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel143" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" alignment="0" pref="386" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel144" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <EmptySpace pref="42" max="32767" attributes="0"/>
-                                      <Component id="NEXT_VISIT_DATE" min="-2" pref="232" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel144" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -4988,17 +4910,11 @@
                                               <Component id="jLabel140" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ADMITDATE" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="DISCHARGEDATE" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="NOOFDAAYS" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel131" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -5046,11 +4962,8 @@
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="NEXT_VISIT_DATE" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="jLabel144" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <Component id="jLabel144" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="20" max="32767" attributes="0"/>
                               <Component id="RSUBMIT2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
@@ -5112,19 +5025,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OTAMOUNTActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="DISCHARGEDATE">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DISCHARGEDATEKeyPressed"/>
-                      </Events>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="ADMITDATE">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="FULLNAME">
                       <Properties>
@@ -5328,11 +5228,6 @@
                           <Font name="Dialog" size="16" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="MEDICINES"/>
-                      </Properties>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="NEXT_VISIT_DATE">
-                      <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel144">
