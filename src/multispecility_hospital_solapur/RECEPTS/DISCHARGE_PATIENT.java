@@ -1,15 +1,43 @@
 
 package multispecility_hospital_solapur.RECEPTS;
-
-import java.text.MessageFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 import multispecility_hospital_solapur.use.Printer;
 
 public class DISCHARGE_PATIENT extends javax.swing.JFrame {
 
-    public DISCHARGE_PATIENT() {
-        initComponents();
-    }
+         public DISCHARGE_PATIENT(int pid, String FullName, String dateofadmit, String dateofdischarge, int noofDays, String docName, int wardCharges, int opAmt, int extAmt, String prescription, String medicines, String nextVisit, int totalBill, int bedCharges) {
+       initComponents();
+          showDate();
+          showTime();
+          FULLNAME.setText(" GEJSDJASJAHSJASJASHJ") ;
+         }
 
+     void showDate() {
+    Date d = new Date();
+    SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+    DATE.setText(s.format(d));
+  }
+     
+     
+  void showTime() {
+    new Timer(
+      0,
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          Date d = new Date();
+          SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
+          TIME.setText(s.format(d));
+        }
+      }
+    )
+      .start();
+  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,9 +94,11 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         NEXT_VISIT_DATE = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        printbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(869, 933));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("E:\\NetBeans\\VHS\\src\\Assets\\logo_1.png")); // NOI18N
 
@@ -80,7 +110,7 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon("E:\\NetBeans\\VHS\\src\\Assets\\logo_2.png")); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("PID  :");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -104,31 +134,31 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel11.setText("CHARGES DETAILS");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel12.setText("TOTAL CHARGES");
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel13.setText("PATIENT DETAILS");
 
-        FULLNAME.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        FULLNAME.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         FULLNAME.setText("HEMANT SHIVAPUTRA WAKADE");
 
-        GENDER.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        GENDER.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         GENDER.setText("GENDER");
 
-        AGE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        AGE.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         AGE.setText("AGE");
 
-        jLabel16.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel16.setText("ADMIT DATE");
 
-        jLabel17.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel17.setText("DISCHARGE DATE");
 
-        DRNAME.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        DRNAME.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         DRNAME.setText("HEMNANT SHUVANS JANSDAJN");
 
         NO_OF_DAYS.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -140,16 +170,16 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         DISCHARGEDATE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         DISCHARGEDATE.setText("2000-03-05");
 
-        ADMITDATE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        ADMITDATE.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ADMITDATE.setText("2000-02-03");
 
-        jLabel24.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel24.setText("DR NAME");
 
-        jLabel23.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel23.setText("NO OF DAYS TO STAY");
 
-        jLabel25.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel25.setText("TREATMENT");
 
         PRECEPTION.setColumns(20);
@@ -160,22 +190,22 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         MEDICINES.setRows(5);
         jScrollPane2.setViewportView(MEDICINES);
 
-        jLabel26.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel26.setText("MEDICINES");
 
         WARDNAME.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         WARDNAME.setText("ICU");
 
-        jLabel28.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel28.setText("WARD CHARGES");
 
-        jLabel29.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel29.setText("OPERTATION AMOUNT");
 
-        jLabel30.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel30.setText("EXTRA CHARGES");
 
-        jLabel31.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel31.setText("WARD NAME");
 
         WARD_CHARGES.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -193,13 +223,13 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         TOTAL_AMOUNT.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         TOTAL_AMOUNT.setText("50000");
 
-        jLabel37.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel37.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel37.setText("PATIENT NAME");
 
-        jLabel38.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel38.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel38.setText("NEXT VISIT DATE");
 
-        NEXT_VISIT_DATE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        NEXT_VISIT_DATE.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         NEXT_VISIT_DATE.setText("2000-03-05");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -229,42 +259,40 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel24)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(DRNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jScrollPane2)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel25)
-                                            .addComponent(jLabel26))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(5, 5, 5))
+                                .addComponent(jLabel24)
+                                .addGap(28, 28, 28)
+                                .addComponent(DRNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel38)
                                 .addGap(27, 27, 27)
-                                .addComponent(NEXT_VISIT_DATE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(NEXT_VISIT_DATE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel30)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel23)
                                     .addComponent(jLabel31))
-                                .addGap(27, 27, 27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(WARDNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(NO_OF_DAYS, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DISCHARGEDATE)
-                                    .addComponent(ADMITDATE, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))))
+                                    .addComponent(ADMITDATE, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel30))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -301,7 +329,6 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
                             .addComponent(TIME, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15))))
             .addComponent(jSeparator6)
-            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -315,7 +342,8 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel35)
                         .addGap(103, 103, 103)
-                        .addComponent(TOTAL_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TOTAL_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -396,11 +424,11 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel31)
                                     .addComponent(WARDNAME))
-                                .addGap(24, 24, 24)
+                                .addGap(28, 28, 28)
                                 .addComponent(jLabel28)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel29)
-                                .addGap(18, 18, 18)
+                                .addGap(26, 26, 26)
                                 .addComponent(jLabel30))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(217, 217, 217)
@@ -409,28 +437,28 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
                                 .addComponent(OT_AMOUNT)
                                 .addGap(26, 26, 26)
                                 .addComponent(EXTRA_AMOUNT)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel38)
                             .addComponent(NEXT_VISIT_DATE)))
                     .addComponent(jSeparator4)
                     .addComponent(jSeparator5))
-                .addGap(7, 7, 7)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
                     .addComponent(TOTAL_AMOUNT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton1.setText("PRINT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        printbutton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        printbutton.setText("PRINT");
+        printbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                printbuttonActionPerformed(evt);
             }
         });
 
@@ -438,46 +466,51 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(441, 441, 441)
-                .addComponent(jButton1))
+                .addGap(252, 252, 252)
+                .addComponent(printbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(printbutton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-               new Printer().printReciept(this.jPanel1);
-//            MessageFormat header = new MessageFormat("dfsdfsdfs");    
-//            MessageFormat footer = new MessageFormat("dfsdfsdfs");
-//
-//            try{
-////                jPanel1l.print(jPanel1l.PrintMo de.NORMAL, header, footer);
-//            }catch(Exception e){}
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    public static void main(String args[]) {
+    private void printbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printbuttonActionPerformed
      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DISCHARGE_PATIENT().setVisible(true);
-            }
-        });
-    }
+               new Printer().printReciept(this.jPanel1);
+
+    }//GEN-LAST:event_printbuttonActionPerformed
+
+         Statement statement ; 
+     String DbName="";
+     int did = 0;
+     
+     int pid=0;
+     String FullName;
+     String dateofadmit="";
+     String dateofdischarge="";
+     int noofDays;
+     String docName="";
+     String wardName;
+     int wardCharges;
+     int opAmt;
+     int extAmt;
+     String patientStatus;
+     String prescription;
+     String medicines;
+     String nextVisit;
+     int totalBill;
+     int bedCharges=0;
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADMITDATE;
@@ -498,7 +531,6 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
     private javax.swing.JLabel TOTAL_AMOUNT;
     private javax.swing.JLabel WARDNAME;
     private javax.swing.JLabel WARD_CHARGES;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -533,5 +565,6 @@ public class DISCHARGE_PATIENT extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JButton printbutton;
     // End of variables declaration//GEN-END:variables
 }

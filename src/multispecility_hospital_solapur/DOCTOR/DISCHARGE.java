@@ -1,35 +1,32 @@
 
 package multispecility_hospital_solapur.DOCTOR;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import multispecility_hospital_solapur.RECEPTS.DISCHARGE_PATIENT;
 import multispecility_hospital_solapur.use.GetConnection;
 
 
 public class DISCHARGE extends javax.swing.JFrame {
-
     public DISCHARGE() {
         initComponents();
         showDate();
         showTime();
         setExtendedState(MAXIMIZED_BOTH);
         statement = new GetConnection().Connect_mysql();
-
+        DEATH.setVisible(false);
     }
-
      void showDate(){
         java.util.Date d = new java.util.Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         DDATE.setText(s.format (d));
     }
-    
      void showTime(){
      new Timer(0, new ActionListener(){
             @Override
@@ -38,10 +35,13 @@ public class DISCHARGE extends javax.swing.JFrame {
                 SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
                 DTIME.setText(s.format(d));
             }
-            
-        }).start();
-    }
-  
+
+        }).start();}
+       void getdata(){
+ 
+  }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,37 +56,45 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel129 = new javax.swing.JLabel();
         PID = new javax.swing.JTextField();
         RSUBMIT2 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        OTAMOUNT = new javax.swing.JTextField();
-        FULLNAME = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel131 = new javax.swing.JLabel();
-        NOOFDAYS = new javax.swing.JLabel();
-        jLabel133 = new javax.swing.JLabel();
-        jLabel134 = new javax.swing.JLabel();
-        BEDCHARGE = new javax.swing.JLabel();
-        jLabel136 = new javax.swing.JLabel();
-        PATIENT_STATUS = new javax.swing.JComboBox<>();
-        jLabel137 = new javax.swing.JLabel();
-        jLabel138 = new javax.swing.JLabel();
-        EXTRA_AMOUNT = new javax.swing.JTextField();
-        jLabel140 = new javax.swing.JLabel();
-        jLabel139 = new javax.swing.JLabel();
-        DRNAME = new javax.swing.JLabel();
+        TOTALAMOUNT = new javax.swing.JLabel();
+        jLabel145 = new javax.swing.JLabel();
+        ERRORLABLE = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel143 = new javax.swing.JLabel();
+        NEXTVISIT = new com.toedter.calendar.JDateChooser();
+        jLabel144 = new javax.swing.JLabel();
         jLabel130 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         PRESCRIPTION = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         MEDICINES = new javax.swing.JTextArea();
-        jLabel143 = new javax.swing.JLabel();
-        jLabel144 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         ADMITDATE = new com.toedter.calendar.JDateChooser();
+        FULLNAME = new javax.swing.JLabel();
+        jLabel134 = new javax.swing.JLabel();
+        OTAMOUNT = new javax.swing.JTextField();
+        jLabel131 = new javax.swing.JLabel();
+        PATIENT_STATUS = new javax.swing.JComboBox<>();
+        WARDCHARGES = new javax.swing.JLabel();
+        jLabel133 = new javax.swing.JLabel();
+        jLabel140 = new javax.swing.JLabel();
+        NOOFDAYS = new javax.swing.JLabel();
+        DRNAME = new javax.swing.JLabel();
+        jLabel137 = new javax.swing.JLabel();
+        EXTRA_AMOUNT = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
         DISCHARGEDATE = new com.toedter.calendar.JDateChooser();
-        NEXTVISIT = new com.toedter.calendar.JDateChooser();
-        TOTALAMOUNT = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel136 = new javax.swing.JLabel();
+        jLabel138 = new javax.swing.JLabel();
         WARDNAME = new javax.swing.JLabel();
-        jLabel145 = new javax.swing.JLabel();
-        ERRORLABLE = new javax.swing.JLabel();
+        DEATH = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DEATHREASON = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         DDATE = new javax.swing.JLabel();
         DTIME = new javax.swing.JLabel();
         jLabel141 = new javax.swing.JLabel();
@@ -162,8 +170,81 @@ public class DISCHARGE extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel17.setText("ADMIT DATE");
+        TOTALAMOUNT.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        TOTALAMOUNT.setText("0");
+
+        jLabel145.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel145.setText("TOTAL BILL : ");
+
+        ERRORLABLE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        ERRORLABLE.setForeground(new java.awt.Color(204, 0, 0));
+        ERRORLABLE.setText("   ");
+
+        jLabel143.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel143.setText("MEDICINES");
+
+        NEXTVISIT.setDateFormatString("yyyy-MM-dd");
+
+        jLabel144.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel144.setText("NEXT VISIT");
+
+        jLabel130.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel130.setText("PRESCRIPTION");
+
+        PRESCRIPTION.setColumns(20);
+        PRESCRIPTION.setRows(5);
+        jScrollPane2.setViewportView(PRESCRIPTION);
+
+        MEDICINES.setColumns(20);
+        MEDICINES.setRows(5);
+        jScrollPane3.setViewportView(MEDICINES);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel130)
+                    .addComponent(jLabel143)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel144, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NEXTVISIT, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel130)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel143)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(337, 337, 337)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(NEXTVISIT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel144))))
+                .addContainerGap())
+        );
+
+        ADMITDATE.setDateFormatString("yyyy-MM-dd");
+
+        FULLNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        FULLNAME.setText("FULL NAME");
+
+        jLabel134.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel134.setText("OPERATION AMOUNT");
 
         OTAMOUNT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         OTAMOUNT.setText("0");
@@ -178,29 +259,8 @@ public class DISCHARGE extends javax.swing.JFrame {
             }
         });
 
-        FULLNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        FULLNAME.setText("FULL NAME");
-
-        jLabel19.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel19.setText("DISCHARGE DATE");
-
         jLabel131.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel131.setText("NO OF DAYS TO STAY");
-
-        NOOFDAYS.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        NOOFDAYS.setText("0");
-
-        jLabel133.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel133.setText("WARD NAME");
-
-        jLabel134.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel134.setText("OPERATION AMOUNT");
-
-        BEDCHARGE.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        BEDCHARGE.setText("0");
-
-        jLabel136.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel136.setText("PATIENT  STATUS");
 
         PATIENT_STATUS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         PATIENT_STATUS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LIVE", "DEATH" }));
@@ -210,11 +270,23 @@ public class DISCHARGE extends javax.swing.JFrame {
             }
         });
 
+        WARDCHARGES.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        WARDCHARGES.setText("0");
+
+        jLabel133.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel133.setText("WARD NAME");
+
+        jLabel140.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel140.setText("FULL NAME");
+
+        NOOFDAYS.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        NOOFDAYS.setText("0");
+
+        DRNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        DRNAME.setText("DR NAME");
+
         jLabel137.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel137.setText("WARD CHARGES");
-
-        jLabel138.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel138.setText("EXTRA AMOUNT");
 
         EXTRA_AMOUNT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         EXTRA_AMOUNT.setText("0");
@@ -229,68 +301,35 @@ public class DISCHARGE extends javax.swing.JFrame {
             }
         });
 
-        jLabel140.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel140.setText("FULL NAME");
+        jLabel17.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel17.setText("ADMIT DATE");
+
+        DISCHARGEDATE.setDateFormatString("yyyy-MM-dd");
 
         jLabel139.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel139.setText("DR NAME");
 
-        DRNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        DRNAME.setText("DR NAME");
+        jLabel19.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel19.setText("DISCHARGE DATE");
 
-        jLabel130.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jLabel130.setText("PRESCRIPTION");
+        jLabel136.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel136.setText("PATIENT  STATUS");
 
-        PRESCRIPTION.setColumns(20);
-        PRESCRIPTION.setRows(5);
-        jScrollPane2.setViewportView(PRESCRIPTION);
-
-        MEDICINES.setColumns(20);
-        MEDICINES.setRows(5);
-        jScrollPane3.setViewportView(MEDICINES);
-
-        jLabel143.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jLabel143.setText("MEDICINES");
-
-        jLabel144.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel144.setText("NEXT VISIT");
-
-        ADMITDATE.setDateFormatString("yyyy-MM-dd");
-
-        DISCHARGEDATE.setDateFormatString("yyyy-MM-dd");
-
-        NEXTVISIT.setDateFormatString("yyyy-MM-dd");
-
-        TOTALAMOUNT.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        TOTALAMOUNT.setText("0");
+        jLabel138.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel138.setText("EXTRA AMOUNT");
 
         WARDNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         WARDNAME.setText("WARDNAME");
 
-        jLabel145.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel145.setText("TOTAL BILL : ");
-
-        ERRORLABLE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        ERRORLABLE.setForeground(new java.awt.Color(204, 0, 0));
-        ERRORLABLE.setText("   ");
-
-        javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
-        jPanel38.setLayout(jPanel38Layout);
-        jPanel38Layout.setHorizontalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel38Layout.createSequentialGroup()
-                .addGap(849, 849, 849)
-                .addComponent(jLabel129)
-                .addGap(18, 18, 18)
-                .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(ERRORLABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(581, Short.MAX_VALUE)
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel140)
                             .addComponent(jLabel17)
                             .addComponent(jLabel19)
@@ -299,42 +338,150 @@ public class DISCHARGE extends javax.swing.JFrame {
                             .addComponent(jLabel134, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel136)
-                            .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel137, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel133, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
+                                .addComponent(jLabel133, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(55, 55, 55)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NOOFDAYS, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FULLNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                .addComponent(ADMITDATE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ADMITDATE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(WARDNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel38Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(251, 251, 251)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PATIENT_STATUS, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OTAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BEDCHARGE, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(RSUBMIT2)
-                                .addComponent(EXTRA_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(WARDCHARGES, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EXTRA_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(DRNAME, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FULLNAME)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel140)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ADMITDATE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NOOFDAYS)
+                    .addComponent(jLabel131))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DRNAME)
+                    .addComponent(jLabel139))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel133)
+                    .addComponent(WARDNAME))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(WARDCHARGES)
+                    .addComponent(jLabel137))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel134)
+                    .addComponent(OTAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel138)
+                    .addComponent(EXTRA_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel136)
+                    .addComponent(PATIENT_STATUS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        DEATHREASON.setColumns(20);
+        DEATHREASON.setRows(5);
+        jScrollPane1.setViewportView(DEATHREASON);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel1.setText("DEATH REASON");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setText("DEATH TIME");
+
+        javax.swing.GroupLayout DEATHLayout = new javax.swing.GroupLayout(DEATH);
+        DEATH.setLayout(DEATHLayout);
+        DEATHLayout.setHorizontalGroup(
+            DEATHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DEATHLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DEATHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addGroup(DEATHLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        DEATHLayout.setVerticalGroup(
+            DEATHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DEATHLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel130)
-                    .addComponent(jLabel143)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
+        jPanel38.setLayout(jPanel38Layout);
+        jPanel38Layout.setHorizontalGroup(
+            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel38Layout.createSequentialGroup()
+                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addComponent(jLabel144, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(NEXTVISIT, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addComponent(jLabel145, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(90, Short.MAX_VALUE)
+                        .addComponent(DEATH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TOTALAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 300, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel38Layout.createSequentialGroup()
+                        .addGap(849, 849, 849)
+                        .addComponent(jLabel129)
+                        .addGap(18, 18, 18)
+                        .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(ERRORLABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel38Layout.createSequentialGroup()
+                        .addGap(1130, 1130, 1130)
+                        .addComponent(jLabel145, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(TOTALAMOUNT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(251, 251, 251))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(RSUBMIT2)
+                .addGap(874, 874, 874))
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,76 +493,23 @@ public class DISCHARGE extends javax.swing.JFrame {
                     .addComponent(ERRORLABLE))
                 .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel38Layout.createSequentialGroup()
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel38Layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(FULLNAME))
-                                    .addGroup(jPanel38Layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jLabel140)))
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ADMITDATE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(DISCHARGEDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(NOOFDAYS)
-                                    .addComponent(jLabel131)))
-                            .addGroup(jPanel38Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel130)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel38Layout.createSequentialGroup()
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(DRNAME)
-                                    .addComponent(jLabel139))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel133)
-                                    .addComponent(WARDNAME))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(BEDCHARGE)
-                                    .addComponent(jLabel137))
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel134)
-                                    .addComponent(OTAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel38Layout.createSequentialGroup()
-                                .addComponent(jLabel143)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGap(60, 60, 60)
+                        .addComponent(DEATH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel138)
-                                .addComponent(EXTRA_AMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel38Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel144)))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel136)
-                            .addComponent(PATIENT_STATUS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addGap(387, 387, 387)
-                        .addComponent(NEXTVISIT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel145)
-                            .addComponent(TOTALAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(73, 73, 73)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TOTALAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel145))
+                .addGap(21, 21, 21)
                 .addComponent(RSUBMIT2)
-                .addContainerGap())
+                .addGap(31, 31, 31))
         );
 
         DDATE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -482,7 +576,7 @@ public class DISCHARGE extends javax.swing.JFrame {
                     .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -491,13 +585,13 @@ public class DISCHARGE extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 1922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -542,18 +636,18 @@ public class DISCHARGE extends javax.swing.JFrame {
                     String c =result.getString("LNAME");
                     String fullname = a+" "+b+" "+c;
                     FULLNAME.setText(fullname);
-                    DRNAME.setText(result.getString("DRNAME")); 
-                    DISCHARGEDATE.setDate(
-                        new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
-                    );
+                    DRNAME.setText(result.getString("DRNAME"));  
                 }
+                DISCHARGEDATE.setDate(
+                        new SimpleDateFormat("yyyy-MM-dd").parse(DDATE.getText())
+                    );
                 result = statement.executeQuery("SELECT CHARGES  FROM VHSHOSPITAL.WARDS WHERE WARDNAME='"+wardName+"'");
                 while(result.next()){
                     bedCharges = Integer.parseInt(result.getString("CHARGES"));
                 }
                 
             dd();
-            BEDCHARGE.setText(Integer.toString(bedCharges * Integer.parseInt(NOOFDAYS.getText())));
+            WARDCHARGES.setText(Integer.toString(bedCharges * Integer.parseInt(NOOFDAYS.getText())));
             }catch(Exception e){
                 System.out.println(e);
             } 
@@ -574,25 +668,33 @@ void dd(){
 
     }
     private void RSUBMIT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RSUBMIT2ActionPerformed
-          CalculateBill();
-                        clearFields();
-
+ 
+        CalculateBill();
           if(pid!=0){
               getDischargeData();
-              String query = "INSERT INTO doc_"+did+".DISCHARGE(PID,ADMITDATE,DISCHARGEDATE,NODAYS,DRNAME,WARDNAME,WARDCHARGES,OPERATIOINAMT,EXTRAAMT,PATIENTSTATUS,PRESCRIPTION,MEDICINES,NEXTVISIT,DATE,TIME)VALUES("+
-                      pid+",'"+dateofadmit+"','"+DDATE.getText()+"',"+noofDays+",'"+DRNAME.getText()+"','"+WARDNAME.getText()+"',"+Integer.parseInt(BEDCHARGE.getText())+","+Integer.parseInt(OTAMOUNT.getText())+Integer.parseInt(EXTRA_AMOUNT.getText())+
-                      "";
-          }else{
+              String query = "INSERT INTO doc_"+did+".DISCHARGE(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,PRESCRIPTION ,MEDICINES ,NEXTVISIT ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + prescription + "'," + "'" + medicines + "'," + "'" + nextVisit + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
+        
+              System.out.println(noofDays);
+                  new DISCHARGE_PATIENT(pid,FullName,dateofadmit,dateofdischarge,noofDays,docName,wardCharges,opAmt,extAmt,prescription,medicines,nextVisit,totalBill,bedCharges).setVisible(true);
+                 clearFields();
+
+
+            showMessageDialog(this,"Data Added Successfully..!");
+
+             }else{
               ERRORLABLE.setText("ENTER PID..!");
           }
-        
     }//GEN-LAST:event_RSUBMIT2ActionPerformed
 
     private void PATIENT_STATUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PATIENT_STATUSActionPerformed
-        if (PATIENT_STATUS.getSelectedItem().toString().equals("NO")) {
-//            jPanel5.setVisible(true);
-        } else {
-//            jPanel5.setVisible(false);
+        if (PATIENT_STATUS.getSelectedItem().toString().equals("LIVE")) {
+            jPanel1.setVisible(true);
+                        DEATH.setVisible(false);       
+            } else {
+            
+            DEATH.setVisible(true);       
+            jPanel1.setVisible(false);
+
         }
     }//GEN-LAST:event_PATIENT_STATUSActionPerformed
 
@@ -616,6 +718,10 @@ void dd(){
            }
     }//GEN-LAST:event_EXTRA_AMOUNTKeyPressed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     
     public static void main(String args[]) {
        
@@ -626,9 +732,7 @@ void dd(){
         });
     }
      Statement statement ; 
-     String DbName="";
      int did = 0;
-     
      int pid=0;
      String FullName;
      String dateofadmit="";
@@ -639,21 +743,24 @@ void dd(){
      int wardCharges;
      int opAmt;
      int extAmt;
-     String patientStatus;
      String prescription;
      String medicines;
      String nextVisit;
      int totalBill;
      int bedCharges=0;
+     String Date; 
+     String Time;
+
      
     
      
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser ADMITDATE;
-    private javax.swing.JLabel BEDCHARGE;
     private javax.swing.JLabel DDATE;
     private javax.swing.JLabel DDATE1;
+    private javax.swing.JPanel DEATH;
+    private javax.swing.JTextArea DEATHREASON;
     private com.toedter.calendar.JDateChooser DISCHARGEDATE;
     private javax.swing.JLabel DRNAME;
     private javax.swing.JLabel DTIME;
@@ -670,7 +777,9 @@ void dd(){
     private javax.swing.JTextArea PRESCRIPTION;
     private javax.swing.JButton RSUBMIT2;
     private javax.swing.JLabel TOTALAMOUNT;
+    private javax.swing.JLabel WARDCHARGES;
     private javax.swing.JLabel WARDNAME;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel126;
     private javax.swing.JLabel jLabel127;
@@ -691,57 +800,47 @@ void dd(){
     private javax.swing.JLabel jLabel145;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     private void CalculateBill() {
-        int wardcharges=Integer.parseInt(BEDCHARGE.getText());     
+        int wardcharges=Integer.parseInt(WARDCHARGES.getText());     
         int operation=Integer.parseInt(OTAMOUNT.getText());
         int extraamount=Integer.parseInt(EXTRA_AMOUNT.getText());
-        int total =wardcharges+operation+extraamount;
-        System.out.println(TOTALAMOUNT);
-        TOTALAMOUNT.setText(String.valueOf(total +"   Rup"));
+        int total =wardcharges + operation + extraamount;
+        System.out.println(total);
+        TOTALAMOUNT.setText(String.valueOf(total +"   /-"));
     }
-
-//    int did = 0;
-//     
-//     int pid=0;
-//     String FullName;
-//     String dateofadmit="";
-//     String dateofdischarge="";
-//     int noofDays;
-//     String docName="";
-//     String wardName;
-//     int wardCharges;
-//     int opAmt;
-//     int extAmt;
-//     String patientStatus;
-//     String prescription;
-//     String medicines;
-//     String nextVisit;
-//     int totalBill;
-//     int bedCharges=0;
-    
+ 
     private void getDischargeData() {
-        pid=Integer.parseInt(PID.getText());
-        FullName = FULLNAME.getText();
-        noofDays =Integer.parseInt(NOOFDAYS.getText());
-        docName=DRNAME.getText();
-        wardName=WARDNAME.getText();
-        wardCharges=noofDays*Integer.parseInt(BEDCHARGE.getText());
-        opAmt=Integer.parseInt(OTAMOUNT.getText());     
-        extAmt=Integer.parseInt(EXTRA_AMOUNT.getText());
-        patientStatus= PATIENT_STATUS.getItemAt(PATIENT_STATUS.getSelectedIndex());
-        prescription=PRESCRIPTION.getText();      
-        medicines=MEDICINES.getText();
-        String date = ((JTextField)NEXTVISIT.getDateEditor().getUiComponent()).getText();
-        nextVisit = LocalDate.parse(date).toString();
-        totalBill = Integer.parseInt(TOTALAMOUNT.getText());  
-        bedCharges = Integer.parseInt(BEDCHARGE.getText());
+  pid=Integer.parseInt(PID.getText());
+FullName=FULLNAME.getText();
+docName=DRNAME.getText();
+wardName = WARDNAME.getText();
+String admitdate = ((JTextField) ADMITDATE.getDateEditor().getUiComponent()).getText();
+dateofadmit = LocalDate.parse(admitdate).toString();
+String dischargedate = ((JTextField) DISCHARGEDATE.getDateEditor().getUiComponent()).getText();
+dateofdischarge = LocalDate.parse(dischargedate).toString();
+noofDays=Integer.parseInt(NOOFDAYS.getText());
+wardCharges =Integer.parseInt(WARDCHARGES.getText());
+opAmt=Integer.parseInt(OTAMOUNT.getText());
+extAmt =Integer.parseInt(EXTRA_AMOUNT.getText());
+totalBill=Integer.parseInt(TOTALAMOUNT.getText());
+prescription = PRESCRIPTION.getText();
+medicines = MEDICINES.getText();
+String nextvisit = ((JTextField) NEXTVISIT.getDateEditor().getUiComponent()).getText();
+nextVisit = LocalDate.parse(nextvisit).toString();
+Date = DDATE.getText();
+Time = DTIME.getText(); 
         
     }
     
@@ -752,7 +851,7 @@ void dd(){
          NOOFDAYS.setText("");
          DRNAME.setText("");
          WARDNAME.setText("");
-         BEDCHARGE.setText("");
+         WARDCHARGES.setText("");
          OTAMOUNT.setText("");
          PATIENT_STATUS.setSelectedIndex(0);
          NEXTVISIT.setDate(null);  
@@ -761,6 +860,6 @@ void dd(){
 
          TOTALAMOUNT.setText("");
          OTAMOUNT.setText("");
-         BEDCHARGE.setText("");          
+         WARDCHARGES.setText("");          
      }
 }

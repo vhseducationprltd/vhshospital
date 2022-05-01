@@ -330,28 +330,8 @@ public class RECEPTION extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel17KeyPressed
 
     private void jTextField8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyPressed
-        // TODO add your handling code here:
-//        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-//
-//            PrinterJob job = PrinterJob.getPrinterJob();
-//            job.setJobName("Print Data");
-//
-//            job.setPrintable((Graphics pg, PageFormat pf, int pageNum) -> {
-//                pf.setOrientation(PageFormat.LANDSCAPE);
-//                if(pageNum > 1){
-//                    return Printable.NO_SUCH_PAGE;
-//                }
-//
-//                Graphics2D g2 = (Graphics2D)pg;
-//                g2.translate(pf.getImageableX(), pf.getImageableY());
-//                g2.scale(0.47,0.47);
-//
-//                jPanel1.print(g2);
-//
-//                return Printable.PAGE_EXISTS;
-//            }
-//        );
-
+       
+    
     }//GEN-LAST:event_jTextField8KeyPressed
 
     /**

@@ -197,12 +197,14 @@
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="PID" min="-2" pref="226" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-                      <Component id="FNAME" min="-2" pref="429" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="DRNAME" min="-2" pref="429" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="WARDERR" min="-2" pref="208" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="FNAME" min="-2" pref="392" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="DRNAME" min="-2" pref="439" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="AGE" min="-2" pref="169" max="-2" attributes="0"/>
+                      <Component id="AGE" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="GENDER" min="-2" pref="169" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
@@ -237,9 +239,9 @@
                           <Component id="AGE" alignment="1" max="32767" attributes="0"/>
                           <Component id="FNAME" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="PID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="PID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="WARDERR" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <Component id="GENDER" alignment="1" max="32767" attributes="0"/>
                           <Component id="DRNAME" alignment="1" max="32767" attributes="0"/>
@@ -403,7 +405,7 @@
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane4" pref="449" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane4" pref="461" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -610,6 +612,17 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VIEW1ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="WARDERR">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="   "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
