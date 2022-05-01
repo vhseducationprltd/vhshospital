@@ -699,8 +699,7 @@ void dd(){
               
                   statement.execute(mainQuery); 
                   statement.execute(queryDeleteAdmit);
-                  
-                  
+                   
               }catch(Exception e){
                   System.out.println(e);
               }
