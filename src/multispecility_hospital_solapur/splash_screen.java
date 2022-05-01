@@ -5,13 +5,11 @@ import multispecility_hospital_solapur.use.GetConnection;
 
 public class splash_screen extends javax.swing.JFrame {
 
-    
     public splash_screen() {
         initComponents();
         
         Statement stat = new GetConnection().Connect_mysql();
         String databaseCreate = "CREATE DATABASE IF NOT EXISTS VHSHOSPITAL";
-        
         
         String adminCreate = "CREATE TABLE IF NOT EXISTS  VHSHOSPITAL.ADMIN(SR INT NULL PRIMARY KEY AUTO_INCREMENT , USERNAME VARCHAR(255) NOT NULL UNIQUE, PASSWORD VARCHAR(255) NOT NULL );";
         String addAdmin = "INSERT INTO VHSHOSPITAL.ADMIN(USERNAME , PASSWORD ) VALUES('VHS' , 'VHS');";
@@ -21,33 +19,28 @@ public class splash_screen extends javax.swing.JFrame {
         
         String doctorCreate = "CREATE TABLE IF NOT EXISTS VHSHOSPITAL.DOCTORS(" +"SR INT NULL AUTO_INCREMENT PRIMARY KEY," +"ID INT NOT NULL UNIQUE ," +"FNAME VARCHAR(100) NOT NULL ," +"MNAME VARCHAR(100) NOT NULL ," +"LNAME VARCHAR(100) NOT NULL ," +"AGE INT NOT NULL ," +"GENDER VARCHAR(50) NOT NULL ," +"DOB VARCHAR(50) NOT NULL ," +"MSTATUS VARCHAR(50) NOT NULL ," +"UPHOTO VARCHAR(255) NOT NULL ," +"USERNAME VARCHAR(100) NOT NULL UNIQUE," +"PASSWORD VARCHAR(100) NOT NULL," +"SPECIALIZATION VARCHAR(200) NOT NULL," +"EDUCATION VARCHAR(200) NOT NULL," +"FEE INT NOT NULL," +"OPDNO INT NOT NULL UNIQUE," +"JOBEXP  VARCHAR(200) NOT NULL," +"DATEOFJOIN  VARCHAR(200) NOT NULL," +"LKNOWN  VARCHAR(200) NOT NULL," +"DOCUMENT  VARCHAR(200) NOT NULL," +"EMAIL  VARCHAR(200) NOT NULL," +"CONTACT1 BIGINT NOT NULL," +"CONTACT2  BIGINT NOT NULL," +"ECONTACT  BIGINT NOT NULL," +"AADHAAR BIGINT NOT NULL UNIQUE," +"PAN VARCHAR(20) NOT NULL UNIQUE," +"ADDRESS  VARCHAR(200) NOT NULL," +"CITY  VARCHAR(200) NOT NULL," +"DISTRICT  VARCHAR(200) NOT NULL," +"STATE  VARCHAR(200) NOT NULL," +"COUNTRY  VARCHAR(200) NOT NULL," +"PIN  INT NOT NULL," +"DATE  VARCHAR(50) NOT NULL," +"TIME  VARCHAR(50) NOT NULL" +")";
         String nurseCreate = "CREATE TABLE IF NOT EXISTS VHSHOSPITAL.NURSES(" +"SR INT NULL AUTO_INCREMENT PRIMARY KEY," +"ID INT NOT NULL UNIQUE ," +"FNAME VARCHAR(100) NOT NULL ," +"MNAME VARCHAR(100) NOT NULL ," +"LNAME VARCHAR(100) NOT NULL ," +"AGE INT NOT NULL ," +"GENDER VARCHAR(50) NOT NULL ," +"DOB VARCHAR(50) NOT NULL ," +"MSTATUS VARCHAR(50) NOT NULL ," +"UPHOTO VARCHAR(255) NOT NULL ," +"USERNAME VARCHAR(100) NOT NULL UNIQUE," +"PASSWORD VARCHAR(100) NOT NULL," +"SPECIALIZATION VARCHAR(200) NOT NULL," +"EDUCATION VARCHAR(200) NOT NULL," +"JOBEXP  VARCHAR(200) NOT NULL," +"DATEOFJOIN  VARCHAR(200) NOT NULL," +"LKNOWN  VARCHAR(200) NOT NULL," +"DOCUMENT  VARCHAR(200) NOT NULL," +"EMAIL  VARCHAR(200) NOT NULL," +"CONTACT1 BIGINT NOT NULL," +"CONTACT2  BIGINT NOT NULL," +"AADHAAR BIGINT NOT NULL UNIQUE, " +"PAN VARCHAR(20) NOT NULL UNIQUE," +"ADDRESS  VARCHAR(200) NOT NULL," +"CITY  VARCHAR(200) NOT NULL," +"DISTRICT  VARCHAR(200) NOT NULL," +"STATE  VARCHAR(200) NOT NULL," +"COUNTRY  VARCHAR(200) NOT NULL," +"PIN  INT NOT NULL ," +"DATE  VARCHAR(50) NOT NULL," +"TIME  VARCHAR(50) NOT NULL" +")";     
-        
+        String ward = "CREATE TABLE IF NOT EXISTS  VHSHOSPITAL.WARDS(" +"SR INT NULL PRIMARY KEY AUTO_INCREMENT," +"WID INT NOT NULL UNIQUE," +" WARDNAME VARCHAR(255) NOT NULL UNIQUE," +" CHARGES INT NOT NULL" +");";   
+
        try{
             try{
                 stat.execute(databaseCreate);                
                 stat.execute(adminCreate);
-                 
                 stat.execute(receptionistCreate);
-             
-                stat.execute(doctorCreate);                
-            
+                stat.execute(doctorCreate);
                 stat.execute(nurseCreate);
-                
-                stat.execute(appointmentCreate); 
-                
-                stat.execute(addAdmin);
+                stat.execute(appointmentCreate);
+                stat.execute(addAdmin);   
+                stat.execute(ward);
             }catch(Exception e){
-                System.out.println("Error : " +e );
+                if(!e.getMessage().contains("Duplicate entry 'VHS' for key 'USERNAME'")){
+                    System.out.println("Error : " +e );
+                }
             }
-          
        }catch(Exception e){
            System.out.println("Error Occured in splash screen : " + e);
        }
+    } 
 
-        
-    }
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,11 +125,9 @@ public class splash_screen extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         splash_screen fs = new splash_screen();
         fs.setVisible(true);
-       
         try{
             for(int i=0;i<101;i++){
             Thread.sleep(10);
@@ -164,7 +155,7 @@ public class splash_screen extends javax.swing.JFrame {
             log.setVisible(true);   
              fs.setVisible(false);
         }catch(Exception e){
-        
+           System.out.println(e);
         }
     }
 

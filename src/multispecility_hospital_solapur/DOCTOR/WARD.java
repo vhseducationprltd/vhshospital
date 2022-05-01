@@ -15,7 +15,13 @@ import multispecility_hospital_solapur.use.GetConnection;
 
 
 public class WARD extends javax.swing.JFrame {
-
+  public WARD(){
+      initComponents();
+      statement= new GetConnection().Connect_mysql();
+       showDate();
+        showTime();
+        this.setExtendedState(MAXIMIZED_BOTH);
+  }
     public WARD(ResultSet res) {
         initComponents();
         showDate();
@@ -71,6 +77,8 @@ public class WARD extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         REPORTS = new javax.swing.JTextArea();
         DRNAME = new javax.swing.JLabel();
+        VIEW1 = new javax.swing.JButton();
+        WARDERR = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         TIME = new javax.swing.JLabel();
         DATE = new javax.swing.JLabel();
@@ -269,7 +277,7 @@ public class WARD extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -304,6 +312,19 @@ public class WARD extends javax.swing.JFrame {
 
         DRNAME.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
+        VIEW1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        VIEW1.setText("DISCHARGE");
+        VIEW1.setMargin(new java.awt.Insets(4, 27, 4, 27));
+        VIEW1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VIEW1ActionPerformed(evt);
+            }
+        });
+
+        WARDERR.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        WARDERR.setForeground(new java.awt.Color(204, 0, 0));
+        WARDERR.setText("   ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -313,12 +334,14 @@ public class WARD extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(224, 224, 224)
-                .addComponent(FNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(DRNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(WARDERR, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(FNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(DRNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AGE, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AGE, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(GENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105))
@@ -333,7 +356,9 @@ public class WARD extends javax.swing.JFrame {
                 .addComponent(DELETE)
                 .addGap(18, 18, 18)
                 .addComponent(VIEW)
-                .addGap(44, 44, 44))
+                .addGap(18, 18, 18)
+                .addComponent(VIEW1)
+                .addGap(163, 163, 163))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -348,7 +373,9 @@ public class WARD extends javax.swing.JFrame {
                     .addComponent(FNAME, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(WARDERR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(GENDER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DRNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -360,7 +387,8 @@ public class WARD extends javax.swing.JFrame {
                     .addComponent(VIEW)
                     .addComponent(UPDATE)
                     .addComponent(DELETE)
-                    .addComponent(SUBMIT))
+                    .addComponent(SUBMIT)
+                    .addComponent(VIEW1))
                 .addGap(18, 18, 18))
         );
 
@@ -480,11 +508,8 @@ public class WARD extends javax.swing.JFrame {
            String DBNAME="";  
 
            try{
-               ResultSet res =  statement.executeQuery("SELECT ID AS ID FROM VHSHOSPITAL.DOCTORS WHERE ID="+Pid);
-               while(res.next()){
-                   DBNAME ="doc_"+res.getString("ID");
-               }
-               
+                
+                   DBNAME ="doc_"+DrId; 
                String query= "INSERT INTO "+DBNAME+".P_"+Pid+"(ID,SYMPTOMS,MEDICINES,TREATMENT,TEST,TESTREPORTS,DATE,TIME)VALUES("+Pid+",'"+Symptoms+"','"+Medicines+"','"+Treatments+"','"+Tests+"','"+Reports+"','"+Date+"','"+Time+"')";
                System.out.println(query);
                statement.execute(query);
@@ -532,36 +557,65 @@ public class WARD extends javax.swing.JFrame {
 
     private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
              
-        if(evt.getKeyCode()==10){
-                 System.out.println("Hlellw");
+        if(evt.getKeyCode()==10){  
+            String PFname="" ;
+            String PMname="" ;
+            String PLname="" ;
+            String PAge ="";
+            String PGender="";
+            
+            String DoctorName="";
+            int DrId = 0;
              try{
-                 ResultSet result = statement.executeQuery("SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+PID.getText());
-                 while(result.next()){ 
-                    String F=result.getString("FNAME");
-                    String L=result.getString("MNAME");
-                    String M=result.getString("LNAME");
-                     String FF= F+" "+ M +" " +L;
-                     FNAME.setText("NAME : "+FF);
-                     AGE.setText("AGE : " + result.getString("AGE"));
-                     GENDER.setText("GENDER :" + result.getString("GENDER"));
-                     DRNAME.setText("DR NAME :" + result.getString("DRNAME")); 
-
+                 String pid = PID.getText();
+                 ResultSet result = statement.executeQuery("SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+pid);
+                 if(result.next()){ 
+                     result.beforeFirst(); 
+                         while(result.next()){ 
+                           PFname = result.getString("FNAME");
+                           PMname = result.getString("MNAME");
+                           PLname = result.getString("LNAME"); 
+                           PAge = result.getString("AGE");
+                           PGender=result.getString("GENDER");
+                           DoctorName = result.getString("DRNAME");
+                           //    get doctor id 
+                           String drName[] = DoctorName.split("DR.")[1].split(" ");  
+                           ResultSet drIdResult =statement.executeQuery("SELECT ID FROM VHSHOSPITAL.DOCTORS WHERE FNAME='"+drName[0]+"' AND MNAME='"+ drName[1]+"' AND LNAME='"+drName[2]+"'");
+                           drIdResult.beforeFirst();
+                           while(drIdResult.next()){
+                              DrId = drIdResult.getInt("ID");
+                              ResultSet statusCheck = statement.executeQuery("SELECT * FROM DOC_"+DrId+".ADMIT WHERE PID="+pid); 
+                              if(statusCheck.next()){
+                                  String FN= PFname+" "+ PMname +" " +PLname;
+                                  FNAME.setText("NAME : "+FN);
+                                  AGE.setText("AGE : " + PAge);
+                                  GENDER.setText("GENDER :" + PGender);
+                                  DRNAME.setText("DR NAME :" + DoctorName); 
+                                  WARDERR.setText("  "); 
+                              }else{
+                                 WARDERR.setText("No Patient Admitted....!"); 
+                                 clearFields();
+                              }
+                           }  
+                         } 
+                 }else{
+                        WARDERR.setText("No Data..!"); 
+                        clearFields();
                  }
              }catch(Exception e){
                  System.out.println(e);
-             }
+             } 
              
          }
     }//GEN-LAST:event_PIDKeyPressed
 
     private void SYMPTOMSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SYMPTOMSKeyPressed
-        
-        
-        
-        
-        
-        
+         
     }//GEN-LAST:event_SYMPTOMSKeyPressed
+
+    private void VIEW1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEW1ActionPerformed
+       new DISCHARGE().setVisible(true);
+    }//GEN-LAST:event_VIEW1ActionPerformed
 
      void showDate(){
         Date d = new Date();
@@ -606,9 +660,8 @@ public class WARD extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(WARD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-    
+        new WARD().setVisible(true);
+        /* Create and display the form */ 
     }
       Statement statement;
     String PtableName;
@@ -620,6 +673,7 @@ public class WARD extends javax.swing.JFrame {
     String Time;
     String Pid; 
     String Reports;
+    int DrId;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AGE;
     private javax.swing.JLabel DATE;
@@ -639,6 +693,8 @@ public class WARD extends javax.swing.JFrame {
     private javax.swing.JTextArea TREATMENT;
     private javax.swing.JButton UPDATE;
     private javax.swing.JButton VIEW;
+    private javax.swing.JButton VIEW1;
+    private javax.swing.JLabel WARDERR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
