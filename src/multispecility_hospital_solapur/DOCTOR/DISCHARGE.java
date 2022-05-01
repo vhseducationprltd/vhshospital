@@ -90,7 +90,7 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel138 = new javax.swing.JLabel();
         WARDNAME = new javax.swing.JLabel();
         DEATH = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        DEATHTIME = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         DEATHREASON = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -176,7 +176,7 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel145.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel145.setText("TOTAL BILL : ");
 
-        ERRORLABLE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        ERRORLABLE.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ERRORLABLE.setForeground(new java.awt.Color(204, 0, 0));
         ERRORLABLE.setText("   ");
 
@@ -241,13 +241,18 @@ public class DISCHARGE extends javax.swing.JFrame {
         ADMITDATE.setDateFormatString("yyyy-MM-dd");
 
         FULLNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        FULLNAME.setText("FULL NAME");
+        FULLNAME.setText("     ");
 
         jLabel134.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel134.setText("OPERATION AMOUNT");
 
         OTAMOUNT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         OTAMOUNT.setText("0");
+        OTAMOUNT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OTAMOUNTActionPerformed(evt);
+            }
+        });
         OTAMOUNT.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 OTAMOUNTPropertyChange(evt);
@@ -271,7 +276,7 @@ public class DISCHARGE extends javax.swing.JFrame {
         });
 
         WARDCHARGES.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        WARDCHARGES.setText("0");
+        WARDCHARGES.setText("   ");
 
         jLabel133.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel133.setText("WARD NAME");
@@ -280,10 +285,10 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel140.setText("FULL NAME");
 
         NOOFDAYS.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        NOOFDAYS.setText("0");
+        NOOFDAYS.setText("     ");
 
         DRNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        DRNAME.setText("DR NAME");
+        DRNAME.setText("    ");
 
         jLabel137.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabel137.setText("WARD CHARGES");
@@ -319,7 +324,7 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel138.setText("EXTRA AMOUNT");
 
         WARDNAME.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        WARDNAME.setText("WARDNAME");
+        WARDNAME.setText("          ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -406,10 +411,10 @@ public class DISCHARGE extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        DEATHTIME.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        DEATHTIME.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                DEATHTIMEActionPerformed(evt);
             }
         });
 
@@ -435,7 +440,7 @@ public class DISCHARGE extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(DEATHLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DEATHTIME, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         DEATHLayout.setVerticalGroup(
@@ -448,7 +453,7 @@ public class DISCHARGE extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(DEATHTIME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
@@ -620,7 +625,10 @@ public class DISCHARGE extends javax.swing.JFrame {
                 String query="SELECT * FROM "+dbname+".ADMIT WHERE PID="+pid;
 
                 res = statement.executeQuery(query);
-                String wardName="";
+                if(res.next()){
+                    res.beforeFirst();
+                    ERRORLABLE.setText("   ");
+                    String wardName="";
                 while(res.next()) {
                     dateofadmit=res.getString("DATEOFADMIT");
                     wardName =res.getString("WARDNAME");
@@ -648,6 +656,10 @@ public class DISCHARGE extends javax.swing.JFrame {
                 
             dd();
             WARDCHARGES.setText(Integer.toString(bedCharges * Integer.parseInt(NOOFDAYS.getText())));
+                }else{
+                    ERRORLABLE.setText("This Patient is not Admitted..!");
+                    clearFields();
+                }
             }catch(Exception e){
                 System.out.println(e);
             } 
@@ -669,11 +681,29 @@ void dd(){
     }
     private void RSUBMIT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RSUBMIT2ActionPerformed
  
-        CalculateBill();
-          if(pid!=0){
+       
+          if(pid!=0 ){
+               CalculateBill();
               getDischargeData();
-              String query = "INSERT INTO doc_"+did+".DISCHARGE(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,PRESCRIPTION ,MEDICINES ,NEXTVISIT ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + prescription + "'," + "'" + medicines + "'," + "'" + nextVisit + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
-        
+              String queryDischarge = "INSERT INTO doc_"+did+".DISCHARGE(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,PRESCRIPTION ,MEDICINES ,NEXTVISIT ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + prescription + "'," + "'" + medicines + "'," + "'" + nextVisit + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
+              String queryDeath = "INSERT INTO VHSHOSPITAL.DEATHS(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,DEATHREASON,DEATHTIME ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + deathReason + "'," + "'" + deathTime + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
+              String queryDeleteAdmit = "DELETE FROM DOC_"+did+".ADMIT WHERE PID="+pid;
+             String mainQuery="";
+             try{ 
+                if(PATIENT_STATUS.getSelectedIndex() == 0){
+                  mainQuery = queryDischarge;
+                }else{
+                  mainQuery = queryDeath;
+                  statement.execute(queryDischarge);
+                }
+              
+                  statement.execute(mainQuery); 
+                  statement.execute(queryDeleteAdmit);
+                  
+                  
+              }catch(Exception e){
+                  System.out.println(e);
+              }
               System.out.println(noofDays);
                   new DISCHARGE_PATIENT(pid,FullName,dateofadmit,dateofdischarge,noofDays,docName,wardCharges,opAmt,extAmt,prescription,medicines,nextVisit,totalBill,bedCharges).setVisible(true);
                  clearFields();
@@ -691,11 +721,9 @@ void dd(){
             jPanel1.setVisible(true);
                         DEATH.setVisible(false);       
             } else {
-            
-            DEATH.setVisible(true);       
-            jPanel1.setVisible(false);
-
-        }
+             DEATH.setVisible(true);       
+             jPanel1.setVisible(false);
+            }
     }//GEN-LAST:event_PATIENT_STATUSActionPerformed
 
     private void EXTRA_AMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXTRA_AMOUNTActionPerformed
@@ -718,9 +746,13 @@ void dd(){
            }
     }//GEN-LAST:event_EXTRA_AMOUNTKeyPressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void DEATHTIMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DEATHTIMEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_DEATHTIMEActionPerformed
+
+    private void OTAMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTAMOUNTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OTAMOUNTActionPerformed
 
     
     public static void main(String args[]) {
@@ -750,7 +782,8 @@ void dd(){
      int bedCharges=0;
      String Date; 
      String Time;
-
+     String deathReason;
+     String deathTime;
      
     
      
@@ -761,6 +794,7 @@ void dd(){
     private javax.swing.JLabel DDATE1;
     private javax.swing.JPanel DEATH;
     private javax.swing.JTextArea DEATHREASON;
+    private javax.swing.JTextField DEATHTIME;
     private com.toedter.calendar.JDateChooser DISCHARGEDATE;
     private javax.swing.JLabel DRNAME;
     private javax.swing.JLabel DTIME;
@@ -809,7 +843,6 @@ void dd(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     private void CalculateBill() {
@@ -818,30 +851,34 @@ void dd(){
         int extraamount=Integer.parseInt(EXTRA_AMOUNT.getText());
         int total =wardcharges + operation + extraamount;
         System.out.println(total);
-        TOTALAMOUNT.setText(String.valueOf(total +"   /-"));
+        TOTALAMOUNT.setText(String.valueOf(total));
     }
  
     private void getDischargeData() {
-  pid=Integer.parseInt(PID.getText());
-FullName=FULLNAME.getText();
-docName=DRNAME.getText();
-wardName = WARDNAME.getText();
-String admitdate = ((JTextField) ADMITDATE.getDateEditor().getUiComponent()).getText();
-dateofadmit = LocalDate.parse(admitdate).toString();
-String dischargedate = ((JTextField) DISCHARGEDATE.getDateEditor().getUiComponent()).getText();
-dateofdischarge = LocalDate.parse(dischargedate).toString();
-noofDays=Integer.parseInt(NOOFDAYS.getText());
-wardCharges =Integer.parseInt(WARDCHARGES.getText());
-opAmt=Integer.parseInt(OTAMOUNT.getText());
-extAmt =Integer.parseInt(EXTRA_AMOUNT.getText());
-totalBill=Integer.parseInt(TOTALAMOUNT.getText());
-prescription = PRESCRIPTION.getText();
-medicines = MEDICINES.getText();
-String nextvisit = ((JTextField) NEXTVISIT.getDateEditor().getUiComponent()).getText();
-nextVisit = LocalDate.parse(nextvisit).toString();
-Date = DDATE.getText();
-Time = DTIME.getText(); 
-        
+           pid=Integer.parseInt(PID.getText());
+           FullName=FULLNAME.getText();
+           docName=DRNAME.getText();
+           wardName = WARDNAME.getText();
+           String admitdate = ((JTextField) ADMITDATE.getDateEditor().getUiComponent()).getText();
+           dateofadmit = LocalDate.parse(admitdate).toString();
+           String dischargedate = ((JTextField) DISCHARGEDATE.getDateEditor().getUiComponent()).getText();
+           dateofdischarge = LocalDate.parse(dischargedate).toString();
+           noofDays=Integer.parseInt(NOOFDAYS.getText());
+           wardCharges =Integer.parseInt(WARDCHARGES.getText());
+           opAmt=Integer.parseInt(OTAMOUNT.getText());
+           extAmt =Integer.parseInt(EXTRA_AMOUNT.getText());
+           totalBill=Integer.parseInt(TOTALAMOUNT.getText());
+           prescription = PRESCRIPTION.getText();
+           medicines = MEDICINES.getText();
+           String nextvisit = ((JTextField) NEXTVISIT.getDateEditor().getUiComponent()).getText();
+           try{
+               nextVisit = LocalDate.parse(nextvisit).toString();
+           }catch(Exception e){}
+           Date = DDATE.getText();
+           Time = DTIME.getText();  
+           deathReason = DEATHREASON.getText();  
+           deathTime = DEATHTIME.getText();  
+           
     }
     
     
