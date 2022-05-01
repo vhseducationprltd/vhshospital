@@ -564,7 +564,7 @@ public class WARD extends javax.swing.JFrame {
             String PGender="";
             
             String DoctorName="";
-            int DrId = 0;
+            DrId = 0;
              try{
                  String pid = PID.getText();
                  ResultSet result = statement.executeQuery("SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+pid);
