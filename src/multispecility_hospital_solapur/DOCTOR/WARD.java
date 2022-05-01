@@ -15,13 +15,13 @@ import multispecility_hospital_solapur.use.GetConnection;
 
 
 public class WARD extends javax.swing.JFrame {
-  public WARD(){
-      initComponents();
-      statement= new GetConnection().Connect_mysql();
-       showDate();
-        showTime();
-        this.setExtendedState(MAXIMIZED_BOTH);
-  }
+    public WARD(){
+        initComponents();
+        statement= new GetConnection().Connect_mysql();
+         showDate();
+          showTime();
+          this.setExtendedState(MAXIMIZED_BOTH);
+    }
     public WARD(ResultSet res) {
         initComponents();
         showDate();
@@ -530,7 +530,7 @@ public class WARD extends javax.swing.JFrame {
         Date = DATE.getText();
         Time = TIME.getText();
 
-    }    
+    }      
     private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VIEWActionPerformed
