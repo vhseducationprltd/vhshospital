@@ -23,7 +23,7 @@ import javax.persistence.Transient;
     , @NamedQuery(name = "Wards.findByWid", query = "SELECT w FROM Wards w WHERE w.wid = :wid")
     , @NamedQuery(name = "Wards.findByWardname", query = "SELECT w FROM Wards w WHERE w.wardname = :wardname")
     , @NamedQuery(name = "Wards.findByCharges", query = "SELECT w FROM Wards w WHERE w.charges = :charges")})
-public class Wards implements Serializable {
+public class Wards_rename_from_filesExp implements Serializable {
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -43,15 +43,13 @@ public class Wards implements Serializable {
     @Basic(optional = false)
     @Column(name = "CHARGES")
     private int charges;
+ 
 
-    public Wards() {
-    }
-
-    public Wards(Integer sr) {
+    public Wards_rename_from_filesExp(Integer sr) {
         this.sr = sr;
     }
 
-    public Wards(Integer sr, int wid, String wardname, int charges) {
+    public Wards_rename_from_filesExp(Integer sr, int wid, String wardname, int charges) {
         this.sr = sr;
         this.wid = wid;
         this.wardname = wardname;
@@ -108,10 +106,10 @@ public class Wards implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Wards)) {
+        if (!(object instanceof Wards_rename_from_filesExp)) {
             return false;
         }
-        Wards other = (Wards) object;
+        Wards_rename_from_filesExp other = (Wards_rename_from_filesExp) object;
         if ((this.sr == null && other.sr != null) || (this.sr != null && !this.sr.equals(other.sr))) {
             return false;
         }

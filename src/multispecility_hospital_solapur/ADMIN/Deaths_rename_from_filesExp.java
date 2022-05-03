@@ -38,7 +38,7 @@ import javax.persistence.Transient;
     , @NamedQuery(name = "Deaths.findByDeathtime", query = "SELECT d FROM Deaths d WHERE d.deathtime = :deathtime")
     , @NamedQuery(name = "Deaths.findByDate", query = "SELECT d FROM Deaths d WHERE d.date = :date")
     , @NamedQuery(name = "Deaths.findByTime", query = "SELECT d FROM Deaths d WHERE d.time = :time")})
-public class Deaths implements Serializable {
+public class Deaths_rename_from_filesExp implements Serializable {
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -94,15 +94,12 @@ public class Deaths implements Serializable {
     @Basic(optional = false)
     @Column(name = "TIME")
     private String time;
-
-    public Deaths() {
-    }
-
-    public Deaths(Integer sr) {
+ 
+    public Deaths_rename_from_filesExp(Integer sr) {
         this.sr = sr;
     }
 
-    public Deaths(Integer sr, long pid, String patientname, String admitdate, String dischargedate, int nodays, String drname, String wardname, int wardcharges, int operatioinamt, int extraamt, int totalamount, String deathreason, String deathtime, String date, String time) {
+    public Deaths_rename_from_filesExp(Integer sr, long pid, String patientname, String admitdate, String dischargedate, int nodays, String drname, String wardname, int wardcharges, int operatioinamt, int extraamt, int totalamount, String deathreason, String deathtime, String date, String time) {
         this.sr = sr;
         this.pid = pid;
         this.patientname = patientname;
@@ -291,10 +288,10 @@ public class Deaths implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Deaths)) {
+        if (!(object instanceof Deaths_rename_from_filesExp)) {
             return false;
         }
-        Deaths other = (Deaths) object;
+        Deaths_rename_from_filesExp other = (Deaths_rename_from_filesExp) object;
         if ((this.sr == null && other.sr != null) || (this.sr != null && !this.sr.equals(other.sr))) {
             return false;
         }
