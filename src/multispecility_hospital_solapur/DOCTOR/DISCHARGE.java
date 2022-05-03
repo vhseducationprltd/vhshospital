@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import multispecility_hospital_solapur.RECEPTS.DEATH;
 import multispecility_hospital_solapur.RECEPTS.DISCHARGE_PATIENT;
 import multispecility_hospital_solapur.use.GetConnection;
 
@@ -95,6 +96,8 @@ public class DISCHARGE extends javax.swing.JFrame {
         DEATHREASON = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        DEATHDATE = new com.toedter.calendar.JDateChooser();
         DDATE = new javax.swing.JLabel();
         DTIME = new javax.swing.JLabel();
         jLabel141 = new javax.swing.JLabel();
@@ -428,6 +431,12 @@ public class DISCHARGE extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setText("DEATH TIME");
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setText("DEATH DATE");
+
+        DEATHDATE.setDateFormatString("yyyy-MM-dd");
+        DEATHDATE.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout DEATHLayout = new javax.swing.GroupLayout(DEATH);
         DEATH.setLayout(DEATHLayout);
         DEATHLayout.setHorizontalGroup(
@@ -438,9 +447,10 @@ public class DISCHARGE extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addGroup(DEATHLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(DEATHTIME, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addGroup(DEATHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(DEATHTIME, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(DEATHDATE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DEATHLayout.setVerticalGroup(
@@ -450,10 +460,15 @@ public class DISCHARGE extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DEATHDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(DEATHTIME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DEATHTIME, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
@@ -486,7 +501,7 @@ public class DISCHARGE extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(RSUBMIT2)
-                .addGap(874, 874, 874))
+                .addGap(880, 880, 880))
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,23 +513,23 @@ public class DISCHARGE extends javax.swing.JFrame {
                     .addComponent(ERRORLABLE))
                 .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(DEATH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(32, 32, 32)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel38Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(DEATH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TOTALAMOUNT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel145))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addComponent(RSUBMIT2)
-                .addGap(31, 31, 31))
+                .addGap(34, 34, 34))
         );
 
         DDATE.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -611,9 +626,11 @@ public class DISCHARGE extends javax.swing.JFrame {
         if (evt.getKeyCode() == 10) { 
             pid=Integer.parseInt(PID.getText());  
             try{
-                ResultSet res  =statement.executeQuery("SELECT DRNAME AS DRNAME FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+pid);
+                ResultSet res  =statement.executeQuery("SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+pid);
                 while(res.next()){
                     docName=res.getString("DRNAME");
+                    age=Integer.parseInt(res.getString("AGE"));
+                    gender=res.getString("GENDER");
                 }
                 String name[]=docName.split("DR.")[1].split(" ");
                 res = statement.executeQuery("SELECT ID AS ID FROM VHSHOSPITAL.DOCTORS WHERE FNAME='"+name[0]+"' AND MNAME='"+name[1]+"' AND LNAME='"+name[2]+"'");
@@ -686,29 +703,30 @@ void dd(){
                CalculateBill();
               getDischargeData();
               String queryDischarge = "INSERT INTO doc_"+did+".DISCHARGE(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,PRESCRIPTION ,MEDICINES ,NEXTVISIT ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + prescription + "'," + "'" + medicines + "'," + "'" + nextVisit + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
-              String queryDeath = "INSERT INTO VHSHOSPITAL.DEATHS(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,DEATHREASON,DEATHTIME ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + deathReason + "'," + "'" + deathTime + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
+              String queryDeath = "INSERT INTO VHSHOSPITAL.DEATHS(PID ,PATIENTNAME ,ADMITDATE ,DISCHARGEDATE ,NODAYS ,DRNAME ,WARDNAME ,WARDCHARGES ,OPERATIOINAMT ,EXTRAAMT ,TOTALAMOUNT ,DEATHREASON,DEATHDATE,DEATHTIME ,DATE ,TIME)VALUES(" + pid + "," + "'" + FullName + "'," + "'" + dateofadmit + "'," + "'" + dateofdischarge + "'," + "" + noofDays + "," + "'" + docName + "'," + "'" + wardName + "'," + "" + wardCharges + "," + "" + opAmt + "," + "" + extAmt + "," + "" + totalBill + "," + "'" + deathReason + "'," + "'" + deathDate + "'," + "'" + deathTime + "'," + "'" + Date + "'," + "'" + Time + "'" + ")";
               String queryDeleteAdmit = "DELETE FROM DOC_"+did+".ADMIT WHERE PID="+pid;
              String mainQuery="";
              try{ 
-                if(PATIENT_STATUS.getSelectedIndex() == 0){
-                  mainQuery = queryDischarge;
-                }else{
-                  mainQuery = queryDeath;
-                  statement.execute(queryDischarge);
+                if(PATIENT_STATUS.getSelectedIndex() == 0){ 
+                    statement.execute(queryDischarge); 
+                     new DISCHARGE_PATIENT( pid, FullName, age, gender ,dateofadmit,  dateofdischarge,  noofDays,  docName,  wardCharges,  opAmt,  extAmt,  prescription,  medicines,  nextVisit,  totalBill,  bedCharges).setVisible(true);  
+                     
+                }else{ 
+                  statement.execute(queryDeath);
+                  new DEATH( pid,  FullName, age, gender,  dateofadmit,  dateofdischarge, wardName, deathDate,  deathTime,  deathReason,   noofDays,  docName,  wardCharges,  opAmt, extAmt,  totalBill,  bedCharges).setVisible(true);
                 }
-              
-                  statement.execute(mainQuery); 
+               
                   statement.execute(queryDeleteAdmit);
-                   
+                  
+                   showMessageDialog(this,"Data Added Successfully..!");
               }catch(Exception e){
                   System.out.println(e);
               }
               System.out.println(noofDays);
-                  new DISCHARGE_PATIENT(pid,FullName,dateofadmit,dateofdischarge,noofDays,docName,wardCharges,opAmt,extAmt,prescription,medicines,nextVisit,totalBill,bedCharges).setVisible(true);
                  clearFields();
 
 
-            showMessageDialog(this,"Data Added Successfully..!");
+            
 
              }else{
               ERRORLABLE.setText("ENTER PID..!");
@@ -774,6 +792,8 @@ void dd(){
      int wardCharges;
      int opAmt;
      int extAmt;
+     int age;
+     String gender;
      String prescription;
      String medicines;
      String nextVisit;
@@ -783,7 +803,7 @@ void dd(){
      String Time;
      String deathReason;
      String deathTime;
-     
+     String deathDate;
     
      
      
@@ -792,6 +812,7 @@ void dd(){
     private javax.swing.JLabel DDATE;
     private javax.swing.JLabel DDATE1;
     private javax.swing.JPanel DEATH;
+    private com.toedter.calendar.JDateChooser DEATHDATE;
     private javax.swing.JTextArea DEATHREASON;
     private javax.swing.JTextField DEATHTIME;
     private com.toedter.calendar.JDateChooser DISCHARGEDATE;
@@ -834,6 +855,7 @@ void dd(){
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel36;
@@ -876,11 +898,14 @@ void dd(){
            Date = DDATE.getText();
            Time = DTIME.getText();  
            deathReason = DEATHREASON.getText();  
+           String deathdate = ((JTextField) DEATHDATE.getDateEditor().getUiComponent()).getText();
+           try{
+           deathDate = LocalDate.parse(deathdate).toString();
+                }catch(Exception e){}
            deathTime = DEATHTIME.getText();  
            
     }
-    
-    
+
      void clearFields(){
          PID.setText("");
          FULLNAME.setText("");
@@ -892,8 +917,10 @@ void dd(){
          PATIENT_STATUS.setSelectedIndex(0);
          NEXTVISIT.setDate(null);  
          ADMITDATE.setDate(null);
-         DISCHARGEDATE.setDate(null);
-
+         DISCHARGEDATE.setDate(null);   
+         DEATHDATE.setDate(null);
+         DEATHTIME.setText("");
+         DEATHREASON.setText("");
          TOTALAMOUNT.setText("");
          OTAMOUNT.setText("");
          WARDCHARGES.setText("");          

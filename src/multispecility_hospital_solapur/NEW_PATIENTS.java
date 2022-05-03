@@ -14,46 +14,35 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 import multispecility_hospital_solapur.ADMIN.ADMIN;
 import multispecility_hospital_solapur.DATA_TABLES.PATIENTS;
+import multispecility_hospital_solapur.RECEPTS.AppointmentReciept;
 import multispecility_hospital_solapur.use.GetConnection;
 import multispecility_hospital_solapur.use.getTotalUsers;
 import static org.eclipse.persistence.internal.jpa.metadata.xml.XMLEntityMappingsReader.clear;
 
 public class NEW_PATIENTS extends javax.swing.JFrame {
-
     public NEW_PATIENTS() {
-        
         initComponents();  
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        statement = new GetConnection().Connect_mysql();
-        
+        statement = new GetConnection().Connect_mysql(); 
         this.getAllUsers();
-       
         showDate();
         showTime();
-         
          try {
-             
             String query = "SELECT * FROM VHSHOSPITAL.DOCTORS";
             ResultSet result = statement.executeQuery(query);
-            
-            
             while (result.next()) {
                  String a = result.getString("FNAME");
                 DrOpds.add(result.getString("OPDNO"));
                 DrFees.add(result.getString("FEE"));
-
                 String b = result.getString("MNAME");
-                String c = result.getString("LNAME");         
-
+                String c = result.getString("LNAME");
                 String d = a+" "+b+" "+ c;
                 DRNAME.addItem("DR." +d.toUpperCase()); 
-            } 
-           
+            }
         } catch (Exception e) {
             System.out.println("Something is happened In NewPatients ..");
             System.out.println(e);
         }
-
     }
 
      void showDate(){
@@ -73,27 +62,24 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
             
         }).start();
     }
+     
      public void getAllUsers(){
-        //        PATIENTS
-        String total = new getTotalUsers().getTotalPatients();
-        int tempTotal = 1+ Integer.parseInt(total);
-        String totall = "";
+        //        PATIENTS 
+        String totall = ""; 
+        try{ 
+            ResultSet ress = statement.executeQuery("SELECT MAX(Sr) AS max  FROM VHSHOSPITAL.APPOINTMENTS;");
+            while(ress.next()){
+              totall = ress.getString("max"); 
+              totall = Integer.toString((Integer.parseInt(totall)+1));
+            }
+            if(totall==null){
+               totall="1";
+            }
+            PID.setText(totall); 
 
-   try{ 
-            ResultSet ress = statement.executeQuery("SELECT MAX(Sr) AS max  FROM VHSHOSPITAL.NURSES;");
-        while(ress.next()){
-            totall = ress.getString("max"); 
-            totall = Integer.toString((Integer.parseInt(totall)+1));
-        }
         }catch(Exception e){
             System.out.println(e);
-        }
-   if(totall==null){
-            totall="1";
-        }
-        PID.setText(Integer.toString(tempTotal)); 
-
-       
+        } 
   }
 
      void getData() {
@@ -129,7 +115,7 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
     }    
 
      private void clearFields() { 
-        PID.setText("");
+//        PID.setText("");
         FNAME.setText("");
         MNAME.setText("");
         LNAME.setText("");
@@ -148,7 +134,7 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
         STATE.setText("");
         COUNTRY.setText("");
         PINCODE.setText(""); 
-        DERR.setText("  ");
+//        DERR.setText("  ");
         DRNAME.setSelectedIndex(0);
         GENDER.setSelectedIndex(0);
         MSTATUS.setSelectedIndex(0);
@@ -227,6 +213,7 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("RECEPTIONIST ");
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1019,6 +1006,9 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
             data.setVisible(true);
             data.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             clearFields();
+            new ADMIN().getAllUsers();
+
+            
         } catch (Exception e) { 
             System.out.println("probleam to featch the data base to table");
             System.out.println(e);
@@ -1026,9 +1016,7 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
     }//GEN-LAST:event_VIEWActionPerformed
 
     private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {    
-        
-        
-        clear();
+        DERR.setText("  ");
         int Sr = 0;
         getData();
        
@@ -1042,6 +1030,8 @@ public class NEW_PATIENTS extends javax.swing.JFrame {
             System.out.println(Sr); 
            query = ("INSERT INTO VHSHOSPITAL.APPOINTMENTS (SR,PID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,CONTACT1,CONTACT2,AADHAARNO,PANNO,DRNAME,FEE,OPDNO,SYMPTOMS,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PINCODE,DATE,TIME)VALUES(" + (Sr + 1) + "," + Pid + ",'" + Fname + "','" + Mname + "','" + Lname + "'," + Age + ",'" + Gender + "','"  + Dob + "','" + Mstatus + "'," + Contact1 + "," + Contact2 + "," + Aadhaarno + ",'" + Panno + "','" + Drname + "'," + Fee + "," + Opdno + ",'" + Symptoms + "','" + Address + "','" + City + "','" + District + "','" + State + "','" + Country + "'," + Pincode + ",'" + Date + "','" + Time + "')");
             statement.execute(query);
+            String Name= Fname + " " +Mname +"  "+ Lname;
+            new AppointmentReciept( Name, Pid, Age, Fee, Gender, Contact1, Symptoms, Drname, Opdno).setVisible(true);
             clearFields();
             getAllUsers();
         } catch (Exception e) {
@@ -1063,6 +1053,8 @@ getData();
             System.out.println(query); 
 
             statement.execute(query);
+            String Name= Fname + " " +Mname +"  "+ Lname;
+            new AppointmentReciept( Name, Pid, Age, Fee, Gender, Contact1, Symptoms, Drname, Opdno).setVisible(true);
             clearFields();
             getAllUsers();
 
@@ -1092,10 +1084,12 @@ getData();
 
     private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
          if (evt.getKeyCode() == (10)) {
+                DERR.setText(" ");
             try {
-                String query = "SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID=" + Integer.parseInt(PID.getText());   
-
+                String query = "SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID=" + Integer.parseInt(PID.getText());
                 ResultSet result = statement.executeQuery(query);
+                 if(result.next()){
+                     result.beforeFirst();
                 while (result.next()) { 
                    
                         FNAME.setText(result.getString("FNAME"));
@@ -1137,6 +1131,12 @@ getData();
                         PINCODE.setText(result.getString("PINCODE"));
 
                 }
+                }else{
+                     DERR.setText("NO DATA.."); 
+                     clearFields();
+                     new ADMIN().getAllUsers();
+
+                 }
             } catch (Exception e) {
                     System.out.println(e);
             }

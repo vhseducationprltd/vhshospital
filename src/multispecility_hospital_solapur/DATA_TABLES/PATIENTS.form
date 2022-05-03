@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -44,19 +44,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="1919" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="txt_search" min="-2" pref="182" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="404" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane9" alignment="0" min="-2" pref="1919" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -70,7 +70,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="863" max="-2" attributes="0"/>
+                  <Component id="jScrollPane9" min="-2" pref="863" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,183 +97,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="PATIENTSDATA">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="25" rowCount="0">
-                    <Column editable="false" title="SR" type="java.lang.Long"/>
-                    <Column editable="false" title="PID" type="java.lang.Long"/>
-                    <Column editable="false" title="FIRST NAME" type="java.lang.String"/>
-                    <Column editable="false" title="MIDDLE NAME" type="java.lang.String"/>
-                    <Column editable="false" title="LAST NAME" type="java.lang.Object"/>
-                    <Column editable="false" title="AGE" type="java.lang.Object"/>
-                    <Column editable="false" title="GENDER" type="java.lang.Object"/>
-                    <Column editable="false" title="DATE OF BIRTH" type="java.lang.Object"/>
-                    <Column editable="false" title="MSTATUS" type="java.lang.Object"/>
-                    <Column editable="false" title="CONTACT1" type="java.lang.Object"/>
-                    <Column editable="false" title="CONTACT2" type="java.lang.Object"/>
-                    <Column editable="false" title="AADHAAR NO" type="java.lang.Object"/>
-                    <Column editable="false" title="PAN NO" type="java.lang.Object"/>
-                    <Column editable="false" title="DR NAME" type="java.lang.Object"/>
-                    <Column editable="false" title="OPD NO" type="java.lang.Object"/>
-                    <Column editable="false" title="FEE" type="java.lang.Object"/>
-                    <Column editable="false" title="SYSMPTOMS" type="java.lang.Object"/>
-                    <Column editable="false" title="ADDRESS" type="java.lang.Object"/>
-                    <Column editable="false" title="CITY" type="java.lang.Object"/>
-                    <Column editable="false" title="DISTRICT" type="java.lang.Object"/>
-                    <Column editable="false" title="STATE" type="java.lang.Object"/>
-                    <Column editable="false" title="COUNTRY" type="java.lang.Object"/>
-                    <Column editable="false" title="PINCODE" type="java.lang.Object"/>
-                    <Column editable="false" title="DATE" type="java.lang.Object"/>
-                    <Column editable="false" title="TIME" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="110" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="110" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="110" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="40" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
-                </Property>
-                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="e0" green="b2" red="91" type="rgb"/>
-                </Property>
-                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -282,6 +105,52 @@
             <Property name="text" type="java.lang.String" value="PATIENTS    DETAILS"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="PATIENTS_DATA">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="25" rowCount="0">
+                    <Column editable="true" title="SR" type="java.lang.Object"/>
+                    <Column editable="true" title="PID" type="java.lang.Object"/>
+                    <Column editable="true" title="FIRST NAME" type="java.lang.Object"/>
+                    <Column editable="true" title="MIDDLE NAME" type="java.lang.Object"/>
+                    <Column editable="true" title="LAST NAME" type="java.lang.Object"/>
+                    <Column editable="true" title="AGE" type="java.lang.Object"/>
+                    <Column editable="true" title="GENDER" type="java.lang.Object"/>
+                    <Column editable="true" title="DATE OF BIRTH" type="java.lang.Object"/>
+                    <Column editable="true" title="MSTATUS" type="java.lang.Object"/>
+                    <Column editable="true" title="CONTACT1" type="java.lang.Object"/>
+                    <Column editable="true" title="CONTACT2" type="java.lang.Object"/>
+                    <Column editable="true" title="AADHAAR NO" type="java.lang.Object"/>
+                    <Column editable="true" title="PAN NO" type="java.lang.Object"/>
+                    <Column editable="true" title="DR NAME" type="java.lang.Object"/>
+                    <Column editable="true" title="OPD NO" type="java.lang.Object"/>
+                    <Column editable="true" title="FEE" type="java.lang.Object"/>
+                    <Column editable="true" title="SYSMPTOMS" type="java.lang.Object"/>
+                    <Column editable="true" title="ADDRESS" type="java.lang.Object"/>
+                    <Column editable="true" title="CITY" type="java.lang.Object"/>
+                    <Column editable="true" title="DISTRICT" type="java.lang.Object"/>
+                    <Column editable="true" title="STATE" type="java.lang.Object"/>
+                    <Column editable="true" title="COUNTRY" type="java.lang.Object"/>
+                    <Column editable="true" title="PINCODE" type="java.lang.Object"/>
+                    <Column editable="true" title="DATE" type="java.lang.Object"/>
+                    <Column editable="true" title="TIME" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e0" green="b2" red="91" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

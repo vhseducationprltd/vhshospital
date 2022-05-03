@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>multispecility_hospital_solapur.DATA_TABLES.Appointment</class>
     <class>multispecility_hospital_solapur.ADMIN.Wards</class>
+    <class>multispecility_hospital_solapur.ADMIN.Deaths</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/VHSHOSPITAL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

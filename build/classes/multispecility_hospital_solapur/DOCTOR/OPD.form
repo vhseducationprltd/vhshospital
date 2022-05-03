@@ -60,7 +60,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="drname" min="-2" pref="337" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="544" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="152" max="-2" attributes="0"/>
+                  <Component id="DR_SPECELIST" min="-2" pref="152" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DR_SPECELIST" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="DATE" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -215,7 +215,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="admitStatus" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="ADMIT_STATUS" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -265,7 +265,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admitStatus" min="-2" max="-2" attributes="0"/>
+                              <Component id="ADMIT_STATUS" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="admitYesPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -404,7 +404,7 @@
                 <Property name="text" type="java.lang.String" value="ADMIT STATUS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="admitStatus">
+            <Component class="javax.swing.JComboBox" name="ADMIT_STATUS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="18" style="0"/>
@@ -417,7 +417,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admitStatusActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ADMIT_STATUSActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -952,6 +952,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="REPORTSMouseClicked"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="REPORTSKeyPressed"/>
                         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="REPORTSKeyTyped"/>
                       </Events>
                     </Component>
@@ -1032,7 +1033,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="DR_SPECELIST">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="24" style="3"/>
@@ -1040,7 +1041,7 @@
             <Property name="text" type="java.lang.String" value="SPECELIST"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel6MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DR_SPECELISTMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="TIME">

@@ -1,10 +1,13 @@
-
 package multispecility_hospital_solapur.DOCTOR;
+
 import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -15,157 +18,166 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import multispecility_hospital_solapur.DATA_TABLES.ADMIT_PATIENTS;
 import multispecility_hospital_solapur.LOGIN_FORM;
+import multispecility_hospital_solapur.RECEPTS.DISCHARGE_PATIENT;
+import multispecility_hospital_solapur.RECEPTS.OPD_EXIT;
 import multispecility_hospital_solapur.use.GetConnection;
-
 
 public class OPD extends javax.swing.JFrame {
 
-   
-       public OPD(ResultSet result) {
-                 initComponents();
-                  statement = new GetConnection().Connect_mysql(); 
-                   showDate();
-             showTime();
-                  setExtendedState(JFrame.MAXIMIZED_BOTH); 
-             try{
-                 drname.setText("DR."+result.getString("FNAME").toUpperCase()+" "+result.getString("MNAME").toUpperCase()+" "+result.getString("LNAME").toUpperCase() ); 
-                 DbName="doc_"+result.getString("ID");
-                 System.out.println(DbName);
-             }catch(Exception e){}
-             
-             
-             
-              try {
-             
-            String query = "SELECT * FROM VHSHOSPITAL.WARDS";
-            ResultSet result2 = statement.executeQuery(query);
-            
-            
-            while (result2.next()) {
-                 String wardname = result2.getString("WARDNAME");
-         
-                WARDNAME.addItem(wardname.toUpperCase()); 
-            } 
-           
-        } catch (Exception e) {
-            System.out.println("Something is happened In NewPatients ..");
-            System.out.println(e);
-        }
-              jPanel5.setVisible(true);
-             admitYesPanel.setVisible(false); 
-             admitYesPanel.setVisible(false); 
-             admitYesPanel2.setVisible(false);
-       
-
-    }
-     void showDate(){
-        Date d = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
-        DATE.setText(s.format (d));
-    }
+  public OPD(ResultSet result) {
+    initComponents();
+    statement = new GetConnection().Connect_mysql();
+    connection = new GetConnection().Connect_mysql_Prep();
     
-     void showTime(){
-     new Timer(0, new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date d = new Date();
-                SimpleDateFormat s = new SimpleDateFormat("hh:mm a");
-                TIME.setText(s.format(d));
-            }
-            
-        }).start();
+    showDate();
+    showTime();
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
+    
+    try {
+      drname.setText(
+        "DR." +
+        result.getString("FNAME").toUpperCase() +
+        " " +
+        result.getString("MNAME").toUpperCase() +
+        " " +
+        result.getString("LNAME").toUpperCase()
+      );
+      did = Integer.parseInt(result.getString("ID"));
+      DR_SPECELIST.setText(result.getString("SPECIALIZATION"));
+      DbName = "doc_" + did;
+      System.out.println(DbName);
+    } catch (Exception e) {
+      
     }
-     
-     
-     void getDataNoAdmit() {
-        Pid = Integer.parseInt(PID.getText());
-        
-        String[] name = FULLNAME.getText().split(":")[1].trim().split(" "); 
-        System.out.println(name);
-        Fname = name[0];
-        Mname = name[1];
-        Lname = name[2];
-         
-        Age = Integer.parseInt(AGE.getText().split(":")[1].trim());
-        Gender = GENDER.getText().split(":")[1];
 
-        Symptoms = SYMPTOMS.getText();
-        Medicines = MEDICINES.getText();
-        Treatment = TREATMENT.getText();
-        Reports = REPORTS.getText();
-         
-        Drname = drname.getText();  
+    try {
+      String query = "SELECT * FROM VHSHOSPITAL.WARDS";
+      ResultSet result2 = statement.executeQuery(query);
 
-        Date = DATE.getText();
-        Time = TIME.getText();
+      while (result2.next()) {
+        String wardname = result2.getString("WARDNAME");
 
-    }    
-       void getDataAdmit() {
-        Pid = Integer.parseInt(PID.getText());
-        
-        String name = FULLNAME.getText().split(":")[1].trim();
-        Fname = name.split(" ")[0];
-        Mname = name.split(" ")[1];
-        Lname = name.split(" ")[2];
-         
-        Age = Integer.parseInt(AGE.getText().split(":")[1].trim());
-        Gender = GENDER.getText();
-        Caddhar = Long.parseLong(CAADHAAR.getText());
-        Symptoms = SYMPTOMS.getText();
-        Medicines = MEDICINES.getText();
-        Treatment = TREATMENT.getText();
-        Reports = REPORTS.getText();
-        
-        Bedno = Integer.parseInt(BEDNO.getText());
-        Wardname = WARDNAME.getItemAt(WARDNAME.getSelectedIndex());
+        WARDNAME.addItem(wardname.toUpperCase());
+      }
+    } catch (Exception e) {
+      System.out.println("Something is happened In NewPatients ..");
+      System.out.println(e);
+    }
+    jPanel5.setVisible(true);
+    admitYesPanel.setVisible(false);
+    admitYesPanel.setVisible(false);
+    admitYesPanel2.setVisible(false);
+  }
 
-        Cfullname= CFULLNAME.getText();
-        Cage = Integer.parseInt(CAGE.getText());
-        System.out.println( CGENDER.getItemAt(CGENDER.getSelectedIndex()));
-        Cgender = CGENDER.getItemAt(CGENDER.getSelectedIndex()); 
-        String date2 =
+  void showDate() {
+    Date d = new Date();
+    SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+    DATE.setText(s.format(d));
+  }
+
+  void showTime() {
+    new Timer(
+      0,
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          Date d = new Date();
+          SimpleDateFormat s = new SimpleDateFormat("hh:mm a");
+          TIME.setText(s.format(d));
+        }
+      }
+    )
+      .start();
+  }
+
+  void getDataNoAdmit() {
+    Pid = Integer.parseInt(PID.getText());
+
+    String[] name = FULLNAME.getText().split(":")[1].trim().split(" ");
+    System.out.println(name);
+    Fname = name[0];
+    Mname = name[1];
+    Lname = name[2];
+
+    Age = Integer.parseInt(AGE.getText().split(":")[1].trim());
+    Gender = GENDER.getText().split(":")[1];
+
+    Symptoms = SYMPTOMS.getText();
+    Medicines = MEDICINES.getText();
+    Treatment = TREATMENT.getText();
+    Reports = REPORTS.getText();
+
+    Drname = drname.getText();
+
+    Date = DATE.getText();
+    Time = TIME.getText();
+  }
+
+  void getDataAdmit() {
+    Pid = Integer.parseInt(PID.getText());
+
+    String name = FULLNAME.getText().split(":")[1].trim();
+    Fname = name.split(" ")[0];
+    Mname = name.split(" ")[1];
+    Lname = name.split(" ")[2];
+
+    Age = Integer.parseInt(AGE.getText().split(":")[1].trim());
+    Gender = GENDER.getText();
+    Caddhar = Long.parseLong(CAADHAAR.getText());
+    Symptoms = SYMPTOMS.getText();
+    Medicines = MEDICINES.getText();
+    Treatment = TREATMENT.getText();
+    Reports = REPORTS.getText();
+
+    Bedno = Integer.parseInt(BEDNO.getText());
+    Wardname = WARDNAME.getItemAt(WARDNAME.getSelectedIndex());
+
+    Cfullname = CFULLNAME.getText();
+    Cage = Integer.parseInt(CAGE.getText());
+    System.out.println(CGENDER.getItemAt(CGENDER.getSelectedIndex()));
+    Cgender = CGENDER.getItemAt(CGENDER.getSelectedIndex());
+    String date2 =
       ((JTextField) DATEOFADMIT.getDateEditor().getUiComponent()).getText();
     Dateofadmit = LocalDate.parse(date2).toString();
-        Drname = drname.getText();  
-         
-        Contact = Long.parseLong(CONTACT.getText());
+    Drname = drname.getText();
 
-        Rtopatient = RTOPATIENT.getText();
-        CAddress = CADDRESS.getText(); 
+    Contact = Long.parseLong(CONTACT.getText());
 
-        Date = DATE.getText();
-        Time = TIME.getText();
+    Rtopatient = RTOPATIENT.getText();
+    CAddress = CADDRESS.getText();
 
-    }    
-     
-     private void clearFields() {
-         PID.setText(""); 
-         GENDER.setText("GENDER : ");
-      
-         SYMPTOMS.setText("");
-         MEDICINES.setText("");
-         TREATMENT.setText("");
-         REPORTS.setText("");
-             //      DATEOFADMIT.setText("");
-             //      WARDNAME.setText("");
-         BEDNO.setText("");
-         FULLNAME.setText("NAME : ");
-         AGE.setText("AGE : ");
-         CFULLNAME.setText("");
-         CAGE.setText("");
-             //      CGENDER.setText("");
-         CAADHAAR.setText("");
-         CONTACT.setText("");
-      
-         RTOPATIENT.setText("");
-         CADDRESS.setText("");
-         ERRLABLE.setText("  ");
-         DATEOFADMIT.setDate(null);
-     
-     }
+    Date = DATE.getText();
+    Time = TIME.getText();
+  }
 
-    @SuppressWarnings("unchecked")
+  private void clearFields() {
+    PID.setText("");
+    GENDER.setText("GENDER : ");
+
+    SYMPTOMS.setText("");
+    MEDICINES.setText("");
+    TREATMENT.setText("");
+    REPORTS.setText("");
+    //      DATEOFADMIT.setText("");
+    //      WARDNAME.setText("");
+    BEDNO.setText("");
+    FULLNAME.setText("NAME : ");
+    AGE.setText("AGE : ");
+    CFULLNAME.setText("");
+    CAGE.setText("");
+    //      CGENDER.setText("");
+    CAADHAAR.setText("");
+    CONTACT.setText("");
+
+    RTOPATIENT.setText("");
+    CADDRESS.setText("");
+    DATEOFADMIT.setDate(null);
+    ADMIT_STATUS.setSelectedIndex(0);
+  }
+
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -186,7 +198,7 @@ public class OPD extends javax.swing.JFrame {
         GENDER = new javax.swing.JLabel();
         AGE = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        admitStatus = new javax.swing.JComboBox<>();
+        ADMIT_STATUS = new javax.swing.JComboBox<>();
         admitYesPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         BEDNO = new javax.swing.JTextField();
@@ -227,7 +239,7 @@ public class OPD extends javax.swing.JFrame {
         MEDICINES = new javax.swing.JTextArea();
         FULLNAME = new javax.swing.JLabel();
         ERRLABLE = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        DR_SPECELIST = new javax.swing.JLabel();
         TIME = new javax.swing.JLabel();
         DATE = new javax.swing.JLabel();
         drname = new javax.swing.JLabel();
@@ -360,11 +372,11 @@ public class OPD extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel12.setText("ADMIT STATUS");
 
-        admitStatus.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        admitStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO", "YES" }));
-        admitStatus.addActionListener(new java.awt.event.ActionListener() {
+        ADMIT_STATUS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        ADMIT_STATUS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO", "YES" }));
+        ADMIT_STATUS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admitStatusActionPerformed(evt);
+                ADMIT_STATUSActionPerformed(evt);
             }
         });
 
@@ -654,6 +666,9 @@ public class OPD extends javax.swing.JFrame {
             }
         });
         REPORTS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                REPORTSKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 REPORTSKeyTyped(evt);
             }
@@ -754,7 +769,7 @@ public class OPD extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(admitStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ADMIT_STATUS, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(admitYesPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -795,7 +810,7 @@ public class OPD extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admitStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ADMIT_STATUS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(admitYesPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -809,11 +824,11 @@ public class OPD extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel6.setText("SPECELIST");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        DR_SPECELIST.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        DR_SPECELIST.setText("SPECELIST");
+        DR_SPECELIST.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                DR_SPECELISTMouseClicked(evt);
             }
         });
 
@@ -849,7 +864,7 @@ public class OPD extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(drname, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(544, 544, 544)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DR_SPECELIST, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
@@ -881,7 +896,7 @@ public class OPD extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(DR_SPECELIST)
                             .addComponent(DATE)
                             .addComponent(jLabel18))))
                 .addGap(2, 2, 2)
@@ -909,390 +924,690 @@ public class OPD extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CADDRESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CADDRESSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CADDRESSActionPerformed
+  private void CADDRESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CADDRESSActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CADDRESSActionPerformed
 
-    private void RTOPATIENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RTOPATIENTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RTOPATIENTActionPerformed
+  private void RTOPATIENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RTOPATIENTActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_RTOPATIENTActionPerformed
 
-    private void CONTACTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONTACTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CONTACTActionPerformed
+  private void CONTACTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONTACTActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CONTACTActionPerformed
 
-    private void CAGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAGEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CAGEActionPerformed
+  private void CAGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAGEActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CAGEActionPerformed
 
-    private void CFULLNAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CFULLNAMEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CFULLNAMEActionPerformed
+  private void CFULLNAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CFULLNAMEActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CFULLNAMEActionPerformed
 
-    private void CAADHAARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAADHAARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CAADHAARActionPerformed
+  private void CAADHAARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAADHAARActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CAADHAARActionPerformed
 
-    private void BEDNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEDNOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BEDNOActionPerformed
+  private void BEDNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEDNOActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BEDNOActionPerformed
 
-    private void admitStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admitStatusActionPerformed
-        if(admitStatus.getSelectedItem().toString().equals("NO")){
-  
-            jPanel5.setVisible(true);
-            admitYesPanel.setVisible(false);
-            admitYesPanel2.setVisible(false);
+  private void ADMIT_STATUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADMIT_STATUSActionPerformed
+    if (ADMIT_STATUS.getSelectedItem().toString().equals("NO")) {
+      jPanel5.setVisible(true);
+      admitYesPanel.setVisible(false);
+      admitYesPanel2.setVisible(false);
+    } else {
+      jPanel5.setVisible(false);
+      admitYesPanel.setVisible(true);
+      admitYesPanel2.setVisible(true);
+    }
+  }//GEN-LAST:event_ADMIT_STATUSActionPerformed
 
-        }else{
-        
-            jPanel5.setVisible(false);
-            admitYesPanel.setVisible(true);
-            admitYesPanel2.setVisible(true);
+  private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_LOGOUTActionPerformed
 
-        }
-    }//GEN-LAST:event_admitStatusActionPerformed
+  private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LOGOUTMouseClicked
+    this.dispose();
+    LOGIN_FORM log = new LOGIN_FORM();
+    log.setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_LOGOUTMouseClicked
 
-    private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LOGOUTActionPerformed
+  private void DELETEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETEActionPerformed
+    Pid = Integer.parseInt(PID.getText());
+    String queryNonAdmit = "DELETE FROM " + DbName + ".NONADMIT WHERE PID=" + Pid; 
+    try { 
+        statement.execute(queryNonAdmit); 
+        clearFields();
+        ERRLABLE.setText("Patient Deleted..");
+    } catch (Exception e) {}
+  }//GEN-LAST:event_DELETEActionPerformed
 
-    private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LOGOUTMouseClicked
-        this.dispose();
-        LOGIN_FORM log = new  LOGIN_FORM();
-        log.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_LOGOUTMouseClicked
-
-    private void DELETEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETEActionPerformed
-        Pid = Integer.parseInt(PID.getText());
-        String query = "DELETE FROM OPD WHERE PID=" + Pid;
-        try {
-            statement.execute(query);
-            clearFields();
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_DELETEActionPerformed
-
-    private void UPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATEActionPerformed
+  private void UPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATEActionPerformed
+    if (ADMIT_STATUS.getSelectedItem().toString().equals("NO")) {
+      try {
         getDataNoAdmit();
-        try {
-
-            String query = " UPDATE APPOINTMENT SET " + "SYMPTOMS=" + "'" + Symptoms + "'," + "MEDICINES=" + "'" + Medicines + "'," + "TREATMENT=" + "'" + Treatment + "'," + "REPORT=" + "'" + Reports + "'," + "DATEOFADMIT=" + "'" + Dateofadmit + "'," + "WARDNAME=" + "'" + Wardname + "'," + "BEDNO=" + Bedno + "," + "CFULLNAME=" + "'" + Cfullname + "'," + "CAGE=" + Cage + "," + "CGENDER=" + "'" + Cgender + "'," + "EMAIL=" + "'" + Email + "'," + "CONTACT=" + "'" + Contact + "'," + "RTOPATIENT=" + "'" + Rtopatient + "'," + "ADDRESS=" + "'" + CAddress + "' WHERE PID=" + Pid;
-
-            statement.execute(query);
-            clearFields();
-        } catch (Exception e) {
-            System.out.println(e);
+        String query = " UPDATE " + DbName + ".NONADMIT SET " + "SYMPTOMS=" + "'" + Symptoms + "'," + "MEDICINES=" + "'" + Medicines + "'," +
+          "TREATMENT=" +
+          "'" +
+          Treatment +
+          "'," +
+          "REPORTS=" +
+          "'" +
+          Reports +
+          "' WHERE PID=" +
+          Pid;
+        System.out.println(query);
+        statement.execute(query);
+        clearFields();
+        new OPD_EXIT(
+          Pid,
+          Drname,
+          Fname,
+          Mname,
+          Lname,
+          Age,
+          Gender,
+          Symptoms,
+          Treatment,
+          Medicines
+        )
+        .setVisible(true);
+      } catch (Exception e) {
+        System.out.println(e);
+        if (e.getMessage().contains(": \"\"")) {
+          ERRLABLE.setText("Please Fill The Fields..");
         }
-    }//GEN-LAST:event_UPDATEActionPerformed
-
-    private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMITActionPerformed
-         int Sr = 0; 
+      }
+    } else {
+      getDataAdmit();
+      try{
+          PreparedStatement admitTableUpdate = connection.prepareStatement("UPDATE DOC_"+did+".ADMIT SET WARDNAME=?,BEDNO=?,DATEOFADMIT=?,CFULLNAME=?,CAGE=?,CGENDER=?,CCONTACT=?,CRELATIONTOPATIENT=?,CAADHAARNO=?,CADDRESS=? where PID=?");
           
-          if(admitStatus.getSelectedItem().toString().equals("NO")){
-              getDataNoAdmit();
-           try {
-               System.out.println(DbName);   
-            String query = "SELECT COUNT(SR) AS SR FROM " + DbName +".NONADMIT ";
-            
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Sr = Integer.parseInt(result.getString("SR"));
-            }
-            System.out.println(Sr);
-           
-            query = ("INSERT INTO " + DbName +".NONADMIT(SR,PID,FNAME,MNAME,LNAME,AGE,GENDER,DRNAME,SYMPTOMS,MEDICINES,TREATMENT,REPORTS,DATE,TIME)VALUES(" + (Sr + 1) + "," + Pid + ",'" + Fname + "','" + Mname + "','" + Lname + "'," + Age + ",'" + Gender + "','" + Drname + "','" + Symptoms + "','" + Medicines + "','" + Treatment + "','" + Reports + "','" + Date + "','" + Time + "')");
-
-            System.out.println(query);
-            statement.execute(query);
-            clearFields();
-            JOptionPane.showMessageDialog(rootPane, "PATIENT ADDED..");
-        } catch (Exception e) {
-             if(e.getMessage().contains("Duplicate entry")){
-                ERRLABLE.setText("Duplicate entry..");
-             }
-            System.out.println("nahi jal  beeeee");
-            System.out.println(e);
-        }
-
-        }else{
-              getDataAdmit();
-         try {
-            String query = "SELECT COUNT(SR) AS SR FROM " + DbName +".ADMIT";
-            
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Sr = Integer.parseInt(result.getString("SR"));
-            }
-            System.out.println(Sr);
-           //
-            query = ("INSERT INTO " + DbName +".ADMIT (SR,PID,FNAME,MNAME,LNAME,AGE,GENDER,DRNAME,WARDNAME,BEDNO,DATEOFADMIT,CFULLNAME,CAGE,CGENDER,CCONTACT,CRELATIONTOPATIENT,CAADHAARNO,CADDRESS,DATE,TIME)VALUES(" + (Sr + 1) + "," + Pid + ",'" + Fname + "','" + Mname + "','" + Lname + "'," + Age + ",'" + Gender + "','"+Drname + "','" + Wardname+ "'," +Bedno  + ",'" +Dateofadmit+ "','"+Cfullname+ "'," + Cage + ",'" + Cgender + "'," + Contact + ",'" + Rtopatient + "'," +Caddhar  + ",'" + CAddress + "','" + Date + "','" + Time + "')");
-
-            System.out.println(query);
-            statement.execute(query);
-            
-            
-            String patienttable = "P_"+Pid; 
-            String createTable = "CREATE TABLE IF NOT EXISTS " + DbName +"."+patienttable+"(" +"SR INT NULL AUTO_INCREMENT PRIMARY KEY," +"ID INT NOT NULL ,"+"SYMPTOMS VARCHAR(255) NOT NULL ," +"MEDICINES VARCHAR(255) NOT NULL ," +"TREATMENT VARCHAR(255) NOT NULL ," +"TEST VARCHAR(255) NOT NULL ," +"TESTREPORTS VARCHAR(255) NOT NULL ," +"DATE  VARCHAR(50) NOT NULL," +"TIME  VARCHAR(50) NOT NULL" +")";     
-            System.out.println(createTable);
-            statement.execute(createTable);
-            clearFields();
-            JOptionPane.showMessageDialog(rootPane, "PATIENT ADMITTED ..");
-        } catch (Exception e) {
-            System.out.println("nahi jal");
-            System.out.println(e);
-            if(e.getMessage().contains("Duplicate entry")){
-                ERRLABLE.setText("Patient Already Admitted..!");
-            }
-        }
-
-        }
-    }//GEN-LAST:event_SUBMITActionPerformed
-
-    private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VIEWActionPerformed
-
-    private void PIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PIDActionPerformed
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
-        System.out.println("inside the event..") ;
-//       
-        if(evt.getKeyCode()==10){ 
-            ERRLABLE.setText("");
-             try{ 
-                 Pid = Integer.parseInt(PID.getText()); 
-                 ResultSet result = statement.executeQuery("SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID="+PID.getText());
-                 
-                  while(result.next()){ 
-                      String doctorName = result.getString("DRNAME").toUpperCase();
-                       if(doctorName.equals(drname.getText())){
-                           String F=result.getString("FNAME");
-                           String L=result.getString("MNAME");
-                           String M=result.getString("LNAME");
-                           String FF= F+" "+ M +" " +L;
-                           FULLNAME.setText("NAME : "+FF); 
-                           AGE.setText("AGE : " + result.getString("AGE"));
-                           GENDER.setText("GENDER :" + result.getString("GENDER")); 
-                           ERRLABLE.setText("");
-                       }else{
-                           ERRLABLE.setText("NOT UER PATIENT.."); 
-                       }
-                  } 
-             }catch(Exception e){
-                
-                 System.out.println(e);
-             }
-             
-         }
-    }//GEN-LAST:event_PIDKeyPressed
-
-    private void PIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PIDMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PIDMouseClicked
-
-    private void PIDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PIDMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PIDMouseMoved
-
-    private void REPORTSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REPORTSMouseClicked
-        try{
-            JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File f=chooser.getSelectedFile();
-            String filename = f.getAbsolutePath();
-            REPORTS.setText(filename);
-            
-            String DbName = "Patient"+"_"+PID.getText();  
-            String DbNaxme = "Patient"+"_"+drname.getText();
-
-            
-            String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/DR_PHOTO/";
-            File directionary = new File(newPath);
-            if(!directionary.exists()){
-                directionary.mkdirs();
-            }
-            File sourcsfile  = null;
-            File destinationFile =null;
-            String  extension = filename.substring(filename.lastIndexOf('.') +1);
-            sourcsfile = new File(filename);
-            destinationFile = new File(newPath+ DbName+"." +extension);
-            Files.copy(sourcsfile.toPath(), destinationFile.toPath());
-
-        }catch(Exception e){}        // TODO add your handling code here:
-    }//GEN-LAST:event_REPORTSMouseClicked
-
-    private void WARDNAMEItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_WARDNAMEItemStateChanged
-
-    }//GEN-LAST:event_WARDNAMEItemStateChanged
-
-    private void REPORTSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_REPORTSKeyTyped
-        char c = evt.getKeyChar();
-    if(Character.isLetter(c) || Character.isWhitespace(c)|| Character.isISOControl(c)){
-        REPORTS.setEditable(false);
-    }else{
-    REPORTS.setEditable(true);
-      char b = evt.getKeyChar();
-        if(Character.isDigit(b)){
-            evt.consume();
-        }
-
+          admitTableUpdate.setString(1,Wardname);
+          admitTableUpdate.setInt(2,Bedno);   
+          admitTableUpdate.setString(3, Dateofadmit);
+          admitTableUpdate.setString(4, Cfullname);
+          admitTableUpdate.setInt(5, Cage);
+          admitTableUpdate.setString(6, Cgender);
+          admitTableUpdate.setLong(7, Contact);
+          admitTableUpdate.setString(8,Rtopatient);
+          admitTableUpdate.setLong(9,Caddhar);
+          admitTableUpdate.setString(10,CAddress);
+          admitTableUpdate.setInt(11, Pid); 
+          
+          admitTableUpdate.execute();
+          clearFields(); 
+          ERRLABLE.setText("Patient Updated..!");
+      }catch(Exception e){
+          System.out.println(e);
+      }
     }
-    }//GEN-LAST:event_REPORTSKeyTyped
+  }//GEN-LAST:event_UPDATEActionPerformed
 
-    private void CFULLNAMEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CFULLNAMEKeyTyped
- char c = evt.getKeyChar();
-    if(Character.isLetter(c) || Character.isWhitespace(c)|| Character.isISOControl(c)){
-        CFULLNAME.setEditable(true);
-    }else{
-    CFULLNAME.setEditable(false);
+  private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMITActionPerformed
+    int Sr = 0;
+
+    if (ADMIT_STATUS.getSelectedItem().toString().equals("NO")) {
+      try {
+        getDataNoAdmit();
+        System.out.println(DbName);
+        String query = "SELECT COUNT(SR) AS SR FROM " + DbName + ".NONADMIT ";
+        ResultSet result = statement.executeQuery(query);
+        while (result.next()) {
+          Sr = Integer.parseInt(result.getString("SR"));
+        }
+        System.out.println(Sr);
+
+        query =
+          (
+            "INSERT INTO " +
+            DbName +
+            ".NONADMIT(SR,PID,FNAME,MNAME,LNAME,AGE,GENDER,DRNAME,SYMPTOMS,MEDICINES,TREATMENT,REPORTS,DATE,TIME)VALUES(" +
+            (Sr + 1) +
+            "," +
+            Pid +
+            ",'" +
+            Fname +
+            "','" +
+            Mname +
+            "','" +
+            Lname +
+            "'," +
+            Age +
+            ",'" +
+            Gender +
+            "','" +
+            Drname +
+            "','" +
+            Symptoms +
+            "','" +
+            Medicines +
+            "','" +
+            Treatment +
+            "','" +
+            Reports +
+            "','" +
+            Date +
+            "','" +
+            Time +
+            "')"
+          );
+
+        System.out.println(query);
+        statement.execute(query);
+        clearFields();
+
+        new OPD_EXIT(
+          Pid,
+          Drname,
+          Fname,
+          Mname,
+          Lname,
+          Age,
+          Gender,
+          Symptoms,
+          Treatment,
+          Medicines
+        )
+        .setVisible(true);
+
+        JOptionPane.showMessageDialog(rootPane, "PATIENT ADDED..");
+      } catch (Exception e) {
+        if (e.getMessage().contains("Duplicate entry")) {
+          ERRLABLE.setText("Duplicate entry..");
+        }
+        if (e.getMessage().contains(": \"\"")) {
+          ERRLABLE.setText("Please Fill The Fields..");
+        }
+        System.out.println(e);
+      }
+    } else {
+      getDataAdmit();
+      try {
+        String query = "SELECT COUNT(SR) AS SR FROM " + DbName + ".ADMIT";
+
+        ResultSet result = statement.executeQuery(query);
+        while (result.next()) {
+          Sr = Integer.parseInt(result.getString("SR"));
+        }
+        System.out.println(Sr);
+        //
+        query =
+          (
+            "INSERT INTO " +
+            DbName +
+            ".ADMIT (SR,PID,FNAME,MNAME,LNAME,AGE,GENDER,DRNAME,WARDNAME,BEDNO,DATEOFADMIT,CFULLNAME,CAGE,CGENDER,CCONTACT,CRELATIONTOPATIENT,CAADHAARNO,CADDRESS,DATE,TIME)VALUES(" +
+            (Sr + 1) +
+            "," +
+            Pid +
+            ",'" +
+            Fname +
+            "','" +
+            Mname +
+            "','" +
+            Lname +
+            "'," +
+            Age +
+            ",'" +
+            Gender +
+            "','" +
+            Drname +
+            "','" +
+            Wardname +
+            "'," +
+            Bedno +
+            ",'" +
+            Dateofadmit +
+            "','" +
+            Cfullname +
+            "'," +
+            Cage +
+            ",'" +
+            Cgender +
+            "'," +
+            Contact +
+            ",'" +
+            Rtopatient +
+            "'," +
+            Caddhar +
+            ",'" +
+            CAddress +
+            "','" +
+            Date +
+            "','" +
+            Time +
+            "')"
+          );
+
+        System.out.println(query);
+        statement.execute(query);
+
+        String patienttable = "P_" + Pid;
+        String createTable =
+          "CREATE TABLE IF NOT EXISTS " +
+          DbName +
+          "." +
+          patienttable +
+          "(" +
+          "SR INT NULL AUTO_INCREMENT PRIMARY KEY," +
+          "ID INT NOT NULL ," +
+          "SYMPTOMS VARCHAR(255) NOT NULL ," +
+          "MEDICINES VARCHAR(255) NOT NULL ," +
+          "TREATMENT VARCHAR(255) NOT NULL ," +
+          "TEST VARCHAR(255) NOT NULL ," +
+          "TESTREPORTS VARCHAR(255) NOT NULL ," +
+          "DATE  VARCHAR(50) NOT NULL," +
+          "TIME  VARCHAR(50) NOT NULL" +
+          ")";
+        System.out.println(createTable);
+        statement.execute(createTable);
+        clearFields();
+        JOptionPane.showMessageDialog(rootPane, "PATIENT ADMITTED ..");
+      } catch (Exception e) {
+        System.out.println("nahi jal");
+        System.out.println(e);
+        if (e.getMessage().contains("Duplicate entry")) {
+          ERRLABLE.setText("Patient Already Admitted..!");
+        }
+      }
     }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CFULLNAMEKeyTyped
+  }//GEN-LAST:event_SUBMITActionPerformed
 
-    private void RTOPATIENTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RTOPATIENTKeyTyped
-char c = evt.getKeyChar();
-    if(Character.isLetter(c) || Character.isWhitespace(c)|| Character.isISOControl(c)){
-        RTOPATIENT.setEditable(true);
-    }else{
-    RTOPATIENT.setEditable(false);
-    }
-    }//GEN-LAST:event_RTOPATIENTKeyTyped
+  private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
+    new ADMIT_PATIENTS(did).setVisible(true);
+    // TODO add your handling code here:
+  }//GEN-LAST:event_VIEWActionPerformed
 
-    private void CAGEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CAGEKeyTyped
- char b = evt.getKeyChar();
-        if(!Character.isDigit(b)){
-            evt.consume();
-        }
- String p = CAGE.getText();
-           int length = p.length();
-           char c = evt.getKeyChar();
-           if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-               if(length<3){
-                   CAGE.setEditable(true);
-               }else{
-                   CAGE.setEditable(false);
-               }
-           }else{
-               if(evt.getExtendedKeyCode()==KeyEvent.VK_BACKSPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                   CAGE.setEditable(true);
-               }else{
-                   CAGE.setEditable(true);
-               }
-           }        // TODO add your handling code here:
-    }//GEN-LAST:event_CAGEKeyTyped
+  private void PIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PIDActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_PIDActionPerformed
 
-    private void CAADHAARKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CAADHAARKeyTyped
-       char b = evt.getKeyChar();
-        if(!Character.isDigit(b)){
-            evt.consume();
-        }
- String p = CAADHAAR.getText();
-           int length = p.length();
-           char c = evt.getKeyChar();
-           if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-               if(length<12){
-                   CAADHAAR.setEditable(true);
-               }else{
-                   CAADHAAR.setEditable(false);
-               }
-           }else{
-               if(evt.getExtendedKeyCode()==KeyEvent.VK_BACKSPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                   CAADHAAR.setEditable(true);
-               }else{
-                   CAADHAAR.setEditable(true);
-               }
-           } 
-    }//GEN-LAST:event_CAADHAARKeyTyped
+  private void DR_SPECELISTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DR_SPECELISTMouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_DR_SPECELISTMouseClicked
 
-    private void CONTACTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CONTACTKeyTyped
-  char b = evt.getKeyChar();
-        if(!Character.isDigit(b)){
-            evt.consume();
-        }
- String p = CONTACT.getText();
-           int length = p.length();
-           char c = evt.getKeyChar();
-           if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-               if(length<12){
-                   CONTACT.setEditable(true);
-               }else{
-                   CONTACT.setEditable(false);
-               }
-           }else{
-               if(evt.getExtendedKeyCode()==KeyEvent.VK_BACKSPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                   CONTACT.setEditable(true);
-               }else{
-                   CONTACT.setEditable(true);
-               }
-           }         // TODO add your handling code here:
-    }//GEN-LAST:event_CONTACTKeyTyped
+  private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
+    if (evt.getKeyCode() == 10) {
+        ADMIT_STATUS.setSelectedIndex(0);
+      Pid = Integer.parseInt(PID.getText());
+      ERRLABLE.setText(" ");
+      try {
+        ResultSet result = statement.executeQuery(
+          "SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID=" + Pid
+        );
+        if (result.next()) {
+          result.beforeFirst();
+          while (result.next()) {
+            String doctorName = result.getString("DRNAME").toUpperCase();
+            if (doctorName.equals(drname.getText())) {
+              String F = result.getString("FNAME");
+              String M = result.getString("MNAME");
+              String L = result.getString("LNAME");
+              String FF = F + " " + M + " " + L;
+              FULLNAME.setText("NAME : " + FF);
+              AGE.setText("AGE : " + result.getString("AGE"));
+              GENDER.setText("GENDER :" + result.getString("GENDER"));
+              ERRLABLE.setText("");
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+              ResultSet resultNonAdmit = statement.executeQuery("SELECT * FROM  " + DbName + ".NONADMIT WHERE PID=" + Pid);
+              if (resultNonAdmit.next()) {
+                SYMPTOMS.setText(resultNonAdmit.getString("SYMPTOMS"));
+                MEDICINES.setText(resultNonAdmit.getString("MEDICINES"));
+                TREATMENT.setText(resultNonAdmit.getString("TREATMENT"));
+                REPORTS.setText(resultNonAdmit.getString("REPORTS"));
+                return;
+              } else {
+                ResultSet resultAdmit = statement.executeQuery("SELECT * FROM  " + DbName + ".ADMIT WHERE PID=" + Pid);
+                if (resultAdmit.next()) {
+                  DATEOFADMIT.setDate( new SimpleDateFormat("yyyy-MM-dd").parse(resultAdmit.getString("DATEOFADMIT")));
+                  WARDNAME.setSelectedItem(resultAdmit.getString("WARDNAME"));
+                  BEDNO.setText(resultAdmit.getString("BEDNO"));
+                  CFULLNAME.setText(resultAdmit.getString("CFULLNAME"));
+                  CAGE.setText(resultAdmit.getString("CAGE"));
+                  switch (resultAdmit.getString("CGENDER")) {
+                    case "SELECT":
+                      CGENDER.setSelectedIndex(0);
+                      break;
+                    case "MALE":
+                      CGENDER.setSelectedIndex(1);
+                      break;
+                    case "FEMALE":
+                      CGENDER.setSelectedIndex(2);
+                      break;
+                    default:
+                      CGENDER.setSelectedIndex(3);
+                  }
+                  CAADHAAR.setText(resultAdmit.getString("CAADHAARNO"));
+                  CONTACT.setText(resultAdmit.getString("CCONTACT"));
+                  RTOPATIENT.setText(resultAdmit.getString("CRELATIONTOPATIENT"));
+                  CADDRESS.setText(resultAdmit.getString("CADDRESS"));
+                  ADMIT_STATUS.setSelectedIndex(1);
+                  return;
+                } else {
+                  ERRLABLE.setText("NEW PATIENT..");
                 }
+              }
+            } else {
+              ERRLABLE.setText("NOT UER PATIENT..");
+              clearFields();
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OPD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OPD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OPD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OPD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          }
+        } else {
+          ERRLABLE.setText("NO DATA..");
         }
-        //</editor-fold>
- 
-    }
+        //                 ResultSet resultNonAdmit = statement.executeQuery("SELECT * FROM  " + DbName +".NONADMIT WHERE PID="+PID.getText());
+        //                 if(resultNonAdmit.next()){
+        //
+        //                     SYMPTOMS.setText( resultNonAdmit.getString("SYMPTOMS"));
+        //                     MEDICINES.setText( resultNonAdmit.getString("MEDICINES"));
+        //                     TREATMENT.setText( resultNonAdmit.getString("TREATMENT"));
+        //                     REPORTS.setText( resultNonAdmit.getString("REPORTS"));
+        //
+        //                 }else{
+        //                     clearFields();
+        //                     ERRLABLE.setText("THIS PATIENT IS NOT ADMIT ");
+        //                 }
 
-    
-     int Sr;
-    int Pid;
-    String Drname;
-    String Fname; 
-    String Mname;
-    String Lname;
-    int Age;
-    String Gender;
-    String Symptoms;
-    String Medicines;
-    String Treatment;
-    String Reports;
-    String Dateofadmit;
-    String Wardname;
-    int Bedno;
-    String Cfullname;
-    int Cage;
-    String Cgender;
-    String Email;
-    Long Contact;
-    String Rtopatient;
-    String CAddress;
-    String Date;
-    String Time;
-    Statement statement;
-    String PtableName;
-     String DbName="";
-    ResultSet drInfo;
-    Long Caddhar;
+        // ResultSet result3 = statement.executeQuery("SELECT * FROM  " + DbName +".ADMIT WHERE PID="+PID.getText());
+        //
+        //                 if(result3.next()){
+        //
+        //                     DATEOFADMIT.setDate( new SimpleDateFormat("yyyy-MM-dd").parse(result3.getString("DATEOFADMIT")) );
+        //                     WARDNAME.setSelectedItem(result3.getString("WARDNAME"));
+        //                     BEDNO.setText( result3.getString("BEDNO"));
+        //                     CFULLNAME.setText( result3.getString("CFULLNAME"));
+        //                     CAGE.setText( result3.getString("CAGE"));
+        //                     switch (result3.getString("CGENDER")) {
+        //                        case "SELECT":
+        //                          CGENDER.setSelectedIndex(0);
+        //                          break;
+        //                        case "MALE":
+        //                          CGENDER.setSelectedIndex(1);
+        //                          break;
+        //                        case "FEMALE":
+        //                          CGENDER.setSelectedIndex(2);
+        //                          break;
+        //                        default:
+        //                          CGENDER.setSelectedIndex(3);
+        //                    }
+        //                     CAADHAAR.setText( result3.getString("CAADHAAR"));
+        //                     CONTACT.setText( result3.getString("CONTACT"));
+        //                     RTOPATIENT.setText( result3.getString("RTOPATIENT"));
+        //                     CADDRESS.setText( result3.getString("CADDRESS"));
+
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+      //        }
+      //        else{
+
+      //        try{
+      //        ResultSet result3 = statement.executeQuery("SELECT * FROM  " + DbName +".ADMIT WHERE PID="+PID.getText());
+      //
+      //                 if(result3.next()){
+      //
+      //                     DATEOFADMIT.setDate( new SimpleDateFormat("yyyy-MM-dd").parse(result3.getString("DATEOFADMIT")) );
+      //                     WARDNAME.setSelectedItem(result3.getString("WARDNAME"));
+      //                     BEDNO.setText( result3.getString("BEDNO"));
+      //                     CFULLNAME.setText( result3.getString("CFULLNAME"));
+      //                     CAGE.setText( result3.getString("CAGE"));
+      //                     switch (result3.getString("CGENDER")) {
+      //                        case "SELECT":
+      //                          CGENDER.setSelectedIndex(0);
+      //                          break;
+      //                        case "MALE":
+      //                          CGENDER.setSelectedIndex(1);
+      //                          break;
+      //                        case "FEMALE":
+      //                          CGENDER.setSelectedIndex(2);
+      //                          break;
+      //                        default:
+      //                          CGENDER.setSelectedIndex(3);
+      //                    }
+      //                     CAADHAAR.setText( result3.getString("CAADHAAR"));
+      //                     CONTACT.setText( result3.getString("CONTACT"));
+      //                     RTOPATIENT.setText( result3.getString("RTOPATIENT"));
+      //                     CADDRESS.setText( result3.getString("CADDRESS"));
+      //
+      //                 }else{
+      //                     clearFields();
+      //                     ERRLABLE.setText("HAM JIRE");
+      //                 }}catch(Exception e){}
+
+    }
+  }//GEN-LAST:event_PIDKeyPressed
+
+  private void PIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PIDMouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_PIDMouseClicked
+
+  private void PIDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PIDMouseMoved
+    // TODO add your handling code here:
+  }//GEN-LAST:event_PIDMouseMoved
+
+  private void REPORTSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REPORTSMouseClicked
+    try {
+      JFileChooser chooser = new JFileChooser();
+      chooser.showOpenDialog(null);
+      File f = chooser.getSelectedFile();
+      String filename = f.getAbsolutePath();
+      
+
+      String DbName = "Patient" + "_" + PID.getText(); 
+
+      String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/"+drname.getText()+"/NONADMIT/";
+      File directionary = new File(newPath);
+      if (!directionary.exists()) {
+        directionary.mkdirs();
+      }
+      File sourcsfile = null;
+      File destinationFile = null;
+      String extension = filename.substring(filename.lastIndexOf('.') + 1);
+      sourcsfile = new File(filename);
+      destinationFile = new File(newPath + DbName + "." + extension);
+      Files.copy(sourcsfile.toPath(), destinationFile.toPath());
+      REPORTS.setText(newPath + DbName + "." + extension);
+    } catch (Exception e) {} // TODO add your handling code here:
+  }//GEN-LAST:event_REPORTSMouseClicked
+
+  private void WARDNAMEItemStateChanged(java.awt.event.ItemEvent evt) {}                                                                                     
+
+  private void REPORTSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_REPORTSKeyTyped
+    char c = evt.getKeyChar();
+    if (
+      Character.isLetter(c) ||
+      Character.isWhitespace(c) ||
+      Character.isISOControl(c)
+    ) {
+      REPORTS.setEditable(false);
+    } else {
+      REPORTS.setEditable(true);
+      char b = evt.getKeyChar();
+      if (Character.isDigit(b)) {
+        evt.consume();
+      }
+    }
+  }//GEN-LAST:event_REPORTSKeyTyped
+
+  private void CFULLNAMEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CFULLNAMEKeyTyped
+    char c = evt.getKeyChar();
+    if (
+      Character.isLetter(c) ||
+      Character.isWhitespace(c) ||
+      Character.isISOControl(c)
+    ) {
+      CFULLNAME.setEditable(true);
+    } else {
+      CFULLNAME.setEditable(false);
+    }
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CFULLNAMEKeyTyped
+
+  private void RTOPATIENTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RTOPATIENTKeyTyped
+    char c = evt.getKeyChar();
+    if (
+      Character.isLetter(c) ||
+      Character.isWhitespace(c) ||
+      Character.isISOControl(c)
+    ) {
+      RTOPATIENT.setEditable(true);
+    } else {
+      RTOPATIENT.setEditable(false);
+    }
+  }//GEN-LAST:event_RTOPATIENTKeyTyped
+
+  private void CAGEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CAGEKeyTyped
+    char b = evt.getKeyChar();
+    if (!Character.isDigit(b)) {
+      evt.consume();
+    }
+    String p = CAGE.getText();
+    int length = p.length();
+    char c = evt.getKeyChar();
+    if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+      if (length < 3) {
+        CAGE.setEditable(true);
+      } else {
+        CAGE.setEditable(false);
+      }
+    } else {
+      if (
+        evt.getExtendedKeyCode() == KeyEvent.VK_BACKSPACE ||
+        evt.getExtendedKeyCode() == KeyEvent.VK_DELETE
+      ) {
+        CAGE.setEditable(true);
+      } else {
+        CAGE.setEditable(true);
+      }
+    } // TODO add your handling code here:
+  }//GEN-LAST:event_CAGEKeyTyped
+
+  private void CAADHAARKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CAADHAARKeyTyped
+    char b = evt.getKeyChar();
+    if (!Character.isDigit(b)) {
+      evt.consume();
+    }
+    String p = CAADHAAR.getText();
+    int length = p.length();
+    char c = evt.getKeyChar();
+    if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+      if (length < 12) {
+        CAADHAAR.setEditable(true);
+      } else {
+        CAADHAAR.setEditable(false);
+      }
+    } else {
+      if (
+        evt.getExtendedKeyCode() == KeyEvent.VK_BACKSPACE ||
+        evt.getExtendedKeyCode() == KeyEvent.VK_DELETE
+      ) {
+        CAADHAAR.setEditable(true);
+      } else {
+        CAADHAAR.setEditable(true);
+      }
+    }
+  }//GEN-LAST:event_CAADHAARKeyTyped
+
+  private void CONTACTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CONTACTKeyTyped
+    char b = evt.getKeyChar();
+    if (!Character.isDigit(b)) {
+      evt.consume();
+    }
+    String p = CONTACT.getText();
+    int length = p.length();
+    char c = evt.getKeyChar();
+    if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+      if (length < 12) {
+        CONTACT.setEditable(true);
+      } else {
+        CONTACT.setEditable(false);
+      }
+    } else {
+      if (
+        evt.getExtendedKeyCode() == KeyEvent.VK_BACKSPACE ||
+        evt.getExtendedKeyCode() == KeyEvent.VK_DELETE
+      ) {
+        CONTACT.setEditable(true);
+      } else {
+        CONTACT.setEditable(true);
+      }
+    } // TODO add your handling code here:
+  }//GEN-LAST:event_CONTACTKeyTyped
+
+    private void REPORTSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_REPORTSKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_REPORTSKeyPressed
+
+  public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+     */
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
+        }
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger
+        .getLogger(OPD.class.getName())
+        .log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger
+        .getLogger(OPD.class.getName())
+        .log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger
+        .getLogger(OPD.class.getName())
+        .log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger
+        .getLogger(OPD.class.getName())
+        .log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+
+  }
+
+  int Sr;
+  int Pid;
+  int did;
+  String Drname;
+  String Fname;
+  String Mname;
+  String Lname;
+  int Age;
+  String Gender;
+  String Symptoms;
+  String Medicines;
+  String Treatment;
+  String Reports;
+  String Dateofadmit;
+  String Wardname;
+  int Bedno;
+  String Cfullname;
+  int Cage;
+  String Cgender;
+  String Email;
+  Long Contact;
+  String Rtopatient;
+  String CAddress;
+  String Date;
+  String Time;
+  Statement statement;
+  String PtableName;
+  String DbName = "";
+  ResultSet drInfo;
+  Long Caddhar;
+  Connection connection;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ADMIT_STATUS;
     private javax.swing.JLabel AGE;
     private javax.swing.JTextField BEDNO;
     private javax.swing.JTextField CAADHAAR;
@@ -1304,6 +1619,7 @@ char c = evt.getKeyChar();
     private javax.swing.JLabel DATE;
     private com.toedter.calendar.JDateChooser DATEOFADMIT;
     private javax.swing.JButton DELETE;
+    private javax.swing.JLabel DR_SPECELIST;
     private javax.swing.JLabel ERRLABLE;
     private javax.swing.JLabel FULLNAME;
     private javax.swing.JLabel GENDER;
@@ -1319,7 +1635,6 @@ char c = evt.getKeyChar();
     private javax.swing.JButton UPDATE;
     private javax.swing.JButton VIEW;
     private javax.swing.JComboBox<String> WARDNAME;
-    private javax.swing.JComboBox<String> admitStatus;
     private javax.swing.JPanel admitYesPanel;
     private javax.swing.JPanel admitYesPanel2;
     private javax.swing.JLabel drname;
@@ -1344,7 +1659,6 @@ char c = evt.getKeyChar();
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

@@ -3,12 +3,14 @@ package multispecility_hospital_solapur.DOCTOR;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.nio.file.Files;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFileChooser;
 import javax.swing.Timer;
+import multispecility_hospital_solapur.DATA_TABLES.WARDS_PATIENT_DATA;
 import multispecility_hospital_solapur.LOGIN_FORM;
 import multispecility_hospital_solapur.use.GetConnection;
 
@@ -25,6 +27,7 @@ public class WARD extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
+
         this.setExtendedState(MAXIMIZED_BOTH);
         String nurseName="";
         try{
@@ -51,10 +54,8 @@ public class WARD extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         PID = new javax.swing.JTextField();
-        VIEW = new javax.swing.JButton();
         SUBMIT = new javax.swing.JButton();
         UPDATE = new javax.swing.JButton();
-        DELETE = new javax.swing.JButton();
         LOGOUT = new javax.swing.JButton();
         FNAME = new javax.swing.JLabel();
         GENDER = new javax.swing.JLabel();
@@ -78,6 +79,7 @@ public class WARD extends javax.swing.JFrame {
         DRNAME = new javax.swing.JLabel();
         VIEW1 = new javax.swing.JButton();
         WARDERR = new javax.swing.JLabel();
+        VIEW = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         TIME = new javax.swing.JLabel();
         DATE = new javax.swing.JLabel();
@@ -110,7 +112,7 @@ public class WARD extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(281, 281, 281)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,17 +143,8 @@ public class WARD extends javax.swing.JFrame {
             }
         });
 
-        VIEW.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        VIEW.setText("VIEW");
-        VIEW.setMargin(new java.awt.Insets(4, 27, 4, 27));
-        VIEW.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VIEWActionPerformed(evt);
-            }
-        });
-
         SUBMIT.setBackground(new java.awt.Color(51, 153, 255));
-        SUBMIT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        SUBMIT.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         SUBMIT.setText("SUBMIT");
         SUBMIT.setMargin(new java.awt.Insets(7, 24, 7, 24));
         SUBMIT.addActionListener(new java.awt.event.ActionListener() {
@@ -169,15 +162,6 @@ public class WARD extends javax.swing.JFrame {
             }
         });
 
-        DELETE.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        DELETE.setText("DELETE");
-        DELETE.setMargin(new java.awt.Insets(4, 27, 4, 27));
-        DELETE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DELETEActionPerformed(evt);
-            }
-        });
-
         LOGOUT.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         LOGOUT.setText("LOG OUT");
         LOGOUT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,10 +176,13 @@ public class WARD extends javax.swing.JFrame {
         });
 
         FNAME.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        FNAME.setText("NAME :");
 
         GENDER.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        GENDER.setText("GENDER :");
 
         AGE.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        AGE.setText("AGE :");
 
         SYMPTOMS.setColumns(20);
         SYMPTOMS.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -257,7 +244,6 @@ public class WARD extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,11 +259,10 @@ public class WARD extends javax.swing.JFrame {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(jLabel11)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel12))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,6 +295,7 @@ public class WARD extends javax.swing.JFrame {
         );
 
         DRNAME.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        DRNAME.setText("DR NAME :");
 
         VIEW1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         VIEW1.setText("DISCHARGE");
@@ -324,6 +310,15 @@ public class WARD extends javax.swing.JFrame {
         WARDERR.setForeground(new java.awt.Color(204, 0, 0));
         WARDERR.setText("   ");
 
+        VIEW.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        VIEW.setText("VIEW");
+        VIEW.setMargin(new java.awt.Insets(7, 24, 7, 24));
+        VIEW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VIEWActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -332,32 +327,30 @@ public class WARD extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(WARDERR, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
+                .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(WARDERR, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(FNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(72, 72, 72)
                 .addComponent(DRNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addComponent(AGE, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(GENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+                .addGap(50, 50, 50))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(LOGOUT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SUBMIT)
-                .addGap(34, 34, 34)
-                .addComponent(UPDATE)
-                .addGap(29, 29, 29)
-                .addComponent(DELETE)
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addComponent(VIEW)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
+                .addComponent(UPDATE)
+                .addGap(134, 134, 134)
                 .addComponent(VIEW1)
-                .addGap(163, 163, 163))
+                .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -368,27 +361,31 @@ public class WARD extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AGE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FNAME, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(WARDERR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(GENDER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DRNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(21, 21, 21)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AGE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GENDER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DRNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FNAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(WARDERR)))
+                .addGap(17, 17, 17)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(148, 148, 148)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LOGOUT)
-                    .addComponent(VIEW)
-                    .addComponent(UPDATE)
-                    .addComponent(DELETE)
-                    .addComponent(SUBMIT)
-                    .addComponent(VIEW1))
-                .addGap(18, 18, 18))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(LOGOUT)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(SUBMIT)
+                                .addComponent(VIEW)
+                                .addComponent(UPDATE))
+                            .addComponent(VIEW1))
+                        .addGap(23, 23, 23))))
         );
 
         jLabel6.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
@@ -416,28 +413,32 @@ public class WARD extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(NURSENAME, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(635, 635, 635)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(NURSENAME, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(609, 609, 609)
-                                .addComponent(jLabel13))
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(TIME))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel14)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DATE)
-                            .addComponent(TIME))))
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(DATE)))
+                        .addGap(9, 9, 9)))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -445,22 +446,23 @@ public class WARD extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NURSENAME))
+                        .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(DATE)
-                            .addComponent(jLabel13))))
-                .addGap(2, 2, 2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NURSENAME))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(DATE)
+                                    .addComponent(jLabel13))))))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TIME)
                     .addComponent(jLabel14))
@@ -494,12 +496,18 @@ public class WARD extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_LOGOUTMouseClicked
 
-    private void DELETEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETEActionPerformed
-      
-    }//GEN-LAST:event_DELETEActionPerformed
-
     private void UPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATEActionPerformed
-       
+               try{
+                   getData();
+                      statement.execute("UPDATE DOC_"+DrId+".P_"+Pid+" SET SYMPTOMS='"+Symptoms+"',MEDICINES='"+Medicines+"',TREATMENT='"+Treatments+"',TEST='"+Tests+"',TESTREPORTS='"+Reports+"' WHERE SR="+patientUpdateSr);
+                      clearFields();
+              
+               }catch(Exception e){
+                   
+                   System.out.println(e);
+               }
+
+        
     }//GEN-LAST:event_UPDATEActionPerformed
 
     private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMITActionPerformed
@@ -507,8 +515,7 @@ public class WARD extends javax.swing.JFrame {
            String DBNAME="";  
 
            try{
-                
-                   DBNAME ="doc_"+DrId; 
+               DBNAME ="doc_"+DrId; 
                String query= "INSERT INTO "+DBNAME+".P_"+Pid+"(ID,SYMPTOMS,MEDICINES,TREATMENT,TEST,TESTREPORTS,DATE,TIME)VALUES("+Pid+",'"+Symptoms+"','"+Medicines+"','"+Treatments+"','"+Tests+"','"+Reports+"','"+Date+"','"+Time+"')";
                System.out.println(query);
                statement.execute(query);
@@ -530,10 +537,6 @@ public class WARD extends javax.swing.JFrame {
         Time = TIME.getText();
 
     }      
-    private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VIEWActionPerformed
-
     private void PIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PIDActionPerformed
@@ -543,15 +546,30 @@ public class WARD extends javax.swing.JFrame {
     }//GEN-LAST:event_REPORTSMouseEntered
 
     private void REPORTSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REPORTSMouseClicked
-       try {
-            JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File f = chooser.getSelectedFile();
-            String filename = f.getAbsolutePath();
-            REPORTS.setText(filename);
-        } catch (Exception e) {
-            System.out.println("hiii");
-        }        // TODO add your handling code here:  
+           try {
+               JFileChooser chooser = new JFileChooser();
+               chooser.showOpenDialog(null);
+               File f = chooser.getSelectedFile();
+               String filename = f.getAbsolutePath(); 
+               String dynamicTime = TIME.getText().replace(":","-");
+               String DbName = "Patient" + "_" + PID.getText()+"_"; 
+
+               String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/"+DRNAME.getText().split("DR NAME :")[1]+"/ADMIT/"+PID.getText()+"/";
+               File directionary = new File(newPath);
+               if (!directionary.exists()) {
+                 directionary.mkdirs();
+               }
+               File sourcsfile = null;
+               File destinationFile = null;
+               String extension = filename.substring(filename.lastIndexOf('.') + 1);
+               sourcsfile = new File(filename);
+               
+               destinationFile = new File(newPath + DbName +dynamicTime+ "." + extension);
+               Files.copy(sourcsfile.toPath(), destinationFile.toPath());
+               REPORTS.setText(newPath + DbName +dynamicTime+ "." + extension);
+            } catch (Exception e) {
+               System.out.println(e);
+            }     
     }//GEN-LAST:event_REPORTSMouseClicked
 
     private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
@@ -591,12 +609,30 @@ public class WARD extends javax.swing.JFrame {
                                   GENDER.setText("GENDER :" + PGender);
                                   DRNAME.setText("DR NAME :" + DoctorName); 
                                   WARDERR.setText("  "); 
+                                  
+                                   ResultSet getlastdata = statement.executeQuery("SELECT * FROM DOC_"+DrId+".P_"+pid+" ORDER BY SR DESC LIMIT 1");
+                                   if(getlastdata.next()) {
+                                       getlastdata.beforeFirst();
+                                       while(getlastdata.next()){
+                                           SYMPTOMS.setText(getlastdata.getString("SYMPTOMS"));      
+                                           MEDICINES.setText(getlastdata.getString("MEDICINES"));
+                                           TREATMENT.setText(getlastdata.getString("TREATMENT"));
+                                           TEST.setText(getlastdata.getString("TEST"));
+                                           REPORTS.setText(getlastdata.getString("TESTREPORTS"));
+                                           patientUpdateSr= getlastdata.getInt("SR");
+                                        }
+                                   }else{
+                                       WARDERR.setText("PATIENT RECENTLY Admitted....!"); 
+                                   }
+
                               }else{
                                  WARDERR.setText("No Patient Admitted....!"); 
                                  clearFields();
                               }
                            }  
                          } 
+                        
+
                  }else{
                         WARDERR.setText("No Data..!"); 
                         clearFields();
@@ -616,6 +652,17 @@ public class WARD extends javax.swing.JFrame {
        new DISCHARGE().setVisible(true);
     }//GEN-LAST:event_VIEW1ActionPerformed
 
+    private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
+   if(PID.getText().equals("")){
+       WARDERR.setText("PLEASE ENTER THE PATIENT ID"); 
+
+   } else{
+            new WARDS_PATIENT_DATA(PID.getText(),FNAME.getText(),AGE.getText(),GENDER.getText(),DrId).setVisible(true);
+
+   }
+
+    }//GEN-LAST:event_VIEWActionPerformed
+
      void showDate(){
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
@@ -633,9 +680,7 @@ public class WARD extends javax.swing.JFrame {
             
         }).start();
     }
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -673,10 +718,10 @@ public class WARD extends javax.swing.JFrame {
     String Pid; 
     String Reports;
     int DrId;
+    int patientUpdateSr;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AGE;
     private javax.swing.JLabel DATE;
-    private javax.swing.JButton DELETE;
     private javax.swing.JLabel DRNAME;
     private javax.swing.JLabel FNAME;
     private javax.swing.JLabel GENDER;
@@ -730,6 +775,5 @@ public class WARD extends javax.swing.JFrame {
         GENDER.setText("GENDER :"); 
          DRNAME.setText("DR NAME :");
     }
-
  
 }
