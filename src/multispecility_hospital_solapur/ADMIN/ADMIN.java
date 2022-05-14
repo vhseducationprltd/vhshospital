@@ -3,8 +3,8 @@ package multispecility_hospital_solapur.ADMIN;
 import com.sun.glass.events.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File; 
-import java.nio.file.Files; 
+import java.io.File;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame; 
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.Timer;
@@ -36,133 +36,230 @@ public class ADMIN extends javax.swing.JFrame {
     DEATHS();
     PATIENTS();
     this.getAllUsers();
-      setTitle("VHS ADMIN PANEL");
+    setTitle("VHS ADMIN PANEL");
     showDate();
     showTime();
   }
-public void DOCTORSLIST() {
+
+  public void DOCTORSLIST() {
     //     DOCTORSLIST
     String query = "SELECT * FROM VHSHOSPITAL.DOCTORS";
 
     try {
       ResultSet result = statement.executeQuery(query);
       DefaultTableModel model = null;
-      model = new DefaultTableModel(
-          new Object []{"SR", "ID", "FNAME", "MNAME", "LNAME", "AGE", "GENDER", "DOB", "MSTATUS", "UPHOTO", "USERNAME", "PASSWORD", "SPECIALIZATION", "EDUCATION", "FEE", "OPDNO", "JOBEXP", "DATEOFJOIN", "LKNOWN", "DOCUMENT", "EMAIL", "CONTACT1", "CONTACT2", "ECONTACT", "AADHAAR", "PAN", "ADDRESS", "CITY", "DISTRICT", "STATE", "COUNTRY", "PIN", "DATE", "TIME"},
-            0
-          );
+      model =
+        new DefaultTableModel(
+          new Object[] {
+            "SR",
+            "ID",
+            "FNAME",
+            "MNAME",
+            "LNAME",
+            "AGE",
+            "GENDER",
+            "DOB",
+            "MSTATUS",
+            "UPHOTO",
+            "USERNAME",
+            "PASSWORD",
+            "SPECIALIZATION",
+            "EDUCATION",
+            "FEE",
+            "OPDNO",
+            "JOBEXP",
+            "DATEOFJOIN",
+            "LKNOWN",
+            "DOCUMENT",
+            "EMAIL",
+            "CONTACT1",
+            "CONTACT2",
+            "ECONTACT",
+            "AADHAAR",
+            "PAN",
+            "ADDRESS",
+            "CITY",
+            "DISTRICT",
+            "STATE",
+            "COUNTRY",
+            "PIN",
+            "DATE",
+            "TIME",
+          },
+          0
+        );
 
-    while (result.next()) {
+      while (result.next()) {
         model.addRow(
           new Object[] {
-          result.getString("SR"),
-          result.getString("ID"),
-          result.getString("FNAME"),
-          result.getString("MNAME"),
-          result.getString("LNAME"),
-          result.getString("AGE"),
-          result.getString("GENDER"),
-          result.getString("DOB"),
-          result.getString("MSTATUS"),
-          result.getString("UPHOTO"),
-          result.getString("USERNAME"),
-          result.getString("PASSWORD"),
-          result.getString("SPECIALIZATION"),
-          result.getString("EDUCATION"),
-          result.getString("FEE"),
-          result.getString("OPDNO"),
-          result.getString("JOBEXP"),
-          result.getString("DATEOFJOIN"),
-          result.getString("LKNOWN"),
-          result.getString("DOCUMENT"),
-          result.getString("EMAIL"),
-          result.getString("CONTACT1"),
-          result.getString("CONTACT2"),
-          result.getString("ECONTACT"),
-          result.getString("AADHAAR"),
-          result.getString("PAN"),
-          result.getString("ADDRESS"),
-          result.getString("CITY"),
-          result.getString("DISTRICT"),
-          result.getString("STATE"),
-          result.getString("COUNTRY"),
-          result.getString("PIN"),
-          result.getString("DATE"),
-          result.getString("TIME"),
-        }
-        ); 
+            result.getString("SR"),
+            result.getString("ID"),
+            result.getString("FNAME"),
+            result.getString("MNAME"),
+            result.getString("LNAME"),
+            result.getString("AGE"),
+            result.getString("GENDER"),
+            result.getString("DOB"),
+            result.getString("MSTATUS"),
+            result.getString("UPHOTO"),
+            result.getString("USERNAME"),
+            result.getString("PASSWORD"),
+            result.getString("SPECIALIZATION"),
+            result.getString("EDUCATION"),
+            result.getString("FEE"),
+            result.getString("OPDNO"),
+            result.getString("JOBEXP"),
+            result.getString("DATEOFJOIN"),
+            result.getString("LKNOWN"),
+            result.getString("DOCUMENT"),
+            result.getString("EMAIL"),
+            result.getString("CONTACT1"),
+            result.getString("CONTACT2"),
+            result.getString("ECONTACT"),
+            result.getString("AADHAAR"),
+            result.getString("PAN"),
+            result.getString("ADDRESS"),
+            result.getString("CITY"),
+            result.getString("DISTRICT"),
+            result.getString("STATE"),
+            result.getString("COUNTRY"),
+            result.getString("PIN"),
+            result.getString("DATE"),
+            result.getString("TIME"),
+          }
+        );
       }
       DOCTORS_LIST.setModel(model);
     } catch (Exception e) {
       System.out.println(e);
     }
   }
-public void RECEPTIONLIST(){
-  String query = "SELECT * FROM VHSHOSPITAL.RECEPTIONISTS";
 
-  try {
-    ResultSet result = statement.executeQuery(query);
-    DefaultTableModel model = null;
-    model =
-      new DefaultTableModel(
-    new Object[] { "ID", "FNAME", "MNAME", "LNAME", "AGE", "GENDER", "DOB", "MSTATUS", "UPHOTO", "USERNAME", "PASSWORD", "SPECIALIZATION", "EDUCATION", "JOBEXP", "DATEOFJOIN", "LKNOWN", "DOCUMENT", "EMAIL", "CONTACT1", "CONTACT2", "AADHAAR", "PAN", "ADDRESS", "CITY", "DISTRICT", "STATE", "COUNTRY", "PIN", "DATE", "TIME" },
-      0
-    );
-    while (result.next()) {
-      model.addRow(
-        new Object[] { 
-        result.getString("ID"),
-        result.getString("FNAME"),
-        result.getString("MNAME"),
-        result.getString("LNAME"),
-        result.getString("AGE"),
-        result.getString("GENDER"),
-        result.getString("DOB"),
-        result.getString("MSTATUS"),
-        result.getString("UPHOTO"),
-        result.getString("USERNAME"),
-        result.getString("PASSWORD"),
-        result.getString("SPECIALIZATION"),
-        result.getString("EDUCATION"),
-        result.getString("JOBEXP"),
-        result.getString("DATEOFJOIN"),
-        result.getString("LKNOWN"),
-        result.getString("DOCUMENT"),
-        result.getString("EMAIL"),
-        result.getString("CONTACT1"),
-        result.getString("CONTACT2"),
-        result.getString("AADHAAR"),
-        result.getString("PAN"),
-        result.getString("ADDRESS"),
-        result.getString("CITY"),
-        result.getString("DISTRICT"),
-        result.getString("STATE"),
-        result.getString("COUNTRY"),
-        result.getString("PIN"),
-        result.getString("DATE"),
-        result.getString("TIME"),
+  public void RECEPTIONLIST() {
+    String query = "SELECT * FROM VHSHOSPITAL.RECEPTIONISTS";
+
+    try {
+      ResultSet result = statement.executeQuery(query);
+      DefaultTableModel model = null;
+      model =
+        new DefaultTableModel(
+          new Object[] {
+            "ID",
+            "FNAME",
+            "MNAME",
+            "LNAME",
+            "AGE",
+            "GENDER",
+            "DOB",
+            "MSTATUS",
+            "UPHOTO",
+            "USERNAME",
+            "PASSWORD",
+            "SPECIALIZATION",
+            "EDUCATION",
+            "JOBEXP",
+            "DATEOFJOIN",
+            "LKNOWN",
+            "DOCUMENT",
+            "EMAIL",
+            "CONTACT1",
+            "CONTACT2",
+            "AADHAAR",
+            "PAN",
+            "ADDRESS",
+            "CITY",
+            "DISTRICT",
+            "STATE",
+            "COUNTRY",
+            "PIN",
+            "DATE",
+            "TIME",
+          },
+          0
+        );
+      while (result.next()) {
+        model.addRow(
+          new Object[] {
+            result.getString("ID"),
+            result.getString("FNAME"),
+            result.getString("MNAME"),
+            result.getString("LNAME"),
+            result.getString("AGE"),
+            result.getString("GENDER"),
+            result.getString("DOB"),
+            result.getString("MSTATUS"),
+            result.getString("UPHOTO"),
+            result.getString("USERNAME"),
+            result.getString("PASSWORD"),
+            result.getString("SPECIALIZATION"),
+            result.getString("EDUCATION"),
+            result.getString("JOBEXP"),
+            result.getString("DATEOFJOIN"),
+            result.getString("LKNOWN"),
+            result.getString("DOCUMENT"),
+            result.getString("EMAIL"),
+            result.getString("CONTACT1"),
+            result.getString("CONTACT2"),
+            result.getString("AADHAAR"),
+            result.getString("PAN"),
+            result.getString("ADDRESS"),
+            result.getString("CITY"),
+            result.getString("DISTRICT"),
+            result.getString("STATE"),
+            result.getString("COUNTRY"),
+            result.getString("PIN"),
+            result.getString("DATE"),
+            result.getString("TIME"),
+          }
+        );
+        System.out.println(model);
       }
-      );
-      System.out.println(model);
+      RECEPTIONIST_LIST.setModel(model);
+    } catch (Exception e) {
+      System.out.println(e);
     }
-    RECEPTIONIST_LIST.setModel(model);
-  } catch (Exception e) {
-    System.out.println(e);
   }
-}
-public void PATIENTS() {
+
+  public void PATIENTS() {
     String query = "SELECT * FROM VHSHOSPITAL.APPOINTMENTS";
 
     try {
-        ResultSet result = statement.executeQuery(query);
-        DefaultTableModel model = null;
-        model = new DefaultTableModel(
-            new Object []{"SR", "PID", "FNAME", "MNAME", "LNAME", "AGE", "GENDER", "DOB", "MSTATUS", "CONTACT1", "CONTACT2", "AADHAARNO", "PANNO", "DRNAME", "FEE", "OPDNO", "SYMPTOMS", "ADDRESS", "CITY", "DISTRICT", "STATE", "COUNTRY", "PINCODE", "TIME", "DATE"},
-            0
-            );
-            while (result.next()) {
-                model.addRow(
-                  new Object[] {
+      ResultSet result = statement.executeQuery(query);
+      DefaultTableModel model = null;
+      model =
+        new DefaultTableModel(
+          new Object[] {
+            "SR",
+            "PID",
+            "FNAME",
+            "MNAME",
+            "LNAME",
+            "AGE",
+            "GENDER",
+            "DOB",
+            "MSTATUS",
+            "CONTACT1",
+            "CONTACT2",
+            "AADHAARNO",
+            "PANNO",
+            "DRNAME",
+            "FEE",
+            "OPDNO",
+            "SYMPTOMS",
+            "ADDRESS",
+            "CITY",
+            "DISTRICT",
+            "STATE",
+            "COUNTRY",
+            "PINCODE",
+            "TIME",
+            "DATE",
+          },
+          0
+        );
+      while (result.next()) {
+        model.addRow(
+          new Object[] {
             result.getString("SR"),
             result.getString("PID"),
             result.getString("FNAME"),
@@ -188,7 +285,7 @@ public void PATIENTS() {
             result.getString("PINCODE"),
             result.getString("TIME"),
             result.getString("DATE"),
-        }
+          }
         );
         System.out.println(model);
       }
@@ -197,92 +294,147 @@ public void PATIENTS() {
       System.out.println(e);
     }
   }
-public void NURSELIST(){
+
+  public void NURSELIST() {
     String query = "SELECT * FROM VHSHOSPITAL.NURSES";
 
     try {
-        ResultSet result = statement.executeQuery(query);
-        DefaultTableModel model = null;
-        model = new DefaultTableModel(
-            new Object []{"SR", "ID", "FNAME", "MNAME", "LNAME", "AGE", "GENDER", "DOB", "MSTATUS", "UPHOTO", "USERNAME", "PASSWORD", "SPECIALIZATION", "EDUCATION", "JOBEXP", "DATEOFJOIN", "LKNOWN", "DOCUMENT", "EMAIL", "CONTACT1", "CONTACT2", "ECONTACT", "AADHAAR", "PAN", "ADDRESS", "CITY", "DISTRICT", "STATE", "COUNTRY", "PIN", "DATE", "TIME"},
-            0
-            );
-            while (result.next()) {
-              model.addRow(
-                new Object[] {
-        result.getString("SR"),
-        result.getString("ID"),
-        result.getString("FNAME"),
-        result.getString("MNAME"),
-        result.getString("LNAME"),
-        result.getString("AGE"),
-        result.getString("GENDER"),
-        result.getString("DOB"),
-        result.getString("MSTATUS"),
-        result.getString("UPHOTO"),
-        result.getString("USERNAME"),
-        result.getString("PASSWORD"),
-        result.getString("SPECIALIZATION"),
-        result.getString("EDUCATION"),
-        result.getString("JOBEXP"),
-        result.getString("DATEOFJOIN"),
-        result.getString("LKNOWN"),
-        result.getString("DOCUMENT"),
-        result.getString("EMAIL"),
-        result.getString("CONTACT1"),
-        result.getString("CONTACT2"),
-        result.getString("AADHAAR"),
-        result.getString("PAN"),
-        result.getString("ADDRESS"),
-        result.getString("CITY"),
-        result.getString("DISTRICT"),
-        result.getString("STATE"),
-        result.getString("COUNTRY"),
-        result.getString("PIN"),
-        result.getString("DATE"),
-        result.getString("TIME"),
+      ResultSet result = statement.executeQuery(query);
+      DefaultTableModel model = null;
+      model =
+        new DefaultTableModel(
+          new Object[] {
+            "SR",
+            "ID",
+            "FNAME",
+            "MNAME",
+            "LNAME",
+            "AGE",
+            "GENDER",
+            "DOB",
+            "MSTATUS",
+            "UPHOTO",
+            "USERNAME",
+            "PASSWORD",
+            "SPECIALIZATION",
+            "EDUCATION",
+            "JOBEXP",
+            "DATEOFJOIN",
+            "LKNOWN",
+            "DOCUMENT",
+            "EMAIL",
+            "CONTACT1",
+            "CONTACT2",
+            "ECONTACT",
+            "AADHAAR",
+            "PAN",
+            "ADDRESS",
+            "CITY",
+            "DISTRICT",
+            "STATE",
+            "COUNTRY",
+            "PIN",
+            "DATE",
+            "TIME",
+          },
+          0
+        );
+      while (result.next()) {
+        model.addRow(
+          new Object[] {
+            result.getString("SR"),
+            result.getString("ID"),
+            result.getString("FNAME"),
+            result.getString("MNAME"),
+            result.getString("LNAME"),
+            result.getString("AGE"),
+            result.getString("GENDER"),
+            result.getString("DOB"),
+            result.getString("MSTATUS"),
+            result.getString("UPHOTO"),
+            result.getString("USERNAME"),
+            result.getString("PASSWORD"),
+            result.getString("SPECIALIZATION"),
+            result.getString("EDUCATION"),
+            result.getString("JOBEXP"),
+            result.getString("DATEOFJOIN"),
+            result.getString("LKNOWN"),
+            result.getString("DOCUMENT"),
+            result.getString("EMAIL"),
+            result.getString("CONTACT1"),
+            result.getString("CONTACT2"),
+            result.getString("AADHAAR"),
+            result.getString("PAN"),
+            result.getString("ADDRESS"),
+            result.getString("CITY"),
+            result.getString("DISTRICT"),
+            result.getString("STATE"),
+            result.getString("COUNTRY"),
+            result.getString("PIN"),
+            result.getString("DATE"),
+            result.getString("TIME"),
+          }
+        );
+        System.out.println(model);
       }
-      );
-      System.out.println(model);
+      NURSE_LIST.setModel(model);
+    } catch (Exception e) {
+      System.out.println(e);
     }
-    NURSE_LIST.setModel(model);
-  } catch (Exception e) {
-    System.out.println(e);
   }
-}
-public void DEATHS(){
+
+  public void DEATHS() {
     String query = "SELECT * FROM VHSHOSPITAL.DEATHS";
 
     try {
-        ResultSet result = statement.executeQuery(query);
-        DefaultTableModel model = null;
-        model = new DefaultTableModel( 
-            new Object []{"SR" , "PID" , "PATIENTNAME" , "ADMITDATE" , "DISCHARGEDATE" , "NODAYS" , "DRNAME" , "WARDNAME" , "WARDCHARGES" , "OPERATIOINAMT" , "EXTRAAMT" , "TOTALAMOUNT" , "DEATHREASON" , "DEATHDATE" , "DEATHTIME" , "DATE" , "TIME" },
-               0
-          );
+      ResultSet result = statement.executeQuery(query);
+      DefaultTableModel model = null;
+      model =
+        new DefaultTableModel(
+          new Object[] {
+            "SR",
+            "PID",
+            "PATIENTNAME",
+            "ADMITDATE",
+            "DISCHARGEDATE",
+            "NODAYS",
+            "DRNAME",
+            "WARDNAME",
+            "WARDCHARGES",
+            "OPERATIOINAMT",
+            "EXTRAAMT",
+            "TOTALAMOUNT",
+            "DEATHREASON",
+            "DEATHDATE",
+            "DEATHTIME",
+            "DATE",
+            "TIME",
+          },
+          0
+        );
 
-                 while (result.next()) {
-                      model.addRow(
-                 new Object[] {
-            result.getString("SR") ,
-            result.getString("PID") ,
-            result.getString("PATIENTNAME") ,
-            result.getString("ADMITDATE") ,
-            result.getString("DISCHARGEDATE") ,
-            result.getString("NODAYS") ,
-            result.getString("DRNAME") ,
-            result.getString("WARDNAME") ,
-            result.getString("WARDCHARGES") ,
-            result.getString("OPERATIOINAMT") ,
-            result.getString("EXTRAAMT") ,
-            result.getString("TOTALAMOUNT") ,
-            result.getString("DEATHREASON") ,
-            result.getString("DEATHDATE") ,
-            result.getString("DEATHTIME") ,
-            result.getString("DATE") ,
-            result.getString("TIME") ,
-      }
-        ); 
+      while (result.next()) {
+        model.addRow(
+          new Object[] {
+            result.getString("SR"),
+            result.getString("PID"),
+            result.getString("PATIENTNAME"),
+            result.getString("ADMITDATE"),
+            result.getString("DISCHARGEDATE"),
+            result.getString("NODAYS"),
+            result.getString("DRNAME"),
+            result.getString("WARDNAME"),
+            result.getString("WARDCHARGES"),
+            result.getString("OPERATIOINAMT"),
+            result.getString("EXTRAAMT"),
+            result.getString("TOTALAMOUNT"),
+            result.getString("DEATHREASON"),
+            result.getString("DEATHDATE"),
+            result.getString("DEATHTIME"),
+            result.getString("DATE"),
+            result.getString("TIME"),
+          }
+        );
       }
       DEATHTABLE.setModel(model);
     } catch (Exception e) {
@@ -290,39 +442,42 @@ public void DEATHS(){
     }
   }
 
-
-public void search(String str) {
+  public void search(String str) {
     DefaultTableModel model = (DefaultTableModel) DOCTORS_LIST.getModel();
     TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
     DOCTORS_LIST.setRowSorter(trs);
     trs.setRowFilter(RowFilter.regexFilter(str));
   }
-public void search1(String str) {
+
+  public void search1(String str) {
     DefaultTableModel model = (DefaultTableModel) NURSE_LIST.getModel();
     TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
     NURSE_LIST.setRowSorter(trs);
     trs.setRowFilter(RowFilter.regexFilter(str));
   }
-public void search2(String str) {
+
+  public void search2(String str) {
     DefaultTableModel model = (DefaultTableModel) RECEPTIONIST_LIST.getModel();
     TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
     RECEPTIONIST_LIST.setRowSorter(trs);
     trs.setRowFilter(RowFilter.regexFilter(str));
   }
-public void search3(String str) {
+
+  public void search3(String str) {
     DefaultTableModel model = (DefaultTableModel) PATIENTS_DATA.getModel();
     TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
     PATIENTS_DATA.setRowSorter(trs);
     trs.setRowFilter(RowFilter.regexFilter(str));
   }
-public void search4(String str) {
+
+  public void search4(String str) {
     DefaultTableModel model = (DefaultTableModel) DEATHTABLE.getModel();
     TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
     DEATHTABLE.setRowSorter(trs);
     trs.setRowFilter(RowFilter.regexFilter(str));
   }
 
-void showDate() {
+  void showDate() {
     Date d = new Date();
     SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
     DATE.setText(s.format(d));
@@ -330,7 +485,8 @@ void showDate() {
     RDATE1.setText(s.format(d));
     DDATE.setText(s.format(d));
   }
-void showTime() {
+
+  void showTime() {
     new Timer(
       0,
       new ActionListener() {
@@ -347,7 +503,8 @@ void showTime() {
     )
       .start();
   }
-public void getAllUsers() {
+
+  public void getAllUsers() {
     //        Doctors
     String total = new getTotalUsers().getTotalDoctors();
     String totall = "";
@@ -407,7 +564,7 @@ public void getAllUsers() {
     }
     if (totall == null) {
       totall = "1";
-    } 
+    }
     NID.setText(totall);
     TNURSES.setText(total);
 
@@ -428,7 +585,7 @@ public void getAllUsers() {
     }
     if (totall == null) {
       totall = "1";
-    } 
+    }
     PID.setText(totall);
     TPATIENTS.setText(total);
 
@@ -446,11 +603,10 @@ public void getAllUsers() {
     if (totall == null) {
       totall = "1";
     }
-        WID.setText(totall);
-//        DeadPatients in Dashboard..
-        total = new getTotalUsers().getTotalDeadPatients();
-        TDEATH.setText(total);
-    
+    WID.setText(totall);
+    //        DeadPatients in Dashboard..
+    total = new getTotalUsers().getTotalDeadPatients();
+    TDEATH.setText(total);
   }
 
   void getNurseData() {
@@ -489,6 +645,7 @@ public void getAllUsers() {
     Date = DATE.getText();
     Time = TIME.getText();
   }
+
   void getRecData() {
     Rid = Integer.parseInt(RID.getText());
     Fname = RFNAME.getText();
@@ -525,14 +682,16 @@ public void getAllUsers() {
     Date = DATE.getText();
     Time = TIME.getText();
   }
-  void getDataDocData() {  
+
+  void getDataDocData() {
     Did = Integer.parseInt(DID.getText());
     Fname = FNAME.getText();
     Mname = MNAME.getText();
     Lname = LNAME.getText();
     Age = Integer.parseInt(AGE.getText());
     Gender = GENDER.getItemAt(GENDER.getSelectedIndex());
-    String date = ((JTextField) DDOB.getDateEditor().getUiComponent()).getText();
+    String date =
+      ((JTextField) DDOB.getDateEditor().getUiComponent()).getText();
     Dob = LocalDate.parse(date).toString();
     Mstatus = MSTATUS.getItemAt(MSTATUS.getSelectedIndex());
     Education = EDUCATION.getText();
@@ -562,8 +721,9 @@ public void getAllUsers() {
     DateJoin = LocalDate.parse(date2).toString();
     Userid = USERNAME.getText();
     Password = PASSWORD.getText();
-    Cpassword = CPASSWORD.getText(); 
+    Cpassword = CPASSWORD.getText();
   }
+
   void getwarddata() {
     Wid = Integer.parseInt(WID.getText());
     Ward = WARD.getText();
@@ -674,13 +834,13 @@ public void getAllUsers() {
     WARD.setText("");
     CHARGES.setText("");
     ERRORLABLE.setText("");
-    
+
     ERR.setText(" ");
   }
-  
+
   int Sr;
   int Did;
-  String Fname; 
+  String Fname;
   String Mname;
   String Lname;
   int Age;
@@ -724,7 +884,7 @@ public void getAllUsers() {
   String Password;
   String Cpassword;
   Statement statement;
-  boolean status=true;
+  boolean status = true;
 
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -736,13 +896,6 @@ public void getAllUsers() {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        // VHSHOSPITALPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("VHSHOSPITALPU").createEntityManager();
-        // wardsQuery = java.beans.Beans.isDesignTime() ? null : VHSHOSPITALPUEntityManager.createQuery("SELECT w FROM Wards w");
-        // wardsList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : wardsQuery.getResultList();
-        // wardsQuery1 = java.beans.Beans.isDesignTime() ? null : VHSHOSPITALPUEntityManager.createQuery("SELECT w FROM Wards w");
-        // wardsList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : wardsQuery1.getResultList();
-        // deathsQuery = java.beans.Beans.isDesignTime() ? null : VHSHOSPITALPUEntityManager.createQuery("SELECT d FROM Deaths d");
-        // deathsList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : deathsQuery.getResultList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         DASHBOARD = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
@@ -1572,6 +1725,14 @@ public void getAllUsers() {
             }
         });
 
+        WARDSTABLE.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane6.setViewportView(WARDSTABLE);
 
         ERRORLABLE.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -5442,7 +5603,9 @@ public void getAllUsers() {
     jTabbedPane1.setSelectedIndex(0);
   }//GEN-LAST:event_DASHBOARD_MENUActionPerformed
 
-  private void RECEPTIONISTCREATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RECEPTIONISTCREATEActionPerformed
+  private void RECEPTIONISTCREATEActionPerformed(
+    java.awt.event.ActionEvent evt
+  ) {//GEN-FIRST:event_RECEPTIONISTCREATEActionPerformed
     jTabbedPane1.setSelectedIndex(3);
   }//GEN-LAST:event_RECEPTIONISTCREATEActionPerformed
 
@@ -5471,113 +5634,304 @@ public void getAllUsers() {
   }//GEN-LAST:event_USERNAMEActionPerformed
 
   private void VIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VIEWActionPerformed
-  
-      jTabbedPane1.setSelectedIndex(9);
+    jTabbedPane1.setSelectedIndex(9);
   }//GEN-LAST:event_VIEWActionPerformed
 
   private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMITActionPerformed
     getDataDocData();
-    if(status){
-    String query =
-      "INSERT INTO VHSHOSPITAL.DOCTORS ( ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,FEE,OPDNO,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,ECONTACT,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" + Did + ",'" + Fname + "'," + "'" + Mname + "'," + "'" + Lname + "'," + "" + Age + "," + "'" + Gender + "'," + "'" + Dob + "'," + "'" + Mstatus + "'," + "'" + photo + "'," + "'DR_" + Userid + "'," + "'" + Password + "'," + "'" + Specilization + "'," + "'" + Education + "'," + Fee + "," + Opd + "," + "'" + Jobexperience + "'," + "'" + DateJoin + "'," + "'" + Lknown + "'," + "'" + Document + "'," + "'" + Email + "'," + "" + Contact1 + "," + "" + Contact2 + "," + "" + EContact + "," + Aadhaarno + "," + "'" + Panno + "'," + "'" + Address + "'," + "'" + City + "'," + "'" + District + "'," + "'" + State + "'," + "'" + Country + "'," + Pincode + "," + "'" + Date + "'," + "'" + Time + "'" + ")";
-    try {
+    if (status) {
+      String query =
+        "INSERT INTO VHSHOSPITAL.DOCTORS ( ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,FEE,OPDNO,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,ECONTACT,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" +
+        Did +
+        ",'" +
+        Fname +
+        "'," +
+        "'" +
+        Mname +
+        "'," +
+        "'" +
+        Lname +
+        "'," +
+        "" +
+        Age +
+        "," +
+        "'" +
+        Gender +
+        "'," +
+        "'" +
+        Dob +
+        "'," +
+        "'" +
+        Mstatus +
+        "'," +
+        "'" +
+        photo +
+        "'," +
+        "'DR_" +
+        Userid +
+        "'," +
+        "'" +
+        Password +
+        "'," +
+        "'" +
+        Specilization +
+        "'," +
+        "'" +
+        Education +
+        "'," +
+        Fee +
+        "," +
+        Opd +
+        "," +
+        "'" +
+        Jobexperience +
+        "'," +
+        "'" +
+        DateJoin +
+        "'," +
+        "'" +
+        Lknown +
+        "'," +
+        "'" +
+        Document +
+        "'," +
+        "'" +
+        Email +
+        "'," +
+        "" +
+        Contact1 +
+        "," +
+        "" +
+        Contact2 +
+        "," +
+        "" +
+        EContact +
+        "," +
+        Aadhaarno +
+        "," +
+        "'" +
+        Panno +
+        "'," +
+        "'" +
+        Address +
+        "'," +
+        "'" +
+        City +
+        "'," +
+        "'" +
+        District +
+        "'," +
+        "'" +
+        State +
+        "'," +
+        "'" +
+        Country +
+        "'," +
+        Pincode +
+        "," +
+        "'" +
+        Date +
+        "'," +
+        "'" +
+        Time +
+        "'" +
+        ")";
       try {
-        statement.execute(query);
-      } catch (Exception e) {
-        if (e.getMessage().contains("Duplicate")) {
-          ERR.setText("Dublicate Record..!");
-          System.out.println(e);
-          return;
+        try {
+          statement.execute(query);
+        } catch (Exception e) {
+          if (e.getMessage().contains("Duplicate")) {
+            ERR.setText("Dublicate Record..!");
+            System.out.println(e);
+            return;
+          }
         }
+        ERR.setText("  ");
+        String DbName = "doc" + "_" + DID.getText();
+        System.out.println(DbName);
+        String databaseCreate = "CREATE DATABASE IF NOT EXISTS " + DbName;
+        String admit =
+          "CREATE TABLE IF NOT EXISTS " +
+          DbName +
+          ".ADMIT(" +
+          "SR INT NULL AUTO_INCREMENT PRIMARY KEY," +
+          "PID INT NOT NULL UNIQUE," +
+          "FNAME VARCHAR(100) NOT NULL ," +
+          "MNAME VARCHAR(100) NOT NULL ," +
+          "LNAME VARCHAR(100) NOT NULL ," +
+          "AGE INT NOT NULL ," +
+          "GENDER VARCHAR(50) NOT NULL ," +
+          "DRNAME VARCHAR(200) NOT NULL," +
+          "WARDNAME VARCHAR(200) NOT NULL," +
+          "BEDNO INT NOT NULL ," +
+          "DATEOFADMIT VARCHAR(20) NOT NULL," +
+          "CFULLNAME  VARCHAR(200) NOT NULL," +
+          "CAGE INT NOT NULL ," +
+          "CGENDER VARCHAR(50) NOT NULL ," +
+          "CCONTACT BIGINT NOT NULL," +
+          "CRELATIONTOPATIENT  VARCHAR(200) NOT NULL," +
+          "CAADHAARNO BIGINT NOT NULL ," +
+          "CADDRESS  VARCHAR(200) NOT NULL," +
+          "DATE  VARCHAR(50) NOT NULL," +
+          "TIME  VARCHAR(50) NOT NULL ," +
+          " FOREIGN KEY (PID) REFERENCES VHSHOSPITAL.APPOINTMENTS(PID) )";
+        String nonAdmit =
+          "CREATE TABLE IF NOT EXISTS " +
+          DbName +
+          ".NONADMIT(" +
+          "SR INT NULL AUTO_INCREMENT PRIMARY KEY," +
+          "PID INT NOT NULL UNIQUE," +
+          "FNAME VARCHAR(100) NOT NULL ," +
+          "MNAME VARCHAR(100) NOT NULL ," +
+          "LNAME VARCHAR(100) NOT NULL ," +
+          "AGE INT NOT NULL ," +
+          "GENDER VARCHAR(50) NOT NULL ," +
+          "SYMPTOMS VARCHAR(255) NOT NULL," +
+          "DRNAME VARCHAR(200) NOT NULL," +
+          "MEDICINES VARCHAR(255) NOT NULL," +
+          "TREATMENT VARCHAR(255) NOT NULL," +
+          "REPORTS VARCHAR(255) NOT NULL," +
+          "DATE  VARCHAR(50) NOT NULL," +
+          "TIME  VARCHAR(50) NOT NULL," +
+          "  FOREIGN KEY (PID) REFERENCES VHSHOSPITAL.APPOINTMENTS(PID))";
+        String discharge =
+          "CREATE TABLE IF NOT EXISTS " +
+          DbName +
+          ".DISCHARGE(" +
+          "SR INT PRIMARY KEY AUTO_INCREMENT ," +
+          "PID  INT NOT NULL UNIQUE, " +
+          "PATIENTNAME VARCHAR(255)  NOT NULL , " +
+          "ADMITDATE VARCHAR(50) NOT NULL , " +
+          "DISCHARGEDATE VARCHAR(50) NOT NULL , " +
+          "NODAYS INT NOT NULL  , " +
+          "DRNAME VARCHAR(255)  NOT NULL , " +
+          "WARDNAME VARCHAR(255)  NOT NULL , " +
+          "WARDCHARGES INT NOT NULL  , " +
+          "OPERATIOINAMT INT NOT NULL  ,   " +
+          "EXTRAAMT INT NOT NULL  , " +
+          "TOTALAMOUNT INT NOT NULL  , " +
+          "PRESCRIPTION  VARCHAR(255)  NOT NULL , " +
+          "MEDICINES  VARCHAR(255)  NOT NULL , " +
+          "NEXTVISIT  VARCHAR(255)  NOT NULL , " +
+          "DATE VARCHAR(255)  NOT NULL , " +
+          "TIME VARCHAR(255)  NOT NULL," +
+          "FOREIGN KEY (PID) REFERENCES VHSHOSPITAL.APPOINTMENTS(PID) );";
+        System.out.println(discharge);
+        statement.execute(databaseCreate);
+        statement.execute(admit);
+        statement.execute(nonAdmit);
+        statement.execute(discharge);
+      } catch (Exception e) {
+        System.out.println(e);
       }
-      ERR.setText("  ");
-      String DbName = "doc" + "_" + DID.getText();
-      System.out.println(DbName);
-      String databaseCreate = "CREATE DATABASE IF NOT EXISTS " + DbName;
-      String admit =
-        "CREATE TABLE IF NOT EXISTS " +
-        DbName +
-        ".ADMIT(" +
-        "SR INT NULL AUTO_INCREMENT PRIMARY KEY," +
-        "PID INT NOT NULL UNIQUE," +
-        "FNAME VARCHAR(100) NOT NULL ," +
-        "MNAME VARCHAR(100) NOT NULL ," +
-        "LNAME VARCHAR(100) NOT NULL ," +
-        "AGE INT NOT NULL ," +
-        "GENDER VARCHAR(50) NOT NULL ," +
-        "DRNAME VARCHAR(200) NOT NULL," +
-        "WARDNAME VARCHAR(200) NOT NULL," +
-        "BEDNO INT NOT NULL ," +
-        "DATEOFADMIT VARCHAR(20) NOT NULL," +
-        "CFULLNAME  VARCHAR(200) NOT NULL," +
-        "CAGE INT NOT NULL ," +
-        "CGENDER VARCHAR(50) NOT NULL ," +
-        "CCONTACT BIGINT NOT NULL," +
-        "CRELATIONTOPATIENT  VARCHAR(200) NOT NULL," +
-        "CAADHAARNO BIGINT NOT NULL UNIQUE," +
-        "CADDRESS  VARCHAR(200) NOT NULL," +
-        "DATE  VARCHAR(50) NOT NULL," +
-        "TIME  VARCHAR(50) NOT NULL" +
-        ")";
-      String nonAdmit =
-        "CREATE TABLE IF NOT EXISTS " +
-        DbName +
-        ".NONADMIT(" +
-        "SR INT NULL AUTO_INCREMENT PRIMARY KEY," +
-        "PID INT NOT NULL UNIQUE," +
-        "FNAME VARCHAR(100) NOT NULL ," +
-        "MNAME VARCHAR(100) NOT NULL ," +
-        "LNAME VARCHAR(100) NOT NULL ," +
-        "AGE INT NOT NULL ," +
-        "GENDER VARCHAR(50) NOT NULL ," +
-        "SYMPTOMS VARCHAR(255) NOT NULL," +
-        "DRNAME VARCHAR(200) NOT NULL," +
-        "MEDICINES VARCHAR(255) NOT NULL," +
-        "TREATMENT VARCHAR(255) NOT NULL," +
-        "REPORTS VARCHAR(255) NOT NULL," +
-        "DATE  VARCHAR(50) NOT NULL," +
-        "TIME  VARCHAR(50) NOT NULL" +
-        ")";
- String discharge =
-       "CREATE TABLE IF NOT EXISTS " + DbName + ".DISCHARGE(" +
-        "SR INT PRIMARY KEY AUTO_INCREMENT ," +
-        "PID  BIGINT NOT NULL UNIQUE, " +
-        "PATIENTNAME VARCHAR(255)  NOT NULL , " +
-        "ADMITDATE VARCHAR(50) NOT NULL , " +
-        "DISCHARGEDATE VARCHAR(50) NOT NULL , " +
-        "NODAYS INT NOT NULL  , " +
-        "DRNAME VARCHAR(255)  NOT NULL , " +
-        "WARDNAME VARCHAR(255)  NOT NULL , " +
-        "WARDCHARGES INT NOT NULL  , " +
-        "OPERATIOINAMT INT NOT NULL  ,   " +
-        "EXTRAAMT INT NOT NULL  , " +
-        "TOTALAMOUNT INT NOT NULL  , " +
-        "PRESCRIPTION  VARCHAR(255)  NOT NULL , " +
-        "MEDICINES  VARCHAR(255)  NOT NULL , " +
-        "NEXTVISIT  VARCHAR(255)  NOT NULL , " +
-        "DATE VARCHAR(255)  NOT NULL , " +
-        "TIME VARCHAR(255)  NOT NULL" +
-        " );";
-      System.out.println(discharge);
-      statement.execute(databaseCreate);
-      statement.execute(admit);
-      statement.execute(nonAdmit);
-      statement.execute(discharge);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
 
-    clearFields();
-    getAllUsers();
-    DOCTORSLIST();
-    }else{
-        
-    }
+      clearFields();
+      getAllUsers();
+      DOCTORSLIST();
+    } else {}
   }//GEN-LAST:event_SUBMITActionPerformed
 
   private void UPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATEActionPerformed
     getDataDocData();
-    String query = "UPDATE VHSHOSPITAL.DOCTORS SET " + "FNAME=" + "'" + Fname + "'," + "MNAME=" + "'" + Mname + "'," + "LNAME=" + "'" + Lname + "'," + "AGE=" + Age + "," + "GENDER=" + "'" + Gender + "'," + "DOB=" + "'" + Dob + "'," + "MSTATUS=" + "'" + Mstatus + "'," + "CONTACT1=" + Contact1 + "," + "CONTACT2=" + Contact2 + "," + "ECONTACT=" + EContact + "," + "AADHAAR=" + Aadhaarno + "," + "PAN=" + "'" + Panno + "'," + "FEE=" + Fee + "," + "OPDNO=" + Opd + "," + "ADDRESS=" + "'" + Address + "'," + "UPHOTO=" + "'" + photo + "'," + "USERNAME=" + "'" + Userid + "'," + "PASSWORD=" + "'" + Password + "'," + "CITY=" + "'" + City + "'," + "DISTRICT=" + "'" + District + "'," + "STATE=" + "'" + State + "'," + "COUNTRY=" + "'" + Country + "'," + "PIN=" + Pincode + ",EDUCATION=" + "'" + Education + "'," + "DATEOFJOIN=" + "'" + DateJoin + "'," + "JOBEXP=" + "'" + Jobexperience + "'" + " WHERE ID=" + Did;
+    String query =
+      "UPDATE VHSHOSPITAL.DOCTORS SET " +
+      "FNAME=" +
+      "'" +
+      Fname +
+      "'," +
+      "MNAME=" +
+      "'" +
+      Mname +
+      "'," +
+      "LNAME=" +
+      "'" +
+      Lname +
+      "'," +
+      "AGE=" +
+      Age +
+      "," +
+      "GENDER=" +
+      "'" +
+      Gender +
+      "'," +
+      "DOB=" +
+      "'" +
+      Dob +
+      "'," +
+      "MSTATUS=" +
+      "'" +
+      Mstatus +
+      "'," +
+      "CONTACT1=" +
+      Contact1 +
+      "," +
+      "CONTACT2=" +
+      Contact2 +
+      "," +
+      "ECONTACT=" +
+      EContact +
+      "," +
+      "AADHAAR=" +
+      Aadhaarno +
+      "," +
+      "PAN=" +
+      "'" +
+      Panno +
+      "'," +
+      "FEE=" +
+      Fee +
+      "," +
+      "OPDNO=" +
+      Opd +
+      "," +
+      "ADDRESS=" +
+      "'" +
+      Address +
+      "'," +
+      "UPHOTO=" +
+      "'" +
+      photo +
+      "'," +
+      "USERNAME=" +
+      "'" +
+      Userid +
+      "'," +
+      "PASSWORD=" +
+      "'" +
+      Password +
+      "'," +
+      "CITY=" +
+      "'" +
+      City +
+      "'," +
+      "DISTRICT=" +
+      "'" +
+      District +
+      "'," +
+      "STATE=" +
+      "'" +
+      State +
+      "'," +
+      "COUNTRY=" +
+      "'" +
+      Country +
+      "'," +
+      "PIN=" +
+      Pincode +
+      ",EDUCATION=" +
+      "'" +
+      Education +
+      "'," +
+      "DATEOFJOIN=" +
+      "'" +
+      DateJoin +
+      "'," +
+      "JOBEXP=" +
+      "'" +
+      Jobexperience +
+      "'" +
+      " WHERE ID=" +
+      Did;
     System.out.println(query);
 
     try {
@@ -5585,7 +5939,6 @@ public void getAllUsers() {
       clearFields();
       getAllUsers();
       DOCTORSLIST();
-
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -5598,8 +5951,7 @@ public void getAllUsers() {
       );
       clearFields();
       getAllUsers();
-          DOCTORSLIST();
-
+      DOCTORSLIST();
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -5609,7 +5961,9 @@ public void getAllUsers() {
     jTabbedPane1.setSelectedIndex(9);
   }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-  private void DASHBOARD_MENUMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_DASHBOARD_MENUMenuKeyPressed
+  private void DASHBOARD_MENUMenuKeyPressed(
+    javax.swing.event.MenuKeyEvent evt
+  ) {//GEN-FIRST:event_DASHBOARD_MENUMenuKeyPressed
     jTabbedPane1.setSelectedIndex(0);
   }//GEN-LAST:event_DASHBOARD_MENUMenuKeyPressed
 
@@ -5657,7 +6011,7 @@ public void getAllUsers() {
     // TODO add your handling code here:
   }//GEN-LAST:event_CITYActionPerformed
 
-  private void USERPHOTOActionPerformed(java.awt.event.ActionEvent evt) {}                                                                                     
+  private void USERPHOTOActionPerformed(java.awt.event.ActionEvent evt) {}
 
   private void USERPHOTOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_USERPHOTOMouseClicked
     try {
@@ -5665,7 +6019,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "doc" + "_" + DID.getText();
       String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/DR_PHOTO/";
       File directionary = new File(newPath);
@@ -5677,8 +6031,8 @@ public void getAllUsers() {
       String extension = filename.substring(filename.lastIndexOf('.') + 1);
       sourcsfile = new File(filename);
       destinationFile = new File(newPath + DbName + "." + extension);
-      Files.copy(sourcsfile.toPath(), destinationFile.toPath());  
-      USERPHOTO.setText(newPath+DbName+"."+extension); 
+      Files.copy(sourcsfile.toPath(), destinationFile.toPath());
+      USERPHOTO.setText(newPath + DbName + "." + extension);
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -5689,7 +6043,7 @@ public void getAllUsers() {
       JFileChooser chooser = new JFileChooser();
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
-      String filename = f.getAbsolutePath(); 
+      String filename = f.getAbsolutePath();
       String DbName = "doc" + "_" + DID.getText();
       String newPath =
         "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/DR_EXPERIENCE_PHOTO/";
@@ -5702,7 +6056,7 @@ public void getAllUsers() {
       String extension = filename.substring(filename.lastIndexOf('.') + 1);
       sourcsfile = new File(filename);
       destinationFile = new File(newPath + DbName + "." + extension);
-      Files.copy(sourcsfile.toPath(), destinationFile.toPath()); 
+      Files.copy(sourcsfile.toPath(), destinationFile.toPath());
       JOB_EXPERIENCE.setText(newPath + DbName + "." + extension);
     } catch (Exception e) {
       System.out.println(e);
@@ -5735,7 +6089,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "doc" + "_" + DID.getText();
       String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/DR_DOCUMENT/";
       File directionary = new File(newPath);
@@ -5779,7 +6133,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "Rec" + "_" + RID.getText();
       String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/RECPTIONIST/RES_PHOTO/";
       File directionary = new File(newPath);
@@ -5806,39 +6160,185 @@ public void getAllUsers() {
   }//GEN-LAST:event_RUSERNAMEActionPerformed
 
   private void RVIEWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RVIEWActionPerformed
-      jTabbedPane1.setSelectedIndex(11);
+    jTabbedPane1.setSelectedIndex(11);
   }//GEN-LAST:event_RVIEWActionPerformed
 
   private void RSUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RSUBMITActionPerformed
     getRecData();
     String query =
-      "INSERT INTO VHSHOSPITAL.RECEPTIONISTS (ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" + Rid + ",'" + Fname + "','" + Mname + "','" + Lname + "','" + Age + "','" + Gender + "','" + Dob + "','" + Mstatus + "','" + Userphoto + "','REC_" + Username + "','" + Password + "','" + Specialization + "','" + Education + "','" + Jobexperience + "','" + Dateofjoin + "','" + Lknown + "','" + Document + "','" + Email + "'," + Contact1 + "," + Contact2 + "," + Aadhaarno + "," + Panno + ",'" + Address + "','" + City + "','" + District + "','" + State + "','" + Country + "'," + Pincode + ",'" + Date + "','" + Time + "')";
+      "INSERT INTO VHSHOSPITAL.RECEPTIONISTS (ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" +
+      Rid +
+      ",'" +
+      Fname +
+      "','" +
+      Mname +
+      "','" +
+      Lname +
+      "','" +
+      Age +
+      "','" +
+      Gender +
+      "','" +
+      Dob +
+      "','" +
+      Mstatus +
+      "','" +
+      Userphoto +
+      "','REC_" +
+      Username +
+      "','" +
+      Password +
+      "','" +
+      Specialization +
+      "','" +
+      Education +
+      "','" +
+      Jobexperience +
+      "','" +
+      Dateofjoin +
+      "','" +
+      Lknown +
+      "','" +
+      Document +
+      "','" +
+      Email +
+      "'," +
+      Contact1 +
+      "," +
+      Contact2 +
+      "," +
+      Aadhaarno +
+      "," +
+      Panno +
+      ",'" +
+      Address +
+      "','" +
+      City +
+      "','" +
+      District +
+      "','" +
+      State +
+      "','" +
+      Country +
+      "'," +
+      Pincode +
+      ",'" +
+      Date +
+      "','" +
+      Time +
+      "')";
     try {
       statement.execute(query);
       clearFields();
-    getAllUsers();
-    RECEPTIONLIST();
+      getAllUsers();
+      RECEPTIONLIST();
     } catch (Exception e) {
       System.out.println(e);
-      if(e.getMessage().contains("Duplicate")){
-          RERR.setText("Record Exists..!");
+      if (e.getMessage().contains("Duplicate")) {
+        RERR.setText("Record Exists..!");
       }
     }
-
-    
   }//GEN-LAST:event_RSUBMITActionPerformed
 
   private void RUPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RUPDATEActionPerformed
     getRecData();
-    String query = "UPDATE VHSHOSPITAL.RECEPTIONISTS SET " + "FNAME=" + "'" + Fname + "'," + "MNAME=" + "'" + Mname + "'," + "LNAME=" + "'" + Lname + "'," + "AGE=" + Age + "," + "GENDER=" + "'" + Gender + "'," + "DOB=" + "'" + Dob + "'," + "MSTATUS=" + "'" + Mstatus + "'," + "CONTACT1=" + Contact1 + "," + "CONTACT2=" + Contact2 + "," + "AADHAAR=" + Aadhaarno + "," + "PAN=" + "'" + Panno + "'," + "ADDRESS=" + "'" + Address + "'," + "UPHOTO=" + "'" + Userphoto + "'," + "USERNAME=" + "'" + Username + "'," + "PASSWORD=" + "'" + Password + "'," + "CITY=" + "'" + City + "'," + "DISTRICT=" + "'" + District + "'," + "STATE=" + "'" + State + "'," + "COUNTRY=" + "'" + Country + "'," + "PIN=" + Pincode + ",EDUCATION=" + "'" + Education + "'," + "DATEOFJOIN=" + "'" + Dateofjoin + "'," + "JOBEXP=" + "'" + Jobexperience + "'" + " WHERE ID=" + Rid;
+    String query =
+      "UPDATE VHSHOSPITAL.RECEPTIONISTS SET " +
+      "FNAME=" +
+      "'" +
+      Fname +
+      "'," +
+      "MNAME=" +
+      "'" +
+      Mname +
+      "'," +
+      "LNAME=" +
+      "'" +
+      Lname +
+      "'," +
+      "AGE=" +
+      Age +
+      "," +
+      "GENDER=" +
+      "'" +
+      Gender +
+      "'," +
+      "DOB=" +
+      "'" +
+      Dob +
+      "'," +
+      "MSTATUS=" +
+      "'" +
+      Mstatus +
+      "'," +
+      "CONTACT1=" +
+      Contact1 +
+      "," +
+      "CONTACT2=" +
+      Contact2 +
+      "," +
+      "AADHAAR=" +
+      Aadhaarno +
+      "," +
+      "PAN=" +
+      "'" +
+      Panno +
+      "'," +
+      "ADDRESS=" +
+      "'" +
+      Address +
+      "'," +
+      "UPHOTO=" +
+      "'" +
+      Userphoto +
+      "'," +
+      "USERNAME=" +
+      "'" +
+      Username +
+      "'," +
+      "PASSWORD=" +
+      "'" +
+      Password +
+      "'," +
+      "CITY=" +
+      "'" +
+      City +
+      "'," +
+      "DISTRICT=" +
+      "'" +
+      District +
+      "'," +
+      "STATE=" +
+      "'" +
+      State +
+      "'," +
+      "COUNTRY=" +
+      "'" +
+      Country +
+      "'," +
+      "PIN=" +
+      Pincode +
+      ",EDUCATION=" +
+      "'" +
+      Education +
+      "'," +
+      "DATEOFJOIN=" +
+      "'" +
+      Dateofjoin +
+      "'," +
+      "JOBEXP=" +
+      "'" +
+      Jobexperience +
+      "'" +
+      " WHERE ID=" +
+      Rid;
     System.out.println(query);
 
     try {
       statement.execute(query);
       clearFields();
       getAllUsers();
-          RECEPTIONLIST();
-
+      RECEPTIONLIST();
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -5852,7 +6352,6 @@ public void getAllUsers() {
       clearFields();
       getAllUsers();
       RECEPTIONLIST();
-
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -5868,7 +6367,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "Rec" + "_" + RID.getText();
       String newPath =
         "C://VHS_MULTISPECILITY_HOSPITAL/RECPTIONIST/RES_EXPERIENCE/";
@@ -5900,7 +6399,7 @@ public void getAllUsers() {
       JFileChooser chooser = new JFileChooser();
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
-      String filename = f.getAbsolutePath(); 
+      String filename = f.getAbsolutePath();
       String DbName = "Rec" + "_" + RID.getText();
       String newPath =
         "C://VHS_MULTISPECILITY_HOSPITAL/RECPTIONIST/RES_DOCUMENT/";
@@ -6034,7 +6533,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "nur" + "_" + NID.getText();
       String newPath = "C://VHS_MULTISPECILITY_HOSPITAL/NURCES/NU_PHOTO/";
       File directionary = new File(newPath);
@@ -6061,29 +6560,90 @@ public void getAllUsers() {
   }//GEN-LAST:event_NUSERNAMEActionPerformed
 
   private void RVIEW1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RVIEW1ActionPerformed
-     jTabbedPane1.setSelectedIndex(10);    
+    jTabbedPane1.setSelectedIndex(10);
   }//GEN-LAST:event_RVIEW1ActionPerformed
-  private void NURSEUPDATEActionPerformed(java.awt.event.ActionEvent evt){   
-  }
+
+  private void NURSEUPDATEActionPerformed(java.awt.event.ActionEvent evt) {}
+
   private void NSUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NSUBMITActionPerformed
-     // TODO add your handling code here: 
+    // TODO add your handling code here:
     try {
       getNurseData();
-      String query = "INSERT INTO VHSHOSPITAL.NURSES (ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" + Rid + ",'" + Fname + "','" + Mname + "','" + Lname + "','" + Age + "','" + Gender + "','" + Dob + "','" + Mstatus + "','" + Userphoto + "','NU_" + Username + "','" + Password + "','" + Specialization + "','" + Education + "','" + Jobexperience + "','" + Dateofjoin + "','" + Lknown + "','" + Document + "','" + Email + "'," + Contact1 + "," + Contact2 + "," + Aadhaarno + "," + Panno + ",'" + Address + "','" + City + "','" + District + "','" + State + "','" + Country + "'," + Pincode + ",'" + Date + "','" + Time + "')";
+      String query =
+        "INSERT INTO VHSHOSPITAL.NURSES (ID,FNAME,MNAME,LNAME,AGE,GENDER,DOB,MSTATUS,UPHOTO,USERNAME,PASSWORD,SPECIALIZATION,EDUCATION,JOBEXP,DATEOFJOIN,LKNOWN,DOCUMENT,EMAIL,CONTACT1,CONTACT2,AADHAAR,PAN,ADDRESS,CITY,DISTRICT,STATE,COUNTRY,PIN,DATE,TIME)VALUES(" +
+        Rid +
+        ",'" +
+        Fname +
+        "','" +
+        Mname +
+        "','" +
+        Lname +
+        "','" +
+        Age +
+        "','" +
+        Gender +
+        "','" +
+        Dob +
+        "','" +
+        Mstatus +
+        "','" +
+        Userphoto +
+        "','NU_" +
+        Username +
+        "','" +
+        Password +
+        "','" +
+        Specialization +
+        "','" +
+        Education +
+        "','" +
+        Jobexperience +
+        "','" +
+        Dateofjoin +
+        "','" +
+        Lknown +
+        "','" +
+        Document +
+        "','" +
+        Email +
+        "'," +
+        Contact1 +
+        "," +
+        Contact2 +
+        "," +
+        Aadhaarno +
+        "," +
+        Panno +
+        ",'" +
+        Address +
+        "','" +
+        City +
+        "','" +
+        District +
+        "','" +
+        State +
+        "','" +
+        Country +
+        "'," +
+        Pincode +
+        ",'" +
+        Date +
+        "','" +
+        Time +
+        "')";
       statement.execute(query);
       clearFields();
       getAllUsers();
-          NURSELIST();
-
+      NURSELIST();
     } catch (Exception e) {
       System.out.println(e);
-      if(e.getMessage().contains("Duplicate")){
-          NERR.setText("Duplicate Data..!");
+      if (e.getMessage().contains("Duplicate")) {
+        NERR.setText("Duplicate Data..!");
       }
     }
   }//GEN-LAST:event_NSUBMITActionPerformed
 
-  private void RUPDATE1ActionPerformed(java.awt.event.ActionEvent evt) {}                                                                                   
+  private void RUPDATE1ActionPerformed(java.awt.event.ActionEvent evt) {}
 
   private void RDELETE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RDELETE1ActionPerformed
     try {
@@ -6092,8 +6652,7 @@ public void getAllUsers() {
       );
       clearFields();
       getAllUsers();
-          NURSELIST();
-
+      NURSELIST();
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -6109,7 +6668,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "nur" + "_" + NID.getText();
       String newPath =
         "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/NURCES_EXPERIENCE_PHOTO/";
@@ -6142,7 +6701,7 @@ public void getAllUsers() {
       chooser.showOpenDialog(null);
       File f = chooser.getSelectedFile();
       String filename = f.getAbsolutePath();
-      
+
       String DbName = "nur" + "_" + NID.getText();
       String newPath =
         "C://VHS_MULTISPECILITY_HOSPITAL/DOCTORS/NURCES_DOCUMENT_PHOTO/";
@@ -6215,7 +6774,7 @@ public void getAllUsers() {
 
   private void ALLPATIENTSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ALLPATIENTSActionPerformed
     PATIENTS();
-      jTabbedPane1.setSelectedIndex(13);
+    jTabbedPane1.setSelectedIndex(13);
   }//GEN-LAST:event_ALLPATIENTSActionPerformed
 
   private void MASTERMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MASTERMouseClicked
@@ -6230,69 +6789,69 @@ public void getAllUsers() {
         "SELECT * FROM VHSHOSPITAL.DOCTORS WHERE ID =" + DID.getText();
       try {
         ResultSet result = statement.executeQuery(getQuery);
-        if(result.next()){
-            ERR.setText("   ");
-            result.beforeFirst();
-        while (result.next()) {
-          DID.setText(result.getString("ID"));
-          FNAME.setText(result.getString("FNAME"));
-          MNAME.setText(result.getString("MNAME"));
-          LNAME.setText(result.getString("LNAME"));
-          AGE.setText(Integer.toString(result.getInt("AGE")));
-          DDOB.setDate(
-            new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
-          );
-          CONTACT1.setText(result.getString("CONTACT1"));
-          CONTACT2.setText(result.getString("CONTACT2"));
-          AADHAARNO.setText(result.getString("AADHAAR"));
-          PANNO.setText(result.getString("PAN"));
-          FEE.setText(result.getString("FEE"));
-          OPD_NO.setText(result.getString("OPDNO"));
-          ADDRESS.setText(result.getString("ADDRESS"));
-          CITY.setText(result.getString("CITY"));
-          DISTRICT.setText(result.getString("DISTRICT"));
-          STATE.setText(result.getString("STATE"));
-          COUNTRY.setText(result.getString("COUNTRY"));
-          EDUCATION.setText(result.getString("EDUCATION"));
-          USERPHOTO.setText(result.getString("UPHOTO"));
-          EMERGANCY_CONTACT.setText(result.getString("ECONTACT"));
-          JOB_EXPERIENCE.setText(result.getString("JOBEXP"));
-          DOCUMENT.setText(result.getString("DOCUMENT"));
-          EMAIL.setText(result.getString("EMAIL"));
-          SPECIALIZATION.setText(result.getString("SPECIALIZATION"));
-          if (result.getString("MSTATUS").equals("YES")) {
-            MSTATUS.setSelectedIndex(1);
-          } else {
-            MSTATUS.setSelectedIndex(0);
+        if (result.next()) {
+          ERR.setText("   ");
+          result.beforeFirst();
+          while (result.next()) {
+            DID.setText(result.getString("ID"));
+            FNAME.setText(result.getString("FNAME"));
+            MNAME.setText(result.getString("MNAME"));
+            LNAME.setText(result.getString("LNAME"));
+            AGE.setText(Integer.toString(result.getInt("AGE")));
+            DDOB.setDate(
+              new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
+            );
+            CONTACT1.setText(result.getString("CONTACT1"));
+            CONTACT2.setText(result.getString("CONTACT2"));
+            AADHAARNO.setText(result.getString("AADHAAR"));
+            PANNO.setText(result.getString("PAN"));
+            FEE.setText(result.getString("FEE"));
+            OPD_NO.setText(result.getString("OPDNO"));
+            ADDRESS.setText(result.getString("ADDRESS"));
+            CITY.setText(result.getString("CITY"));
+            DISTRICT.setText(result.getString("DISTRICT"));
+            STATE.setText(result.getString("STATE"));
+            COUNTRY.setText(result.getString("COUNTRY"));
+            EDUCATION.setText(result.getString("EDUCATION"));
+            USERPHOTO.setText(result.getString("UPHOTO"));
+            EMERGANCY_CONTACT.setText(result.getString("ECONTACT"));
+            JOB_EXPERIENCE.setText(result.getString("JOBEXP"));
+            DOCUMENT.setText(result.getString("DOCUMENT"));
+            EMAIL.setText(result.getString("EMAIL"));
+            SPECIALIZATION.setText(result.getString("SPECIALIZATION"));
+            if (result.getString("MSTATUS").equals("YES")) {
+              MSTATUS.setSelectedIndex(1);
+            } else {
+              MSTATUS.setSelectedIndex(0);
+            }
+            PINCODE.setText(result.getString("PIN"));
+            USERNAME.setText(result.getString("USERNAME"));
+            PASSWORD.setText(result.getString("PASSWORD"));
+
+            DDATEOFJOINING.setDate(
+              new SimpleDateFormat("yyyy-MM-dd")
+              .parse(result.getString("DATEOFJOIN"))
+            );
+
+            LKNOWN.setText(result.getString("LKNOWN"));
+
+            switch (result.getString("GENDER")) {
+              case "SELECT":
+                GENDER.setSelectedIndex(0);
+                break;
+              case "MALE":
+                GENDER.setSelectedIndex(1);
+                break;
+              case "FEMALE":
+                GENDER.setSelectedIndex(2);
+                break;
+              default:
+                GENDER.setSelectedIndex(3);
+            }
+            CPASSWORD.setText(result.getString("USERNAME"));
           }
-          PINCODE.setText(result.getString("PIN"));
-          USERNAME.setText(result.getString("USERNAME"));
-          PASSWORD.setText(result.getString("PASSWORD"));
-
-          DDATEOFJOINING.setDate(
-            new SimpleDateFormat("yyyy-MM-dd")
-            .parse(result.getString("DATEOFJOIN"))
-          );
-
-          LKNOWN.setText(result.getString("LKNOWN"));
-
-          switch (result.getString("GENDER")) {
-            case "SELECT":
-              GENDER.setSelectedIndex(0);
-              break;
-            case "MALE":
-              GENDER.setSelectedIndex(1);
-              break;
-            case "FEMALE":
-              GENDER.setSelectedIndex(2);
-              break;
-            default:
-              GENDER.setSelectedIndex(3);
-          }
-          CPASSWORD.setText(result.getString("USERNAME"));
-        }
-        }else{
-            ERR.setText("No Data..!");
+        } else {
+          ERR.setText("No Data..!");
         }
       } catch (Exception e) {
         clearFields();
@@ -6306,16 +6865,13 @@ public void getAllUsers() {
     search3(af);
   }//GEN-LAST:event_search4ActionPerformed
 
-
-  private void jPanel20MouseClicked(java.awt.event.MouseEvent evt) {                                      
+  private void jPanel20MouseClicked(java.awt.event.MouseEvent evt) {
     jTabbedPane1.setSelectedIndex(9);
-  }                                     
+  }
 
   private void jPanel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel22MouseClicked
     jTabbedPane1.setSelectedIndex(10);
   }//GEN-LAST:event_jPanel22MouseClicked
-
-  
 
   private void jPanel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel40MouseClicked
     jTabbedPane1.setSelectedIndex(11);
@@ -6326,7 +6882,7 @@ public void getAllUsers() {
     search(af);
   }//GEN-LAST:event_search1ActionPerformed
 
-  private void DOBMouseClicked(java.awt.event.MouseEvent evt) {}                                                                   
+  private void DOBMouseClicked(java.awt.event.MouseEvent evt) {}
 
   private void RIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RIDKeyPressed
     if (evt.getKeyCode() == 10) {
@@ -6334,72 +6890,70 @@ public void getAllUsers() {
         "SELECT * FROM VHSHOSPITAL.RECEPTIONISTS WHERE ID =" + RID.getText();
       try {
         ResultSet result = statement.executeQuery(getQuery);
-        if(result.next()){
-            RERR.setText("   ");
-            result.beforeFirst();
-            while (result.next()) {
-          RID.setText(result.getString("ID"));
-          RFNAME.setText(result.getString("FNAME"));
-          RMNAME.setText(result.getString("MNAME"));
-          RLNAME.setText(result.getString("LNAME"));
-          RAGE.setText(Integer.toString(result.getInt("AGE")));
-          RDOB.setDate(
-            new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
-          );
-          RCONTACT1.setText(result.getString("CONTACT1"));
-          RCONTACT2.setText(result.getString("CONTACT2"));
-          RAADHAARNO.setText(result.getString("AADHAAR"));
-          RPANNO.setText(result.getString("PAN"));
-          RADDRESS.setText(result.getString("ADDRESS"));
-          RCITY.setText(result.getString("CITY"));
-          RDISTRICT.setText(result.getString("DISTRICT"));
-          RSTATE.setText(result.getString("STATE"));
-          RCOUNTRY.setText(result.getString("COUNTRY"));
-          REDUCATION.setText(result.getString("EDUCATION"));
-          RUSERPHOTO.setText(result.getString("UPHOTO"));
-          RJOB_EXPERIENCE.setText(result.getString("JOBEXP"));
-          RDOCUMENT.setText(result.getString("DOCUMENT"));
-          REMAIL.setText(result.getString("EMAIL"));
-          RSPECIALIZATION.setText(result.getString("SPECIALIZATION"));
-          if (result.getString("MSTATUS").equals("YES")) {
-            RMSTATUS.setSelectedIndex(1);
-          } else {
-            MSTATUS.setSelectedIndex(0);
+        if (result.next()) {
+          RERR.setText("   ");
+          result.beforeFirst();
+          while (result.next()) {
+            RID.setText(result.getString("ID"));
+            RFNAME.setText(result.getString("FNAME"));
+            RMNAME.setText(result.getString("MNAME"));
+            RLNAME.setText(result.getString("LNAME"));
+            RAGE.setText(Integer.toString(result.getInt("AGE")));
+            RDOB.setDate(
+              new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
+            );
+            RCONTACT1.setText(result.getString("CONTACT1"));
+            RCONTACT2.setText(result.getString("CONTACT2"));
+            RAADHAARNO.setText(result.getString("AADHAAR"));
+            RPANNO.setText(result.getString("PAN"));
+            RADDRESS.setText(result.getString("ADDRESS"));
+            RCITY.setText(result.getString("CITY"));
+            RDISTRICT.setText(result.getString("DISTRICT"));
+            RSTATE.setText(result.getString("STATE"));
+            RCOUNTRY.setText(result.getString("COUNTRY"));
+            REDUCATION.setText(result.getString("EDUCATION"));
+            RUSERPHOTO.setText(result.getString("UPHOTO"));
+            RJOB_EXPERIENCE.setText(result.getString("JOBEXP"));
+            RDOCUMENT.setText(result.getString("DOCUMENT"));
+            REMAIL.setText(result.getString("EMAIL"));
+            RSPECIALIZATION.setText(result.getString("SPECIALIZATION"));
+            if (result.getString("MSTATUS").equals("YES")) {
+              RMSTATUS.setSelectedIndex(1);
+            } else {
+              MSTATUS.setSelectedIndex(0);
+            }
+            RPINCODE.setText(result.getString("PIN"));
+            RUSERNAME.setText(result.getString("USERNAME"));
+            RPASSWORD.setText(result.getString("PASSWORD"));
+
+            RDATEOFJOINING.setDate(
+              new SimpleDateFormat("yyyy-MM-dd")
+              .parse(result.getString("DATEOFJOIN"))
+            );
+
+            RLKNOWN.setText(result.getString("LKNOWN"));
+
+            switch (result.getString("GENDER")) {
+              case "SELECT":
+                RGENDER.setSelectedIndex(0);
+                break;
+              case "MALE":
+                RGENDER.setSelectedIndex(1);
+                break;
+              case "FEMALE":
+                RGENDER.setSelectedIndex(2);
+                break;
+              default:
+                RGENDER.setSelectedIndex(3);
+            }
+            RCPASSWORD.setText(result.getString("USERNAME"));
           }
-          RPINCODE.setText(result.getString("PIN"));
-          RUSERNAME.setText(result.getString("USERNAME"));
-          RPASSWORD.setText(result.getString("PASSWORD"));
-
-          RDATEOFJOINING.setDate(
-            new SimpleDateFormat("yyyy-MM-dd")
-            .parse(result.getString("DATEOFJOIN"))
-          );
-
-          RLKNOWN.setText(result.getString("LKNOWN"));
-
-          switch (result.getString("GENDER")) {
-            case "SELECT":
-              RGENDER.setSelectedIndex(0);
-              break;
-            case "MALE":
-              RGENDER.setSelectedIndex(1);
-              break;
-            case "FEMALE":
-              RGENDER.setSelectedIndex(2);
-              break;
-            default:
-              RGENDER.setSelectedIndex(3);
-          }
-          RCPASSWORD.setText(result.getString("USERNAME"));
+        } else {
+          RERR.setText("No Record..!");
         }
-        }else{
-            RERR.setText("No Record..!");
-        }
-        
       } catch (Exception e) {
         clearFields();
         System.out.println(e);
-        
       }
     }
   }//GEN-LAST:event_RIDKeyPressed
@@ -6410,68 +6964,67 @@ public void getAllUsers() {
         "SELECT * FROM VHSHOSPITAL.NURSES WHERE ID =" + NID.getText();
       try {
         ResultSet result = statement.executeQuery(getQuery);
-        if(result.next()){
-            result.beforeFirst();
-            NERR.setText("   ");
-            while (result.next()) {
-          NID.setText(result.getString("ID"));
-          NFNAME.setText(result.getString("FNAME"));
-          NMNAME.setText(result.getString("MNAME"));
-          NLNAME.setText(result.getString("LNAME"));
-          NAGE.setText(Integer.toString(result.getInt("AGE")));
-          NDOB.setDate(
-            new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
-          );
-          NCONTACT1.setText(result.getString("CONTACT1"));
-          NCONTACT2.setText(result.getString("CONTACT2"));
-          NAADHAARNO.setText(result.getString("AADHAAR"));
-          NPANNO.setText(result.getString("PAN"));
-          NADDRESS.setText(result.getString("ADDRESS"));
-          NCITY.setText(result.getString("CITY"));
-          NDISTRICT.setText(result.getString("DISTRICT"));
-          NSTATE.setText(result.getString("STATE"));
-          NCOUNTRY.setText(result.getString("COUNTRY"));
-          NEDUCATION.setText(result.getString("EDUCATION"));
-          NUSERPHOTO.setText(result.getString("UPHOTO"));
-          NJOB_EXPERIENCE.setText(result.getString("JOBEXP"));
-          NDOCUMENT.setText(result.getString("DOCUMENT"));
-          NEMAIL.setText(result.getString("EMAIL"));
-          NSPECIALIZATION.setText(result.getString("SPECIALIZATION"));
-          if (result.getString("MSTATUS").equals("YES")) {
-            NMSTATUS.setSelectedIndex(1);
-          } else {
-            NMSTATUS.setSelectedIndex(0);
+        if (result.next()) {
+          result.beforeFirst();
+          NERR.setText("   ");
+          while (result.next()) {
+            NID.setText(result.getString("ID"));
+            NFNAME.setText(result.getString("FNAME"));
+            NMNAME.setText(result.getString("MNAME"));
+            NLNAME.setText(result.getString("LNAME"));
+            NAGE.setText(Integer.toString(result.getInt("AGE")));
+            NDOB.setDate(
+              new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("DOB"))
+            );
+            NCONTACT1.setText(result.getString("CONTACT1"));
+            NCONTACT2.setText(result.getString("CONTACT2"));
+            NAADHAARNO.setText(result.getString("AADHAAR"));
+            NPANNO.setText(result.getString("PAN"));
+            NADDRESS.setText(result.getString("ADDRESS"));
+            NCITY.setText(result.getString("CITY"));
+            NDISTRICT.setText(result.getString("DISTRICT"));
+            NSTATE.setText(result.getString("STATE"));
+            NCOUNTRY.setText(result.getString("COUNTRY"));
+            NEDUCATION.setText(result.getString("EDUCATION"));
+            NUSERPHOTO.setText(result.getString("UPHOTO"));
+            NJOB_EXPERIENCE.setText(result.getString("JOBEXP"));
+            NDOCUMENT.setText(result.getString("DOCUMENT"));
+            NEMAIL.setText(result.getString("EMAIL"));
+            NSPECIALIZATION.setText(result.getString("SPECIALIZATION"));
+            if (result.getString("MSTATUS").equals("YES")) {
+              NMSTATUS.setSelectedIndex(1);
+            } else {
+              NMSTATUS.setSelectedIndex(0);
+            }
+            NPINCODE.setText(result.getString("PIN"));
+            NUSERNAME.setText(result.getString("USERNAME"));
+            NPASSWORD.setText(result.getString("PASSWORD"));
+
+            NDATEOFJOINING.setDate(
+              new SimpleDateFormat("yyyy-MM-dd")
+              .parse(result.getString("DATEOFJOIN"))
+            );
+
+            NLKNOWN.setText(result.getString("LKNOWN"));
+
+            switch (result.getString("GENDER")) {
+              case "SELECT":
+                NGENDER.setSelectedIndex(0);
+                break;
+              case "MALE":
+                NGENDER.setSelectedIndex(1);
+                break;
+              case "FEMALE":
+                NGENDER.setSelectedIndex(2);
+                break;
+              default:
+                NGENDER.setSelectedIndex(3);
+            }
+            NCPASSWORD.setText(result.getString("USERNAME"));
           }
-          NPINCODE.setText(result.getString("PIN"));
-          NUSERNAME.setText(result.getString("USERNAME"));
-          NPASSWORD.setText(result.getString("PASSWORD"));
-
-          NDATEOFJOINING.setDate(
-            new SimpleDateFormat("yyyy-MM-dd")
-            .parse(result.getString("DATEOFJOIN"))
-          );
-
-          NLKNOWN.setText(result.getString("LKNOWN"));
-
-          switch (result.getString("GENDER")) {
-            case "SELECT":
-              NGENDER.setSelectedIndex(0);
-              break;
-            case "MALE":
-              NGENDER.setSelectedIndex(1);
-              break;
-            case "FEMALE":
-              NGENDER.setSelectedIndex(2);
-              break;
-            default:
-              NGENDER.setSelectedIndex(3);
-          }
-          NCPASSWORD.setText(result.getString("USERNAME"));
+        } else {
+          NERR.setText("No Data..!");
         }
-        }else{ 
-          NERR.setText("No Data..!"); 
-        }
-        
       } catch (Exception e) {
         clearFields();
         System.out.println(e);
@@ -6479,7 +7032,7 @@ public void getAllUsers() {
     }
   }//GEN-LAST:event_NIDKeyPressed
 
-  private void DISCHARGEDATEKeyPressed(java.awt.event.KeyEvent evt) {}                                                                                   
+  private void DISCHARGEDATEKeyPressed(java.awt.event.KeyEvent evt) {}
 
   private void search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search2ActionPerformed
     String af = txt_search2.getText();
@@ -6539,19 +7092,22 @@ public void getAllUsers() {
   }//GEN-LAST:event_FEEKeyTyped
 
   private void CONTACT1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CONTACT1KeyTyped
-    if(!Character.isDigit(evt.getKeyChar()) || CONTACT1.getText().length() >=10){
-        evt.consume();
-    } 
+    if (
+      !Character.isDigit(evt.getKeyChar()) || CONTACT1.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_CONTACT1KeyTyped
 
   private void CONTACT2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CONTACT2KeyTyped
- 
-    if(!Character.isDigit(evt.getKeyChar()) || CONTACT2.getText().length() >=10){
-        evt.consume();
-    } 
+    if (
+      !Character.isDigit(evt.getKeyChar()) || CONTACT2.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_CONTACT2KeyTyped
 
-  private void RSUBMIT2ActionPerformed(java.awt.event.ActionEvent evt) {}                                                                                   
+  private void RSUBMIT2ActionPerformed(java.awt.event.ActionEvent evt) {}
 
   private void MASTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MASTERActionPerformed
     jTabbedPane1.setSelectedIndex(2);
@@ -6574,11 +7130,10 @@ public void getAllUsers() {
   }//GEN-LAST:event_WARDActionPerformed
 
   private void RDELETE2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RDELETE2ActionPerformed
-  
     try {
       statement.execute(
         "DELETE FROM  VHSHOSPITAL.WARDS WHERE WID=" + WID.getText()
-      ); 
+      );
       clearFields();
       getAllUsers();
       getAllWards();
@@ -6807,15 +7362,19 @@ public void getAllUsers() {
   }//GEN-LAST:event_EMERGANCY_CONTACTKeyTyped
 
   private void AADHAARNOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AADHAARNOKeyTyped
-    if(!Character.isDigit(evt.getKeyChar()) || AADHAARNO.getText().length() >=10){
-        evt.consume();
-    }             
+    if (
+      !Character.isDigit(evt.getKeyChar()) || AADHAARNO.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_AADHAARNOKeyTyped
 
   private void PANNOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PANNOKeyTyped
-     if(Character.isWhitespace(evt.getKeyChar()) || PANNO.getText().length() >=10 ){
-        evt.consume();
-     } 
+    if (
+      Character.isWhitespace(evt.getKeyChar()) || PANNO.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_PANNOKeyTyped
 
   private void PINCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PINCODEKeyTyped
@@ -7125,9 +7684,12 @@ public void getAllUsers() {
   }//GEN-LAST:event_RAADHAARNOKeyTyped
 
   private void RPANNOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RPANNOKeyTyped
-    if(Character.isWhitespace(evt.getKeyChar()) || RPANNO.getText().length() >=10 ){
-        evt.consume();
-     } 
+    if (
+      Character.isWhitespace(evt.getKeyChar()) ||
+      RPANNO.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_RPANNOKeyTyped
 
   private void RPINCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RPINCODEKeyTyped
@@ -7173,9 +7735,7 @@ public void getAllUsers() {
     } // TODO add your handling code here:
   }//GEN-LAST:event_RLKNOWNKeyTyped
 
-  private void RUSERNAMEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RUSERNAMEKeyTyped
-   
-  }//GEN-LAST:event_RUSERNAMEKeyTyped
+  private void RUSERNAMEKeyTyped(java.awt.event.KeyEvent evt) {}                                                                       
 
   private void RUSERPHOTOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RUSERPHOTOKeyTyped
     char c = evt.getKeyChar();
@@ -7194,13 +7754,13 @@ public void getAllUsers() {
     }
   }//GEN-LAST:event_RUSERPHOTOKeyTyped
 
-  private void RDOBKeyTyped(java.awt.event.KeyEvent evt) {}                                                             
+  private void RDOBKeyTyped(java.awt.event.KeyEvent evt) {}
 
-  private void USERNAMEKeyTyped(java.awt.event.KeyEvent evt) {}                                                                     
+  private void USERNAMEKeyTyped(java.awt.event.KeyEvent evt) {}
 
   private void USERNAMEInputMethodTextChanged(
     java.awt.event.InputMethodEvent evt
-  ) {}                                                                                                 
+  ) {}
 
   private void RJOB_EXPERIENCEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RJOB_EXPERIENCEKeyTyped
     char c = evt.getKeyChar();
@@ -7449,9 +8009,12 @@ public void getAllUsers() {
   }//GEN-LAST:event_NAADHAARNOKeyTyped
 
   private void NPANNOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NPANNOKeyTyped
-      if(Character.isWhitespace(evt.getKeyChar()) || NPANNO.getText().length() >= 10){
-          evt.consume();
-      }
+    if (
+      Character.isWhitespace(evt.getKeyChar()) ||
+      NPANNO.getText().length() >= 10
+    ) {
+      evt.consume();
+    }
   }//GEN-LAST:event_NPANNOKeyTyped
 
   private void NUSERPHOTOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NUSERPHOTOKeyTyped
@@ -7505,192 +8068,193 @@ public void getAllUsers() {
     } // TODO add your handling code here:
   }//GEN-LAST:event_NDOCUMENTKeyTyped
 
-    private void NPINCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NPINCODEKeyTyped
-  char b = evt.getKeyChar();
-        if(!Character.isDigit(b)){
-            evt.consume();
+  private void NPINCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NPINCODEKeyTyped
+    char b = evt.getKeyChar();
+    if (!Character.isDigit(b)) {
+      evt.consume();
+    }
+    String p = NPINCODE.getText();
+    int length = p.length();
+    char c = evt.getKeyChar();
+    if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+      if (length < 6) {
+        NPINCODE.setEditable(true);
+      } else {
+        NPINCODE.setEditable(false);
+      }
+    } else {
+      if (
+        evt.getExtendedKeyCode() == KeyEvent.VK_BACKSPACE ||
+        evt.getExtendedKeyCode() == KeyEvent.VK_DELETE
+      ) {
+        NPINCODE.setEditable(true);
+      } else {
+        NPINCODE.setEditable(true);
+      }
+    } // TODO add your handling code here:
+  }//GEN-LAST:event_NPINCODEKeyTyped
+
+  private void NUPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUPDATEActionPerformed
+    Connection connection = new GetConnection().Connect_mysql_Prep();
+    try {
+      getNurseData();
+      PreparedStatement query = connection.prepareStatement(
+        "UPDATE VHSHOSPITAL.NURSES SET ID = ? ,FNAME = ? ,MNAME = ? ,LNAME = ? ,AGE = ? ,GENDER = ? ,DOB = ? ,MSTATUS = ? ,UPHOTO = ? ,USERNAME = ? ,PASSWORD = ? ,SPECIALIZATION = ? ,EDUCATION = ? ,JOBEXP = ? ,DATEOFJOIN = ? ,LKNOWN = ? ,DOCUMENT = ? ,EMAIL = ? ,CONTACT1 = ? ,CONTACT2 = ? ,AADHAAR = ? ,PAN = ? ,ADDRESS = ? ,CITY = ? ,DISTRICT = ? ,STATE = ? ,COUNTRY = ? ,PIN = ? ,DATE = ? ,TIME=? WHERE ID= ? "
+      );
+      query.setInt(1, Rid);
+      query.setString(2, Fname);
+      query.setString(3, Mname);
+      query.setString(4, Lname);
+      query.setInt(5, Age);
+      query.setString(6, Gender);
+      query.setString(7, Dob);
+      query.setString(8, Mstatus);
+      query.setString(9, Userphoto);
+      query.setString(10, Username);
+      query.setString(11, Password);
+      query.setString(12, Specialization);
+      query.setString(13, Education);
+      query.setString(14, Jobexperience);
+      query.setString(15, Dateofjoin);
+      query.setString(16, Lknown);
+      query.setString(17, Document);
+      query.setString(18, Email);
+      query.setLong(19, Contact1);
+      query.setLong(20, Contact2);
+      query.setLong(21, Aadhaarno);
+      query.setString(22, Panno);
+      query.setString(23, Address);
+      query.setString(24, City);
+      query.setString(25, District);
+      query.setString(26, State);
+      query.setString(27, Country);
+      query.setLong(28, Pincode);
+      query.setString(29, Date);
+      query.setString(30, Time);
+      query.setInt(31, Rid);
+      System.out.println(query);
+      query.execute();
+      clearFields();
+      getAllUsers();
+      NURSELIST();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }//GEN-LAST:event_NUPDATEActionPerformed
+
+  private void DEATHPATIENTSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DEATHPATIENTSActionPerformed
+    jTabbedPane1.setSelectedIndex(12);
+  }//GEN-LAST:event_DEATHPATIENTSActionPerformed
+
+  private void search5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search5ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_search5ActionPerformed
+
+  private void EXTRA_AMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXTRA_AMOUNTActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_EXTRA_AMOUNTActionPerformed
+
+  private void PATIENT_STATUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PATIENT_STATUSActionPerformed
+    if (PATIENT_STATUS.getSelectedItem().toString().equals("NO")) {
+      WARD_CREATE.setVisible(true);
+    } else {
+      WARD_CREATE.setVisible(false);
+    }
+  }//GEN-LAST:event_PATIENT_STATUSActionPerformed
+
+  private void OTAMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTAMOUNTActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_OTAMOUNTActionPerformed
+
+  private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
+    if (evt.getKeyCode() == 10) {
+      String DOCNAME = "";
+      int did = 0;
+      String dateofadmit = "";
+      String pid = PID.getText();
+      String getQuery =
+        "SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID =" + pid;
+      try {
+        ResultSet res = statement.executeQuery(
+          "SELECT DRNAME AS DRNAME FROM VHSHOSPITAL.APPOINTMENTS WHERE PID=" +
+          pid
+        );
+        while (res.next()) {
+          DOCNAME = res.getString("DRNAME");
         }
- String p = NPINCODE.getText();
-           int length = p.length();
-           char c = evt.getKeyChar();
-           if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-               if(length<6){
-                   NPINCODE.setEditable(true);
-               }else{
-                   NPINCODE.setEditable(false);
-               }
-           }else{
-               if(evt.getExtendedKeyCode()==KeyEvent.VK_BACKSPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                   NPINCODE.setEditable(true);
-               }else{
-                   NPINCODE.setEditable(true);
-               }
-           }        // TODO add your handling code here:
-    }//GEN-LAST:event_NPINCODEKeyTyped
-
-    private void NUPDATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUPDATEActionPerformed
-        Connection connection = new GetConnection().Connect_mysql_Prep();
-        try{
-            getNurseData();
-            PreparedStatement query = connection.prepareStatement("UPDATE VHSHOSPITAL.NURSES SET ID = ? ,FNAME = ? ,MNAME = ? ,LNAME = ? ,AGE = ? ,GENDER = ? ,DOB = ? ,MSTATUS = ? ,UPHOTO = ? ,USERNAME = ? ,PASSWORD = ? ,SPECIALIZATION = ? ,EDUCATION = ? ,JOBEXP = ? ,DATEOFJOIN = ? ,LKNOWN = ? ,DOCUMENT = ? ,EMAIL = ? ,CONTACT1 = ? ,CONTACT2 = ? ,AADHAAR = ? ,PAN = ? ,ADDRESS = ? ,CITY = ? ,DISTRICT = ? ,STATE = ? ,COUNTRY = ? ,PIN = ? ,DATE = ? ,TIME=? WHERE ID= ? ");
-            query.setInt(1,Rid);     
-            query.setString(2,Fname);
-            query.setString(3,Mname);
-            query.setString(4,Lname);
-            query.setInt(5,Age); 
-            query.setString(6,Gender);
-            query.setString(7,Dob);
-            query.setString(8,Mstatus);
-            query.setString(9,Userphoto);
-            query.setString(10,Username);
-            query.setString(11,Password);
-            query.setString(12,Specialization);
-            query.setString(13,Education);
-            query.setString(14,Jobexperience);
-            query.setString(15,Dateofjoin);
-            query.setString(16,Lknown);
-            query.setString(17,Document);
-            query.setString(18,Email);
-            query.setLong(19,Contact1);
-            query.setLong(20,Contact2);
-            query.setLong(21,Aadhaarno);
-            query.setString(22,Panno);
-            query.setString(23,Address);
-            query.setString(24,City);
-            query.setString(25,District);
-            query.setString(26,State);
-            query.setString(27,Country);
-            query.setLong(28,Pincode);
-            query.setString(29,Date);
-            query.setString(30,Time);
-            query.setInt(31,Rid);    
-            System.out.println(query);
-            query.execute();
-            clearFields();
-            getAllUsers();
-                NURSELIST();
-
-         }catch(Exception e){
-            System.out.println(e);
+        String name[] = DOCNAME.split("DR.")[1].split(" ");
+        res =
+          statement.executeQuery(
+            "SELECT ID AS ID FROM VHSHOSPITAL.DOCTORS WHERE FNAME='" +
+            name[0] +
+            "' AND MNAME='" +
+            name[1] +
+            "' AND LNAME='" +
+            name[2] +
+            "'"
+          );
+        while (res.next()) {
+          did = Integer.parseInt(res.getString("ID"));
         }
-        
-    }//GEN-LAST:event_NUPDATEActionPerformed
+        String dbname = "doc_" + did;
 
-    private void DEATHPATIENTSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DEATHPATIENTSActionPerformed
-          jTabbedPane1.setSelectedIndex(12);       
-    }//GEN-LAST:event_DEATHPATIENTSActionPerformed
+        String query =
+          "SELECT DATEOFADMIT FROM " + dbname + ".ADMIT WHERE PID=" + pid;
 
-    private void search5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_search5ActionPerformed
-
-    private void EXTRA_AMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXTRA_AMOUNTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EXTRA_AMOUNTActionPerformed
-
-    private void PATIENT_STATUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PATIENT_STATUSActionPerformed
-        if (PATIENT_STATUS.getSelectedItem().toString().equals("NO")) {
-            WARD_CREATE.setVisible(true);
-        } else {
-            WARD_CREATE.setVisible(false);
+        res = statement.executeQuery(query);
+        while (res.next()) {
+          dateofadmit = res.getString("DATEOFADMIT");
         }
-    }//GEN-LAST:event_PATIENT_STATUSActionPerformed
+        RDOB.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateofadmit));
+      } catch (Exception e) {
+        System.out.println(e);
+      }
 
-    private void OTAMOUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTAMOUNTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OTAMOUNTActionPerformed
-
- 
-    private void PIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PIDKeyPressed
-        if (evt.getKeyCode() == 10) {
-            String DOCNAME = "";
-            int did = 0;
-            String dateofadmit = "";
-            String pid = PID.getText();
-            String getQuery =
-            "SELECT * FROM VHSHOSPITAL.APPOINTMENTS WHERE PID =" + pid;
-            try {
-                ResultSet res = statement.executeQuery(
-                    "SELECT DRNAME AS DRNAME FROM VHSHOSPITAL.APPOINTMENTS WHERE PID=" +
-                    pid
-                );
-                while (res.next()) {
-                    DOCNAME = res.getString("DRNAME");
-                }
-                String name[] = DOCNAME.split("DR.")[1].split(" ");
-                res =
-                statement.executeQuery(
-                    "SELECT ID AS ID FROM VHSHOSPITAL.DOCTORS WHERE FNAME='" +
-                    name[0] +
-                    "' AND MNAME='" +
-                    name[1] +
-                    "' AND LNAME='" +
-                    name[2] +
-                    "'"
-                );
-                while (res.next()) {
-                    did = Integer.parseInt(res.getString("ID"));
-                }
-                String dbname = "doc_" + did;
-
-                String query =
-                "SELECT DATEOFADMIT FROM " + dbname + ".ADMIT WHERE PID=" + pid;
-
-                res = statement.executeQuery(query);
-                while (res.next()) {
-                    dateofadmit = res.getString("DATEOFADMIT");
-                }
-                RDOB.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateofadmit));
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-
-            try {
-                ResultSet result = statement.executeQuery(getQuery);
-                while (result.next()) {
-                    String a = result.getString("FNAME");
-                    String b = result.getString("MNAME");
-                    String c = result.getString("LNAME");
-                    String fullname = a + " " + b + " " + c;
-                    FULLNAME.setText(fullname);
-                    DRNAME.setText(result.getString("DRNAME"));
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+      try {
+        ResultSet result = statement.executeQuery(getQuery);
+        while (result.next()) {
+          String a = result.getString("FNAME");
+          String b = result.getString("MNAME");
+          String c = result.getString("LNAME");
+          String fullname = a + " " + b + " " + c;
+          FULLNAME.setText(fullname);
+          DRNAME.setText(result.getString("DRNAME"));
         }
-    }//GEN-LAST:event_PIDKeyPressed
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    }
+  }//GEN-LAST:event_PIDKeyPressed
 
-    private void PIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PIDActionPerformed
+  private void PIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PIDActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_PIDActionPerformed
 
-    private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
-           jTabbedPane1.setSelectedIndex(12);
-    }//GEN-LAST:event_jPanel21MouseClicked
+  private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
+    jTabbedPane1.setSelectedIndex(12);
+  }//GEN-LAST:event_jPanel21MouseClicked
 
-    private void jPanel24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel24MouseClicked
-         PATIENTS();
-      jTabbedPane1.setSelectedIndex(13);
-    }//GEN-LAST:event_jPanel24MouseClicked
+  private void jPanel24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel24MouseClicked
+    PATIENTS();
+    jTabbedPane1.setSelectedIndex(13);
+  }//GEN-LAST:event_jPanel24MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+  private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String af = jTextField1.getText();
-        search4(af);
-    }//GEN-LAST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    String af = jTextField1.getText();
+    search4(af);
+  }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void CHARGESKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CHARGESKeyTyped
- 
-        char b = evt.getKeyChar();
-        if(!Character.isDigit(b)){
-            evt.consume();
-        }
-                // TODO add your handling code here:
-    }//GEN-LAST:event_CHARGESKeyTyped
+  private void CHARGESKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CHARGESKeyTyped
+    char b = evt.getKeyChar();
+    if (!Character.isDigit(b)) {
+      evt.consume();
+    }
+    // TODO add your handling code here:
+  }//GEN-LAST:event_CHARGESKeyTyped
 
   public static void main(String args[]) {
     try {
@@ -7902,7 +8466,6 @@ public void getAllUsers() {
     private javax.swing.JTextField USERNAME;
     private javax.swing.JTextField USERPHOTO;
     private javax.swing.JMenu USERS_LIST;
-    // private javax.persistence.EntityManager VHSHOSPITALPUEntityManager;
     private javax.swing.JButton VIEW;
     private javax.swing.JMenu VIEW_PATIENTS;
     private javax.swing.JTextField WARD;
@@ -7910,8 +8473,6 @@ public void getAllUsers() {
     private javax.swing.JTable WARDSTABLE;
     private javax.swing.JPanel WARD_CREATE;
     private javax.swing.JTextField WID;
-    // private java.util.List<multispecility_hospital_solapur.ADMIN.Deaths> deathsList;
-    // private javax.persistence.Query deathsQuery;
     private javax.swing.JLabel doctors;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -8129,10 +8690,7 @@ public void getAllUsers() {
     private javax.swing.JTextField txt_search3;
     private javax.swing.JTextField txt_search4;
     private javax.swing.JTextField txt_search5;
-    // private java.util.List<multispecility_hospital_solapur.ADMIN.Wards> wardsList;
-    // private java.util.List<multispecility_hospital_solapur.ADMIN.Wards> wardsList1;
-    // private javax.persistence.Query wardsQuery;
-    // private javax.persistence.Query wardsQuery1;
+  
     // End of variables declaration//GEN-END:variables
 
 }
